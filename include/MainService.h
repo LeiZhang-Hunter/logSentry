@@ -1,0 +1,8 @@
+//
+// Created by zhanglei on 19-8-6.
+//
+
+#ifndef SOCKETSENTRY_MAINSERVICE_H
+#define SOCKETSENTRY_MAINSERVICE_H
+
+#endif //SOCKETSENTRY_MAINSERVICE_H
