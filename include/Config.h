@@ -9,15 +9,17 @@
 
 #endif //SOCKETSENTRY_CONFIG_H
 
+#define DEFAULT_CONFIG_DIR "/home/zhanglei/ourc/logSentry/config/config.ini"
+
 namespace service{
     class Config{
     public:
-        bool setPath(std::string path);
+        bool setPath(std::string& path);
         std::string getPath();
         bool loadConfig();
         std::string getConfig();
 
     private:
-        std::string* configPath;
+        std::string configPath;
     };
 }
