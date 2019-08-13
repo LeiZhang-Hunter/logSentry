@@ -4,10 +4,16 @@
 //#include "include/CThread.h"
 #include "include/MainService.h"
 using service::Config;
+using service::SingleInstance;
 int main(int argc,char** argv)
 {
     //解析命令行参数,获取配置文件路径
-    Config* instance = new service::Config();
+    Config* instance = SingleInstance<Config>::getInstance();
+    if(!instance)
+    {
+        exit(-1);
+    }
+
     int opt;
     while ((opt = getopt(argc, argv, "c"))!= -1)
     {
@@ -35,4 +41,6 @@ int main(int argc,char** argv)
     }else{
         exit(-1);
     }
+
+
 }

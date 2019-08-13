@@ -19,9 +19,14 @@ set(SOURCE_FILES
         include/CThread.h
         main.cpp
         include/MainService.h
+        include/SingleInstance.h
         src/service/CThread.cpp
         include/Config.h
         src/service/Config.cpp
+        include/Lock.h
+        src/service/Lock.cpp
+        include/CSocket.h
+        src/service/CSocket.cpp
         )
 
 add_executable(logSentry ${SOURCE_FILES})

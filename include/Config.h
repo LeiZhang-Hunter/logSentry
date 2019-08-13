@@ -21,5 +21,6 @@ namespace service{
 
     private:
         std::string configPath;
+
     };
 }
