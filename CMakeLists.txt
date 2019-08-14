@@ -16,6 +16,8 @@ ENDIF(CMAKE_COMPILER_IS_GNUCC)
 #引入php需要的扩展源码，这里也是根据自己需要的来更改
 
 set(SOURCE_FILES
+        include/ServiceLog.h
+        src/service/ServiceLog.cpp
         include/CThread.h
         main.cpp
         include/MainService.h
@@ -27,6 +29,8 @@ set(SOURCE_FILES
         src/service/Lock.cpp
         include/CSocket.h
         src/service/CSocket.cpp
+        include/IniFileConfig.h
+        src/service/IniFileConfig.cpp
         )
 
 add_executable(logSentry ${SOURCE_FILES})

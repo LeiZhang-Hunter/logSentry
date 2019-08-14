@@ -16,7 +16,8 @@ std::string service::Config::getConfig(){
 
 //加载配置文件中的配置放入到内存中
 bool service::Config::loadConfig(){
-
+    std::map<string,string> mContent;
+    SingleInstance<IniFileConfig>::getInstance()->readConfig(configPath,mContent);
 }
 
 //获取路径

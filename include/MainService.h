@@ -7,32 +7,38 @@
 
 #endif //SOCKETSENTRY_MAINSERVICE_H
 
+//内核库
 #include <iostream>
-
+#include <string>
+#include <map>
 #include <unistd.h>
-
 #include <pthread.h>
-
 #include <string.h>
+#include <fcntl.h>
+#include <stdio.h>
 
+//自己的组件库
 #ifndef LOGSENTRY_SINGLEINSTANCE_H
 #include "SingleInstance.h"
 #endif
-
+#ifndef LOGSENTRY_SERVICELOG_H
+#include "ServiceLog.h"
+#endif
 #include "Config.h"
-
 #ifndef SOCKETSENTRY_CTHREAD_H
 #include "CThread.h"
 #endif
-
 #ifndef LOGSENTRY_CMUTEXLOCK_H
 #include "CMutexLock.h"
 #endif
-
 #ifndef LOGSENTRY_CSOCKET_H
 #include "CSocket.h"
 #endif
+#ifndef LOGSENTRY_INIFILECONFIG_H
+#include "IniFileConfig.h"
+#endif
 
+#define LOG_TRACE(logLevel,isSucess,Name,msg){}
 
 enum {
     LOCK_PROCESS_IS_SHARED = 1,
