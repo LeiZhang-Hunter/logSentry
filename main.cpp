@@ -2,9 +2,10 @@
 // Created by zhanglei on 19-8-9.
 //
 //#include "include/CThread.h"
-#include "include/MainService.h"
-using service::Config;
+#include "include/Common.h"
+using app::Config;
 using service::SingleInstance;
+using app::MainCenter;
 int main(int argc,char** argv)
 {
     //解析命令行参数,获取配置文件路径
@@ -41,6 +42,7 @@ int main(int argc,char** argv)
     }else{
         exit(-1);
     }
-
-
+    //运行入口函数创建进程
+    MainCenter* main_instance = SingleInstance<MainCenter>::getInstance();
+    main_instance->start();
 }

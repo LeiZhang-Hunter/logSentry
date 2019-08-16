@@ -1,7 +1,7 @@
 //
 // Created by zhanglei on 19-8-8.
 //
-#include "../../include/MainService.h"
+#include "include/MainService.h"
 service::CThread::CThread() {
     //初始化互斥锁
     pthread_mutex_init(&mMutex, nullptr);

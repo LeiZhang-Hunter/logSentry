@@ -10,13 +10,15 @@
 #endif //SOCKETSENTRY_CONFIG_H
 
 #define DEFAULT_CONFIG_DIR "/home/zhanglei/ourc/logSentry/config/config.ini"
-
-namespace service{
-    class Config{
+using service::IniFileConfig;
+namespace app{
+    class Config :public IniFileConfig{
     public:
         bool setPath(std::string& path);
         std::string getPath();
+        //加载配置
         bool loadConfig();
+        virtual int onGetConfig(char* buf);
         std::string getConfig();
 
     private:

@@ -13,9 +13,11 @@ using std::string;
 namespace service {
     class IniFileConfig {
     public:
-        bool readConfig(std::string &filename, map<string, string> &Config);
+        bool readConfig(std::string &filename);
 
         ssize_t readLine(int fd,char* buf,size_t manxLine);
+
+        virtual int onGetConfig(char* buf);
 
 
     private:

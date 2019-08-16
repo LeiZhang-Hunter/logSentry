@@ -1,10 +1,11 @@
 //
 // Created by zhanglei on 19-8-14.
 //
-#include "../../include/MainService.h"
+#include <vector>
+#include "include/MainService.h"
 
 //读取配置文件
-bool service::IniFileConfig::readConfig(std::string &filename, map<string, string> &Config) {
+bool service::IniFileConfig::readConfig(std::string &filename) {
 
     if (access(filename.c_str(), R_OK) == -1) {
         LOG_TRACE(LOG_WARING, false, "Log",
@@ -23,10 +24,31 @@ bool service::IniFileConfig::readConfig(std::string &filename, map<string, strin
 
     //开始循环一个一个字节的读取配置文件,加载入map中
     char buf[1024 * 8];
-    ssize_t n;
-    while ((n = readLine(fileFd, buf, 1024 * 8))) {
-        printf("%s\n", buf);
+    char data[1024*8];
+    char splitBegin[2];
+    char splitEnd[2];
+    char key[1024];
+    ssize_t len;//长度
+
+    //初始化分割开始节点
+    bzero(splitBegin,sizeof(splitBegin));
+
+    //初始化分割结束节点
+    bzero(splitEnd,sizeof(splitBegin));
+
+    //配置的buffer
+    std::string config_buffer;
+
+    while ((readLine(fileFd, buf, 1024 * 8))) {
+        if((len = strlen(buf)) > 0)
+        {
+            this->onGetConfig(buf);
+        }
     }
+}
+
+int service::IniFileConfig::onGetConfig(char *buf) {
+        printf("this:buf\n");
 }
 
 
@@ -40,6 +62,13 @@ ssize_t service::IniFileConfig::readLine(int fd, char *buf, size_t maxLine) {
 
     while ((res = read(fd, &c, 1))) {
         if (res == -1) {
+
+            //如果说被信号中断那么就要继续运行不要停
+            if(errno == EINTR)
+            {
+                continue;
+            }
+
             return -1;
         }
         n++;

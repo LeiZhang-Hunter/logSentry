@@ -16,6 +16,7 @@
 #include <string.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <signal.h>
 
 //自己的组件库
 #ifndef LOGSENTRY_SINGLEINSTANCE_H
@@ -24,7 +25,8 @@
 #ifndef LOGSENTRY_SERVICELOG_H
 #include "ServiceLog.h"
 #endif
-#include "Config.h"
+
+
 #ifndef SOCKETSENTRY_CTHREAD_H
 #include "CThread.h"
 #endif
@@ -36,6 +38,10 @@
 #endif
 #ifndef LOGSENTRY_INIFILECONFIG_H
 #include "IniFileConfig.h"
+#endif
+
+#ifndef LOGSENTRY_CPROCESS_H
+#include "CProcess.h"
 #endif
 
 #define LOG_TRACE(logLevel,isSucess,Name,msg){}
