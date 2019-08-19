@@ -17,7 +17,7 @@ std::string app::Config::getConfig(){
 
 //加载配置文件中的配置放入到内存中
 bool app::Config::loadConfig(){
-    SingleInstance<IniFileConfig>::getInstance()->readConfig(configPath);
+    this->readConfig(configPath);
 }
 
 //获取路径
@@ -25,6 +25,6 @@ std::string app::Config::getPath(){
     return configPath;
 }
 
-int app::Config::onGetConfig(char *buf) {
-    printf("%s\n",buf);
+int app::Config::onGetConfig(map<string,map <string,string>>ConfigData){
+    iniConfig = ConfigData;
 }

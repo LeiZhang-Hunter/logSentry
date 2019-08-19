@@ -3,9 +3,9 @@
 //
 #include <vector>
 #include "include/MainService.h"
-
+using std::string;
 //读取配置文件
-bool service::IniFileConfig::readConfig(std::string &filename) {
+bool service::IniFileConfig::readConfig(string &filename) {
 
     if (access(filename.c_str(), R_OK) == -1) {
         LOG_TRACE(LOG_WARING, false, "Log",
@@ -23,32 +23,35 @@ bool service::IniFileConfig::readConfig(std::string &filename) {
     }
 
     //开始循环一个一个字节的读取配置文件,加载入map中
-    char buf[1024 * 8];
-    char data[1024*8];
-    char splitBegin[2];
-    char splitEnd[2];
-    char key[1024];
-    ssize_t len;//长度
-
-    //初始化分割开始节点
-    bzero(splitBegin,sizeof(splitBegin));
-
-    //初始化分割结束节点
-    bzero(splitEnd,sizeof(splitBegin));
-
-    //配置的buffer
-    std::string config_buffer;
-
+    char buf[MAXLINE];
+    string config_buffer;
+    string section;
+    size_t len;
+    struct unit un;
     while ((readLine(fileFd, buf, 1024 * 8))) {
-        if((len = strlen(buf)) > 0)
+        len = strlen(buf);
+        if(len>0)
         {
-            this->onGetConfig(buf);
+            config_buffer = buf;
+            if(config_buffer.find('[') == 0 && config_buffer.find(']') == len-1)
+            {
+                //解析出他的值
+                section = config_buffer.substr(1,len-2);
+            }else if (config_buffer.find('=') != string::npos)
+            {
+                un.key = config_buffer.substr(0,config_buffer.find('='));
+                un.value = config_buffer.substr(config_buffer.find('=')+1);
+                configUnit[un.key] = un.value;
+                mContent[section] = configUnit;
+            }
         }
     }
+
+    this->onGetConfig(mContent);
 }
 
-int service::IniFileConfig::onGetConfig(char *buf) {
-        printf("this:buf\n");
+int service::IniFileConfig::onGetConfig(map<string,map <string,string>>Config) {
+
 }
 
 
