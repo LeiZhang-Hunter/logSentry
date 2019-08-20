@@ -4,27 +4,29 @@
 #include "../../include/Common.h"
 
 //设置配置文件加载的路径
-using service::SingleInstance;
-bool app::Config::setPath(std::string& path) {
+using std::string;
+using std::map;
+using app::Config;
+bool Config::setPath(std::string& path) {
     configPath = path;
     return true;
 }
 
 //获取配置选项
-std::string app::Config::getConfig(){
-
+map<string,map<string,string>> Config::getConfig(){
+    return iniConfig;
 }
 
 //加载配置文件中的配置放入到内存中
-bool app::Config::loadConfig(){
+bool Config::loadConfig(){
     this->readConfig(configPath);
 }
 
 //获取路径
-std::string app::Config::getPath(){
+std::string Config::getPath(){
     return configPath;
 }
 
-int app::Config::onGetConfig(map<string,map <string,string>>ConfigData){
+int Config::onGetConfig(map<string,map <string,string>>ConfigData){
     iniConfig = ConfigData;
 }

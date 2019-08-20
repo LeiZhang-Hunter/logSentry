@@ -19,7 +19,7 @@ namespace app{
         //加载配置
         bool loadConfig();
         virtual int onGetConfig(map<string,map <string,string>>ConfigData);
-        std::string getConfig();
+        map<string,map<string,string>> getConfig();
 
     private:
         std::string configPath;

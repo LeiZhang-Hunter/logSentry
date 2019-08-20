@@ -43,6 +43,9 @@ bool service::IniFileConfig::readConfig(string &filename) {
                 un.value = config_buffer.substr(config_buffer.find('=')+1);
                 configUnit[un.key] = un.value;
                 mContent[section] = configUnit;
+            }else if(config_buffer.find('#') == 0)
+            {
+                continue;
             }
         }
     }
