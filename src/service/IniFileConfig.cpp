@@ -3,7 +3,7 @@
 //
 #include <vector>
 #include "include/MainService.h"
-using std::string;
+using namespace std;
 //读取配置文件
 bool service::IniFileConfig::readConfig(string &filename) {
 
@@ -30,22 +30,22 @@ bool service::IniFileConfig::readConfig(string &filename) {
     struct unit un;
     while ((readLine(fileFd, buf, 1024 * 8))) {
         len = strlen(buf);
+
         if(len>0)
         {
             config_buffer = buf;
-            if(config_buffer.find('[') == 0 && config_buffer.find(']') == len-1)
-            {
-                //解析出他的值
-                section = config_buffer.substr(1,len-2);
-            }else if (config_buffer.find('=') != string::npos)
-            {
-                un.key = config_buffer.substr(0,config_buffer.find('='));
-                un.value = config_buffer.substr(config_buffer.find('=')+1);
-                configUnit[un.key] = un.value;
-                mContent[section] = configUnit;
-            }else if(config_buffer.find('#') == 0)
-            {
-                continue;
+            //#号开头代表注释
+            if(config_buffer[0] != '#') {
+                if (config_buffer.find('[') == 0 && config_buffer.find(']') == len - 1) {
+                    //解析出他的值
+                    section = config_buffer.substr(1, len - 2);
+                } else if (config_buffer.find('=') != string::npos) {
+
+                    un.key = config_buffer.substr(0, config_buffer.find('='));
+                    un.value = config_buffer.substr(config_buffer.find('=') + 1);
+                    configUnit[un.key] = un.value;
+                    mContent[section] = configUnit;
+                }
             }
         }
     }

@@ -4,12 +4,24 @@
 #include "../../include/Common.h"
 using app::MainCenter;
 using service::SingleInstance;
-using std::map;
+using namespace std;
 //运行逻辑
 void MainCenter::run() {
     Config* instance = SingleInstance<Config>::getInstance();
     map<string,map<string,string>>mContent = instance->getConfig();
-    std::cout<<mContent["server"]["port"]<<"\n";
+
+    map<string,string> file_collect = mContent["sentry_log_file"];
+    cout<<"php-fom.log2"<<"\n";
+//    if(!file_collect.empty())
+//    {
+//        for(it=file_collect.begin();it != file_collect.end();it++)
+//        {
+//            cout << it->first <<"\t"<<file_collect[it->first] << endl;
+//        }
+
+//    }else{
+//        LOG_TRACE(LOG_ERROR,false,"MainCenter::run",__LINE__.":The log option in the configuration file does not exist");
+//    }
 }
 
 //执行逻辑
