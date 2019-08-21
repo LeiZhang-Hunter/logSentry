@@ -17,17 +17,17 @@ ENDIF(CMAKE_COMPILER_IS_GNUCC)
 
 set(SOURCE_FILES
         include/Common.h
-        src/service/include/ServiceLog.h
-        src/service/ServiceLog.cpp
+        src/service/include/CServiceLog.h
+        src/service/CServiceLog.cpp
         src/service/include/CThread.h
         main.cpp
         src/service/include/MainService.h
-        src/service/include/SingleInstance.h
+        src/service/include/CSingleInstance.h
         src/service/CThread.cpp
         include/Config.h
         src/app/Config.cpp
-        src/service/include/Lock.h
-        src/service/Lock.cpp
+        src/service/include/CLock.h
+        src/service/CLock.cpp
         src/service/include/CSocket.h
         src/service/CSocket.cpp
         src/service/include/CIniFileConfig.h
@@ -40,6 +40,8 @@ set(SOURCE_FILES
         src/app/MainCenter.cpp
         include/FileMonitor.h
         src/app/FileMonitor.cpp
+        include/FileMonitorManager.h
+        src/app/FileMonitorManager.cpp
         )
 
 add_executable(logSentry ${SOURCE_FILES})

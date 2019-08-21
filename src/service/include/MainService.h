@@ -19,11 +19,11 @@
 #include <signal.h>
 
 //自己的组件库
-#ifndef LOGSENTRY_SINGLEINSTANCE_H
-#include "SingleInstance.h"
+#ifndef LOGSENTRY_CSINGLEINSTANCE_H
+#include "CSingleInstance.h"
 #endif
-#ifndef LOGSENTRY_SERVICELOG_H
-#include "ServiceLog.h"
+#ifndef LOGSENTRY_CSERVICELOG_H
+#include "CServiceLog.h"
 #endif
 
 

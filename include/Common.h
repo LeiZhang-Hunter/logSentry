@@ -9,11 +9,20 @@
 
 #include "../src/service/include/MainService.h"
 
+using namespace service;
 #ifndef SOCKETSENTRY_CONFIG_H
 #include "Config.h"
 #endif
 
 #ifndef LOGSENTRY_MAINCENTER_H
 #include "MainCenter.h"
+#endif
+
+#ifndef LOGSENTRY_FILEMONITOR_H
+#include "FileMonitor.h"
+#endif
+
+#ifndef LOGSENTRY_FILEMONITORMANAGER_H
+#include "FileMonitorManager.h"
 #endif
 

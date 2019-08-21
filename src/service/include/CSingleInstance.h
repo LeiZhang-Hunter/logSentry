@@ -2,10 +2,10 @@
 // Created by zhanglei on 19-8-13.
 //
 
-#include "Lock.h"
+#include "CLock.h"
 
-#ifndef LOGSENTRY_SINGLEINSTANCE_H
-#define LOGSENTRY_SINGLEINSTANCE_H
+#ifndef LOGSENTRY_CSINGLEINSTANCE_H
+#define LOGSENTRY_CSINGLEINSTANCE_H
 
 #endif //LOGSENTRY_SINGLEINSTANCE_H
 
@@ -13,7 +13,7 @@
 namespace service {
 
     template<class T>
-    class SingleInstance {
+    class CSingleInstance {
 
     public:
         //获取实例
@@ -35,5 +35,5 @@ namespace service {
     };
 
     template <class T>
-    T* SingleInstance<T>::instance = 0;
+    T* CSingleInstance<T>::instance = 0;
 }

@@ -2,8 +2,8 @@
 // Created by zhanglei on 19-8-14.
 //
 
-#ifndef LOGSENTRY_SERVICELOG_H
-#define LOGSENTRY_SERVICELOG_H
+#ifndef LOGSENTRY_CSERVICELOG_H
+#define LOGSENTRY_CSERVICELOG_H
 
 #endif //LOGSENTRY_SERVICELOG_H
 

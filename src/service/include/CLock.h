@@ -11,14 +11,14 @@
 namespace service {
 
     //基础接口类 用来做接口
-    class Lock{
+    class CLock{
         virtual int lock(){};
         virtual int lock(uint8_t flag){};
         virtual int unLock(){};
     };
 
     //互斥锁
-    class CMutexLock :public Lock{
+    class CMutexLock :public CLock{
 
     public:
         CMutexLock(uint8_t shared_flag = 0);
@@ -35,7 +35,7 @@ namespace service {
 
 
     //读写锁
-    class CRwLock :public Lock{
+    class CRwLock :public CLock{
     public:
         CRwLock(uint8_t shared_flag=0);
         ~CRwLock();

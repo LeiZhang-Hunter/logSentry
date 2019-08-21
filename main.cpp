@@ -4,12 +4,12 @@
 //#include "include/CThread.h"
 #include "include/Common.h"
 using app::Config;
-using service::SingleInstance;
+using service::CSingleInstance;
 using app::MainCenter;
 int main(int argc,char** argv)
 {
     //解析命令行参数,获取配置文件路径
-    Config* instance = SingleInstance<Config>::getInstance();
+    Config* instance = CSingleInstance<Config>::getInstance();
     if(!instance)
     {
         exit(-1);
@@ -43,6 +43,6 @@ int main(int argc,char** argv)
         exit(-1);
     }
     //运行入口函数创建进程
-    MainCenter* main_instance = SingleInstance<MainCenter>::getInstance();
+    MainCenter* main_instance = CSingleInstance<MainCenter>::getInstance();
     main_instance->start();
 }

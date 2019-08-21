@@ -6,7 +6,7 @@
 
 using service::CMutexLock;
 using service::CRwLock;
-using service::Lock;
+using service::CLock;
 
 /**
  *
