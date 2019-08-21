@@ -5,11 +5,11 @@
 #include "include/MainService.h"
 using namespace std;
 //读取配置文件
-bool service::IniFileConfig::readConfig(string &filename) {
+bool service::CIniFileConfig::readConfig(string &filename) {
 
     if (access(filename.c_str(), R_OK) == -1) {
         LOG_TRACE(LOG_WARING, false, "Log",
-                  "IniFileConfig::readConfig" << __LINE__ << ":" << filename << " is not file;");
+                  "CIniFileConfig::readConfig" << __LINE__ << ":" << filename << " is not file;");
         return false;
     }
 
@@ -18,7 +18,7 @@ bool service::IniFileConfig::readConfig(string &filename) {
 
     if (!fileFd) {
         LOG_TRACE(LOG_WARING, false, "Log",
-                  "IniFileConfig::readConfig" << __LINE__ << ":" << filename << " open failed;");
+                  "CIniFileConfig::readConfig" << __LINE__ << ":" << filename << " open failed;");
         return false;
     }
 
@@ -43,8 +43,7 @@ bool service::IniFileConfig::readConfig(string &filename) {
 
                     un.key = config_buffer.substr(0, config_buffer.find('='));
                     un.value = config_buffer.substr(config_buffer.find('=') + 1);
-                    configUnit[un.key] = un.value;
-                    mContent[section] = configUnit;
+                    mContent[section].insert(map<string,  string>::value_type(un.key,un.value));
                 }
             }
         }
@@ -53,13 +52,13 @@ bool service::IniFileConfig::readConfig(string &filename) {
     this->onGetConfig(mContent);
 }
 
-int service::IniFileConfig::onGetConfig(map<string,map <string,string>>Config) {
+int service::CIniFileConfig::onGetConfig(map<string,map <string,string>>Config) {
 
 }
 
 
 //按照行来读取
-ssize_t service::IniFileConfig::readLine(int fd, char *buf, size_t maxLine) {
+ssize_t service::CIniFileConfig::readLine(int fd, char *buf, size_t maxLine) {
     bzero(buf, maxLine);
     ssize_t n;
     n = 0;

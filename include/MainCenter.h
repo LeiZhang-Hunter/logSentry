@@ -13,7 +13,6 @@ namespace app {
 
     class MainCenter :public CProcess{
     public:
-        void run();
 
 
         void start();

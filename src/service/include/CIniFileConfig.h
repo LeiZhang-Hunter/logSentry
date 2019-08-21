@@ -3,8 +3,8 @@
 //
 
 
-#ifndef LOGSENTRY_INIFILECONFIG_H
-#define LOGSENTRY_INIFILECONFIG_H
+#ifndef LOGSENTRY_CINIFILECONFIG_H
+#define LOGSENTRY_CINIFILECONFIG_H
 
 using std::map;
 using std::string;
@@ -16,7 +16,7 @@ using std::iterator;
 
 
 namespace service {
-    class IniFileConfig {
+    class CIniFileConfig {
     public:
 
         struct unit{
@@ -24,7 +24,7 @@ namespace service {
             string value;
         };
 
-        map<string,string>configUnit;
+
 
         map<string,map <string,string>>mContent;
 

@@ -30,14 +30,16 @@ set(SOURCE_FILES
         src/service/Lock.cpp
         src/service/include/CSocket.h
         src/service/CSocket.cpp
-        src/service/include/IniFileConfig.h
-        src/service/IniFileConfig.cpp
+        src/service/include/CIniFileConfig.h
+        src/service/CIniFileConfig.cpp
         src/service/include/CProcess.h
         src/service/CProcess.cpp
         src/service/include/CSignal.h
         src/service/CSignal.cpp
         include/MainCenter.h
         src/app/MainCenter.cpp
+        include/FileMonitor.h
+        src/app/FileMonitor.cpp
         )
 
 add_executable(logSentry ${SOURCE_FILES})

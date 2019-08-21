@@ -36,8 +36,8 @@
 #ifndef LOGSENTRY_CSOCKET_H
 #include "CSocket.h"
 #endif
-#ifndef LOGSENTRY_INIFILECONFIG_H
-#include "IniFileConfig.h"
+#ifndef LOGSENTRY_CINIFILECONFIG_H
+#include "CIniFileConfig.h"
 #endif
 
 #ifndef LOGSENTRY_CPROCESS_H
