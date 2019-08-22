@@ -9,7 +9,9 @@
 
 enum {
     PROCESS_RUN = 1,
-    PROCESS_STOP = 0
+    PROCESS_STOP = 0,
+    MONITOR_RUN = 1,
+    MONITOR_STOP = 0,
 };
 
 namespace service {
@@ -20,9 +22,11 @@ namespace service {
         virtual void run(){};
         int createDaemon();
         int createProcess();
-        void waitProcess();
+        pid_t waitProcess(pid_t monitor_process_id,int options);
+        virtual void onMonitor(pid_t,int){};
     private:
         int status;
+        int monitorStatus;
         pid_t pid;
     };
 }

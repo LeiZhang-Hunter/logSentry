@@ -4,5 +4,27 @@
 #include "../../include/Common.h"
 
 bool FileMonitorManager::start() {
+    map<string,string>::iterator it;
+    int i = 0;
+    for(it=monitorConfig.begin();it!=monitorConfig.end();it++)
+    {
+        FileMonitor* monitor = new FileMonitor();
+        monitorPool.insert(map<int ,FileMonitor*>::value_type(i,monitor));
+        monitor->start();
+        cout<<monitor->getPid()<<"\n";
+        i++;
+    }
+
+    int status;
+    this->waitProcess(-1,0);
+
+}
+
+bool FileMonitorManager::setConfig(map<string,string>config) {
+    monitorConfig=config;
+}
+
+void FileMonitorManager::onMonitor(pid_t,int)
+{
 
 }

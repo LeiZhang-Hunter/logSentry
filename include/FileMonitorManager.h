@@ -9,11 +9,16 @@
 
 
 
-class FileMonitorManager
+class FileMonitorManager : public CProcess
 {
 public:
     bool start();
 
-private:
+    bool setConfig(map<string,string>config);
 
+    void onMonitor(pid_t,int);
+
+private:
+    map<string,string> monitorConfig;
+    map<int,FileMonitor*> monitorPool;
 };

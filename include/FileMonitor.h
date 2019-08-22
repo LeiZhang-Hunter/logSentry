@@ -9,5 +9,8 @@
 #endif //LOGSENTRY_FILEMONITOR_H
 
 class FileMonitor :public CProcess{
+public:
+    FileMonitor();
+    void start();
     void run();
 };

@@ -17,6 +17,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <signal.h>
+#include <wait.h>
 
 //自己的组件库
 #ifndef LOGSENTRY_CSINGLEINSTANCE_H
@@ -44,7 +45,9 @@
 #include "CProcess.h"
 #endif
 
-#define LOG_TRACE(logLevel,isSucess,Name,msg){}
+#ifndef LOG_TRACE
+#define LOG_TRACE(logLevel,isSucess,Name,msg) std::cout<<msg<<"\n";
+#endif
 
 enum {
     LOCK_PROCESS_IS_SHARED = 1,

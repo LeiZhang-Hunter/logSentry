@@ -7,16 +7,28 @@ using service::CProcess;
 //守护进程
 CProcess::CProcess(){
     status = PROCESS_STOP;
+    monitorStatus = MONITOR_RUN;
 }
 
 //获取进程的pid
 pid_t CProcess::getPid() {
-
+    return pid;
 }
 
 //等待进程
-void CProcess::waitProcess() {
+pid_t CProcess::waitProcess(pid_t monitor_process_id,int options){
+    monitorStatus = MONITOR_RUN;
 
+    int status;
+    pid_t stop_pid;
+
+    while(monitorStatus) {
+        stop_pid = waitpid(monitor_process_id, &status, options);
+        if(stop_pid > 0)
+        {
+            onMonitor(stop_pid,status);
+        }
+    }
 }
 
 //创建守护进程
@@ -26,7 +38,7 @@ int CProcess::createDaemon()
 
     if(pid < 0)
     {
-        LOG_TRACE(LOG_ERROR,false,"CProcess::createDaemon",__LINE__":create daemon process error");
+        LOG_TRACE(LOG_ERROR,false,"CProcess::createDaemon",__LINE__<<":create daemon process error");
         return  -1;
     }else if(pid > 0)
     {
@@ -37,7 +49,7 @@ int CProcess::createDaemon()
     //如果说设置进程组组长失败，
     if(setsid() < 0)
     {
-        LOG_TRACE(LOG_ERROR,false,"CProcess::createDaemon",__LINE__":create process leader error");
+        LOG_TRACE(LOG_ERROR,false,"CProcess::createDaemon",__LINE__<<":create process leader error");
         return  -1;
     }
 

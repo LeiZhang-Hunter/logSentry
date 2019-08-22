@@ -11,18 +11,14 @@ using namespace std;
 void MainCenter::start() {
     Config* instance = CSingleInstance<Config>::getInstance();
     map<string,map<string,string>>mContent = instance->getConfig();
-
-    map<string,string> file_collect = mContent["sentry_log_file"];
-    map<string,string>::iterator it;
     FileMonitorManager* manager = CSingleInstance<FileMonitorManager>::getInstance();
-    if(!file_collect.empty())
+    if(!mContent["sentry_log_file"].empty())
     {
-        for(it=file_collect.begin();it != file_collect.end();it++)
-        {
-            cout << it->first <<"\t"<<file_collect[it->first] << endl;
-        }
-
+        //设置配置文件
+        manager->setConfig(mContent["sentry_log_file"]);
+        //启动管理者进程
+        manager->start();
     }else{
-        LOG_TRACE(LOG_ERROR,false,"MainCenter::run",__LINE__.":The log option in the configuration file does not exist");
+        LOG_TRACE(LOG_ERROR,false,"MainCenter::run",__LINE__<<":The log option in the configuration file does not exist");
     }
 }
