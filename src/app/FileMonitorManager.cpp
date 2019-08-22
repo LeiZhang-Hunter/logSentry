@@ -11,11 +11,9 @@ bool FileMonitorManager::start() {
         FileMonitor* monitor = new FileMonitor();
         monitorPool.insert(map<int ,FileMonitor*>::value_type(i,monitor));
         monitor->start();
-        cout<<monitor->getPid()<<"\n";
         i++;
     }
 
-    int status;
     this->waitProcess(-1,0);
 
 }
@@ -24,7 +22,7 @@ bool FileMonitorManager::setConfig(map<string,string>config) {
     monitorConfig=config;
 }
 
-void FileMonitorManager::onMonitor(pid_t,int)
+void FileMonitorManager::onMonitor(pid_t stop_pid,int status)
 {
-
+    printf("%d\n",stop_pid);
 }

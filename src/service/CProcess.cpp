@@ -26,7 +26,7 @@ pid_t CProcess::waitProcess(pid_t monitor_process_id,int options){
         stop_pid = waitpid(monitor_process_id, &status, options);
         if(stop_pid > 0)
         {
-            onMonitor(stop_pid,status);
+            this->onMonitor(stop_pid,status);
         }
     }
 }
