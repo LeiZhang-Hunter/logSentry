@@ -14,8 +14,7 @@ bool FileMonitorManager::start() {
         i++;
     }
 
-    this->waitProcess(-1,0);
-
+    this->startMonitor(-1,0);
 }
 
 bool FileMonitorManager::setConfig(map<string,string>config) {

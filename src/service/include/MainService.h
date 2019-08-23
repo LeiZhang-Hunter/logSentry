@@ -18,6 +18,9 @@
 #include <stdio.h>
 #include <signal.h>
 #include <wait.h>
+#include <sys/epoll.h>
+#include <sys/time.h>
+#include <sys/resource.h>
 
 //自己的组件库
 #ifndef LOGSENTRY_CSINGLEINSTANCE_H
@@ -45,8 +48,20 @@
 #include "CProcess.h"
 #endif
 
+#ifndef LOGSENTRY_CEVENT_H
+#include "CEvent.h"
+#endif
+
+#ifndef LOGSENTRY_CPROCESSFACTORY_H
+#include "CProcessFactory.h"
+#endif
+
 #ifndef LOG_TRACE
 #define LOG_TRACE(logLevel,isSucess,Name,msg) std::cout<<msg<<"\n";
+#endif
+
+#ifndef LOGSENTRY_CUNIXOS_H
+#include "CUnixOs.h"
 #endif
 
 enum {

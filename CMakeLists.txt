@@ -42,6 +42,14 @@ set(SOURCE_FILES
         src/app/FileMonitor.cpp
         include/FileMonitorManager.h
         src/app/FileMonitorManager.cpp
+        include/FileMonitor.h
+        src/app/FileMonitor.cpp
+        src/service/include/CEvent.h
+        src/service/CEvent.cpp
+        src/service/include/CProcessFactory.h
+        src/service/factory/CProcessFactory.cpp
+        src/service/include/CUnixOs.h
+        src/service/CUnixOs.cpp
         )
 
 add_executable(logSentry ${SOURCE_FILES})

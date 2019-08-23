@@ -6,3 +6,17 @@
 #define LOGSENTRY_CPROCESSFACTORY_H
 
 #endif //LOGSENTRY_CPROCESSFACTORY_H
+enum {
+    PROCESS_STOP = 0,
+    MONITOR_RUN = 1,
+};
+namespace service{
+    class CProcessFactory{
+    public:
+        virtual void onMonitor(pid_t,int){};
+        int startMonitor(pid_t monitor_process_id,int options);
+
+    private:
+        int monitorStatus;
+    };
+}

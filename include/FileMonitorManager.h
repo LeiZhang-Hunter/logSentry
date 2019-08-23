@@ -9,7 +9,7 @@
 
 
 
-class FileMonitorManager : public CProcess
+class FileMonitorManager : public CProcessFactory
 {
 public:
     bool start();
