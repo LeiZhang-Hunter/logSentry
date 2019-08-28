@@ -11,6 +11,10 @@
 class FileMonitor :public CProcess{
 public:
     FileMonitor();
+    bool setNotifyPath(string path);
     void start();
     void run();
+
+private:
+    string monitorPath;
 };

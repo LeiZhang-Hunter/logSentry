@@ -23,5 +23,4 @@ bool FileMonitorManager::setConfig(map<string,string>config) {
 
 void FileMonitorManager::onMonitor(pid_t stop_pid,int status)
 {
-    printf("%d\n",stop_pid);
 }
