@@ -32,20 +32,22 @@ bool CEvent::createEvent() {
     return  true;
 }
 
-bool CEvent::eventAdd(int fd,uint32_t flags) {
+bool CEvent::eventAdd(int fd,uint32_t flags,eventHandle handle) {
     struct epoll_event event;
     bzero(&event,sizeof(event));
     event.events = flags;
+    event.data.ptr = (void*)handle;
 
     epoll_ctl(epollFd,EPOLL_CTL_ADD,fd,&event);
 }
 
-bool CEvent::eventUpdate(int fd,uint32_t flags) {
+bool CEvent::eventUpdate(int fd,uint32_t flags,eventHandle handle) {
     struct epoll_event event;
     bzero(&event,sizeof(event));
     event.events = flags;
+    event.data.ptr = (void*)handle;
 
-    epoll_ctl(epollFd,EPOLL_CTL_ADD,fd,&event);
+    epoll_ctl(epollFd,EPOLL_CTL_MOD,fd,&event);
 }
 
 bool CEvent::eventDelete(int fd,uint32_t flags) {
@@ -53,8 +55,10 @@ bool CEvent::eventDelete(int fd,uint32_t flags) {
     bzero(&event,sizeof(event));
     event.events = flags;
 
-    epoll_ctl(epollFd,EPOLL_CTL_ADD,fd,&event);
+    epoll_ctl(epollFd,EPOLL_CTL_DEL,fd,&event);
 }
+
+
 
 
 //时间循环
@@ -71,11 +75,14 @@ void CEvent::eventLoop() {
         {
             for(i=0;i<nfds;i++)
             {
-                switch (eventCollect[i].events)
-                {
-
-                }
+                ((eventHandle)(eventCollect[i].data.ptr))();
             }
+        }else if(nfds == 0){
+            //描述符并不存在就绪
+            continue;
+        }else{
+            //出现错误情况
+            LOG_TRACE(LOG_ERROR,false,"CEvent::eventLoop",__LINE__<<":epoll_wait failed,error msg:"<<strerror(errno));
         }
 
     }

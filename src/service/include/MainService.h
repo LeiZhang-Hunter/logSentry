@@ -26,6 +26,7 @@
 #ifndef LOGSENTRY_CSINGLEINSTANCE_H
 #include "CSingleInstance.h"
 #endif
+
 #ifndef LOGSENTRY_CSERVICELOG_H
 #include "CServiceLog.h"
 #endif
@@ -34,9 +35,7 @@
 #ifndef SOCKETSENTRY_CTHREAD_H
 #include "CThread.h"
 #endif
-#ifndef LOGSENTRY_CMUTEXLOCK_H
-#include "CMutexLock.h"
-#endif
+
 #ifndef LOGSENTRY_CSOCKET_H
 #include "CSocket.h"
 #endif
