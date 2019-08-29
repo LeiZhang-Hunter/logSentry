@@ -3,6 +3,7 @@
 //
 #include "../include/MainService.h"
 using namespace service;
+
 int CProcessFactory::startMonitor(pid_t monitor_process_id,int options){
     monitorStatus = MONITOR_RUN;
 
@@ -14,6 +15,13 @@ int CProcessFactory::startMonitor(pid_t monitor_process_id,int options){
         if(stop_pid > 0)
         {
             this->onMonitor(stop_pid,status);
+        }else{
+            if(errno == EINTR)
+            {
+                continue;
+            }else{
+
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ bool FileMonitorManager::start() {
     for(it=monitorConfig.begin();it!=monitorConfig.end();it++)
     {
         FileMonitor* monitor = new FileMonitor();
+        monitor->setNotifyPath(it->second);
         monitorPool.insert(map<int ,FileMonitor*>::value_type(i,monitor));
         monitor->start();
         i++;

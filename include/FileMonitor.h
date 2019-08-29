@@ -14,7 +14,10 @@ public:
     bool setNotifyPath(string path);
     void start();
     void run();
+    static bool onMonitor(struct epoll_event);
+
 
 private:
     string monitorPath;
 };
+

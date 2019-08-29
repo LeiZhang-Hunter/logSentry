@@ -5,13 +5,13 @@
 #include "include/MainService.h"
 using namespace service;
 
-CEvent::CEvent(int size) {
+CEvent::CEvent() {
     mainLoop = EVENT_STOP;
-    pollSize = size;
+    bzero(eventFunctionHandle, sizeof(eventFunctionHandle));
 }
 
 //创建事件
-bool CEvent::createEvent() {
+bool CEvent::createEvent(int size) {
 
     if(mainLoop == EVENT_START)
     {
@@ -19,15 +19,16 @@ bool CEvent::createEvent() {
         return  false;
     }
 
-    epollFd = epoll_create(pollSize);
+    epollFd = epoll_create(size);
     if(epollFd == -1)
     {
-        LOG_TRACE(LOG_ERROR,false,"CUnixOs::createEvent","errorcode"<<errno<<";errormsg:"<<strerror(errno)<<";in line:"<<__LINE__);
+        LOG_TRACE(LOG_ERROR,false,"CUnixOs::createEvent","errorcode:"<<errno<<";errormsg:"<<strerror(errno)<<";in line:"<<__LINE__);
         return  false;
     }
 
     //创建一个事件集
     eventCollect = (struct epoll_event*)calloc(512,sizeof(struct epoll_event));
+    bzero(eventCollect,sizeof(eventCollect));
 
     return  true;
 }
@@ -35,10 +36,33 @@ bool CEvent::createEvent() {
 bool CEvent::eventAdd(int fd,uint32_t flags,eventHandle handle) {
     struct epoll_event event;
     bzero(&event,sizeof(event));
-    event.events = flags;
-    event.data.ptr = (void*)handle;
+    event.data.fd = fd;
+    event.events = selectEventType(flags);
 
-    epoll_ctl(epollFd,EPOLL_CTL_ADD,fd,&event);
+    if(flags > EPOLL_EVENTS_MAX)
+    {
+        LOG_TRACE(LOG_ERROR,false,"CUnixOs::eventAdd","errorcode:"<<"10000"<<";errormsg:"<<"flags pass EPOLL_EVENTS_MAX"<<";in line:"<<__LINE__);
+        return  false;
+    }
+    eventFunctionHandle[flags] = handle;
+    int res = epoll_ctl(epollFd,EPOLL_CTL_ADD,fd,&event);
+    if(res == -1)
+    {
+        LOG_TRACE(LOG_ERROR,false,"CUnixOs::eventAdd","errorcode:"<<errno<<";errormsg:"<<strerror(errno)<<";in line:"<<__LINE__);
+        return  false;
+    }else{
+        return true;
+    }
+}
+
+uint32_t CEvent::selectEventType(uint32_t flags)
+{
+    if(flags == CEVENT_READ)
+    {
+        flags |= (EPOLLIN|EPOLLET);
+    }
+
+    return  flags;
 }
 
 bool CEvent::eventUpdate(int fd,uint32_t flags,eventHandle handle) {
@@ -50,12 +74,11 @@ bool CEvent::eventUpdate(int fd,uint32_t flags,eventHandle handle) {
     epoll_ctl(epollFd,EPOLL_CTL_MOD,fd,&event);
 }
 
-bool CEvent::eventDelete(int fd,uint32_t flags) {
+bool CEvent::eventDelete(int fd) {
     struct epoll_event event;
     bzero(&event,sizeof(event));
-    event.events = flags;
 
-    epoll_ctl(epollFd,EPOLL_CTL_DEL,fd,&event);
+    epoll_ctl(epollFd,EPOLL_CTL_DEL,fd,NULL);
 }
 
 
@@ -68,6 +91,8 @@ void CEvent::eventLoop() {
 
     while(mainLoop)
     {
+        printf("111\n");
+
         nfds = epoll_wait(epollFd,eventCollect,512,-1);
 
         //返回准备就绪的描述符
@@ -75,12 +100,20 @@ void CEvent::eventLoop() {
         {
             for(i=0;i<nfds;i++)
             {
-                ((eventHandle)(eventCollect[i].data.ptr))();
+                //触发可读事件
+                if(eventCollect[i].events&EPOLLIN)
+                {
+                    eventFunctionHandle[CEVENT_READ](eventCollect[i]);
+                }
             }
         }else if(nfds == 0){
             //描述符并不存在就绪
             continue;
         }else{
+            if(errno == EINTR)
+            {
+                continue;
+            }
             //出现错误情况
             LOG_TRACE(LOG_ERROR,false,"CEvent::eventLoop",__LINE__<<":epoll_wait failed,error msg:"<<strerror(errno));
         }
