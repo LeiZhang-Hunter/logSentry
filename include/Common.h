@@ -9,6 +9,7 @@
 
 #include "../src/service/include/MainService.h"
 #include <sys/inotify.h>
+#include <sys/stat.h>
 using namespace std;
 using namespace service;
 #ifndef SOCKETSENTRY_CONFIG_H

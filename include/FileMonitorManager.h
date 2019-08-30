@@ -8,17 +8,17 @@
 #endif //LOGSENTRY_FILEMONITORMANAGER_H
 
 
+namespace app {
+    class FileMonitorManager : public CProcessFactory {
+    public:
+        bool start();
 
-class FileMonitorManager : public CProcessFactory
-{
-public:
-    bool start();
+        bool setConfig(map<string, string> config);
 
-    bool setConfig(map<string,string>config);
+        void onMonitor(pid_t, int);
 
-    void onMonitor(pid_t,int);
-
-private:
-    map<string,string> monitorConfig;
-    map<int,FileMonitor*> monitorPool;
-};
+    private:
+        map<string, string> monitorConfig;
+        map<int, FileMonitor *> monitorPool;
+    };
+}

@@ -3,11 +3,9 @@
 //
 
 #include "../../include/Common.h"
-enum {
-    TEST,
-    NN
-};
+using namespace app;
 int FileMonitor::fileFd = 0;
+ssize_t FileMonitor::beginLength = 0;
 FileMonitor::FileMonitor() {
 
 }
@@ -20,7 +18,14 @@ void FileMonitor::start() {
 //        LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","create process error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<"line"<<__LINE__<<"\n");
 //        return;
 //    }
-    int fileNode = inotify_init();
+    struct stat buf;
+    int fileNode;
+    int wd;
+    bool result;
+    int thread_number;
+
+
+    fileNode = inotify_init();
 
     if(fileNode < 0)
     {
@@ -28,14 +33,13 @@ void FileMonitor::start() {
         return;
     }
 
-    int wd = inotify_add_watch(fileNode,monitorPath.c_str(),IN_MODIFY);
+    wd = inotify_add_watch(fileNode,monitorPath.c_str(),IN_MODIFY);
     if(wd == -1)
     {
         LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","create inotify_add_watch error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__<<"\n");
         return;
     }
 
-    bool result;
     CEvent* eventInstance = CSingleInstance<CEvent>::getInstance();
     result = eventInstance->createEvent(512);
     if(!result)
@@ -52,10 +56,30 @@ void FileMonitor::start() {
     if(fileFd == -1)
     {
         LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","open fd error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__<<"\n");
-        return;;
+        return;
     }
 
+    //加载文件的初始大小
+    bzero(&buf, sizeof(buf));
+    int res = fstat(fileFd,&buf);
+    if(res == -1)
+    {
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","fstat fd error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__<<"\n");
+        return;
+    }
+
+    //开始创建socket线程用来做读取后的数据收发
+    for(thread_number=0;thread_number<workerNumber;thread_number++)
+    {
+
+    }
+
+    beginLength = buf.st_size;
     eventInstance->eventLoop();
+}
+
+bool FileMonitor::setWorkerNumber(int number) {
+    workerNumber = number;
 }
 
 bool FileMonitor::setNotifyPath(string path) {
@@ -73,9 +97,13 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
     //获取到实例
     char buf[BUFSIZ];
     int i = 0;
+    struct stat file_buffer;
+    ssize_t readLen;
     bzero(buf,BUFSIZ);
     ssize_t res;
     ssize_t n;
+    off_t seek_result;
+
     res = read(eventData.data.fd,buf,BUFSIZ);
     if(res>0)
     {
@@ -93,14 +121,40 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
 
             }
 
-            lseek(fileFd, (off_t) -1, SEEK_CUR);
-            n = read(fileFd, buf, BUFSIZ);
-            if(n>0)
-            {
-                printf("read:%s\n",buf);
+            LOG_TRACE(LOG_SUCESS,true,"FileMonitor::onModify","cookie:"<<event->cookie<<";wd:"<<event->wd<<";mask:"<<event->mask);
+
+            //如果说文件发生了修改事件
+            if(event->mask & IN_MODIFY) {
+                //读取变化之后的文件大小
+                bzero(&file_buffer, sizeof(file_buffer));
+                int res = fstat(fileFd, &file_buffer);
+                if (res == -1) {
+                    LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify",
+                              "fstat fd error,errcode:" << errno << ";errmsg:" << strerror(errno) << ";line:"
+                                                        << __LINE__ << "\n");
+                    return false;
+                }
+
+                if(file_buffer.st_size>beginLength)
+                {
+                    readLen = file_buffer.st_size - beginLength;
+
+                    printf("readLen:%ld\n",readLen);
+                    n = pread(fileFd, buf, (size_t)readLen,file_buffer.st_size-readLen);
+                    buf[n] = '\0';
+                    if(n>0)
+                    {
+                        printf("read:%s\n",buf);
+                    }else if(n<0)
+                    {
+                        LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","fstat fd error,errcode:" << errno << ";errmsg:" << strerror(errno) << ";line:"<< __LINE__ << "\n");
+                    }
+                }
+
+                beginLength = file_buffer.st_size;
             }
+
             i+=(sizeof(struct inotify_event)+event->len);
-            LOG_TRACE(LOG_SUCESS,true,"FileMonitor::onMonitor","cookie:"<<event->cookie<<";wd:"<<event->wd<<";mask:"<<event->mask);
         }
 
     }

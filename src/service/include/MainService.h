@@ -39,6 +39,11 @@
 #ifndef LOGSENTRY_CSOCKET_H
 #include "CSocket.h"
 #endif
+
+#ifndef LOGSENTRY_CTHREADSOCKET_H
+#include "CThreadSocket.h"
+#endif
+
 #ifndef LOGSENTRY_CINIFILECONFIG_H
 #include "CIniFileConfig.h"
 #endif
@@ -54,6 +59,8 @@
 #ifndef LOGSENTRY_CPROCESSFACTORY_H
 #include "CProcessFactory.h"
 #endif
+
+
 
 #ifndef LOG_TRACE
 #define LOG_TRACE(logLevel,isSucess,Name,msg) std::cout<<msg<<"\n";

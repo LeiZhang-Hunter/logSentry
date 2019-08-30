@@ -50,6 +50,8 @@ set(SOURCE_FILES
         src/service/factory/CProcessFactory.cpp
         src/service/include/CUnixOs.h
         src/service/CUnixOs.cpp
+        src/service/CThreadSocket.cpp
+        src/service/include/CThreadSocket.h
         )
 
 add_executable(logSentry ${SOURCE_FILES})
