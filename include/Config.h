@@ -18,7 +18,7 @@ namespace app{
         std::string getPath();
         //加载配置
         bool loadConfig();
-        virtual int onGetConfig(map<string,map <string,string>>ConfigData);
+        int onGetConfig(map<string,map <string,string>>ConfigData) override;
         map<string,map<string,string>> getConfig();
 
     private:

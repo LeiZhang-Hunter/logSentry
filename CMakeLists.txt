@@ -52,6 +52,8 @@ set(SOURCE_FILES
         src/service/CUnixOs.cpp
         src/service/CThreadSocket.cpp
         src/service/include/CThreadSocket.h
+        include/FileMonitorWorker.h
+        src/app/FileMonitorWorker.cpp
         )
 
 add_executable(logSentry ${SOURCE_FILES})

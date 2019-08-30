@@ -32,7 +32,7 @@ void FileMonitor::start() {
         LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","create process error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__<<"\n");
         return;
     }
-
+    printf("%d\n",getpid());
     wd = inotify_add_watch(fileNode,monitorPath.c_str(),IN_MODIFY);
     if(wd == -1)
     {
@@ -71,7 +71,9 @@ void FileMonitor::start() {
     //开始创建socket线程用来做读取后的数据收发
     for(thread_number=0;thread_number<workerNumber;thread_number++)
     {
-
+        CThreadSocket* socket_worker = new CThreadSocket();
+        //启动线程
+        socket_worker->Start();
     }
 
     beginLength = buf.st_size;
@@ -102,7 +104,6 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
     bzero(buf,BUFSIZ);
     ssize_t res;
     ssize_t n;
-    off_t seek_result;
 
     res = read(eventData.data.fd,buf,BUFSIZ);
     if(res>0)
@@ -115,12 +116,6 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
                 printf("name=%s\n", event->name);
             }
 
-            if(event->mask & IN_MODIFY)
-            {
-                //如果说发生了写入
-
-            }
-
             LOG_TRACE(LOG_SUCESS,true,"FileMonitor::onModify","cookie:"<<event->cookie<<";wd:"<<event->wd<<";mask:"<<event->mask);
 
             //如果说文件发生了修改事件
@@ -129,9 +124,7 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
                 bzero(&file_buffer, sizeof(file_buffer));
                 int res = fstat(fileFd, &file_buffer);
                 if (res == -1) {
-                    LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify",
-                              "fstat fd error,errcode:" << errno << ";errmsg:" << strerror(errno) << ";line:"
-                                                        << __LINE__ << "\n");
+                    LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","fstat fd error,errcode:" << errno << ";errmsg:" << strerror(errno) << ";line:"<< __LINE__ << "\n");
                     return false;
                 }
 

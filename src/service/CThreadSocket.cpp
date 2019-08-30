@@ -7,3 +7,17 @@ void CThreadSocket::Execute()
 {
 
 }
+
+bool CThreadSocket::onConnect()
+{
+
+}
+
+bool CThreadSocket::onClose() {
+
+}
+
+bool CThreadSocket::onReceive() {
+
+}
+

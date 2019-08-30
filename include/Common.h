@@ -28,3 +28,6 @@ using namespace service;
 #include "FileMonitorManager.h"
 #endif
 
+#ifndef LOGSENTRY_FILEMONITORWORKER_H
+#include "FileMonitorWorker.h"
+#endif

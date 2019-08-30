@@ -17,7 +17,7 @@ namespace app {
 
         void start();
 
-        void run();
+        void run() final;
 
         bool setWorkerNumber(int number);
 
