@@ -86,6 +86,13 @@ bool CEvent::eventDelete(int fd) {
 
 //时间循环
 void CEvent::eventLoop() {
+    //事件循环已经运行了
+    if(mainLoop == EVENT_START)
+    {
+        LOG_TRACE(LOG_ERROR,false,"CUnixOs::eventLoop","errorcode:"<<1000<<";errormsg:"<<"eventLoop have running"<<";in line:"<<__LINE__);
+        return;
+    }
+
     mainLoop = EVENT_START;
     int i;
 
