@@ -100,7 +100,7 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
                 printf("read:%s\n",buf);
             }
             i+=(sizeof(struct inotify_event)+event->len);
-//            LOG_TRACE(LOG_SUCESS,true,"FileMonitor::onMonitor","cookie:"<<event->cookie<<";wd:"<<event->wd<<";mask:"<<event->mask);
+            LOG_TRACE(LOG_SUCESS,true,"FileMonitor::onMonitor","cookie:"<<event->cookie<<";wd:"<<event->wd<<";mask:"<<event->mask);
         }
 
     }
