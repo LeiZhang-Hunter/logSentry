@@ -14,8 +14,8 @@ public:
     bool setNotifyPath(string path);
     void start();
     void run();
-    static bool onMonitor(struct epoll_event);
-
+    static bool onModify(struct epoll_event);
+    static int fileFd;
 
 private:
     string monitorPath;

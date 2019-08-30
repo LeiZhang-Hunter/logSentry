@@ -91,8 +91,6 @@ void CEvent::eventLoop() {
 
     while(mainLoop)
     {
-        printf("111\n");
-
         nfds = epoll_wait(epollFd,eventCollect,512,-1);
 
         //返回准备就绪的描述符
@@ -103,7 +101,14 @@ void CEvent::eventLoop() {
                 //触发可读事件
                 if(eventCollect[i].events&EPOLLIN)
                 {
-                    eventFunctionHandle[CEVENT_READ](eventCollect[i]);
+                    if(eventFunctionHandle[CEVENT_READ]) {
+                        eventFunctionHandle[CEVENT_READ](eventCollect[i]);
+                    }
+                }else if(eventCollect[i].events & (EPOLLRDHUP | EPOLLERR | EPOLLHUP))
+                {
+                    if(eventFunctionHandle[CEVENT_ERROR]) {
+                        eventFunctionHandle[CEVENT_ERROR](eventCollect[i]);
+                    }
                 }
             }
         }else if(nfds == 0){

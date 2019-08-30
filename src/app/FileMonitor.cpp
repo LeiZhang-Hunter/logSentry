@@ -7,6 +7,7 @@ enum {
     TEST,
     NN
 };
+int FileMonitor::fileFd = 0;
 FileMonitor::FileMonitor() {
 
 }
@@ -43,7 +44,16 @@ void FileMonitor::start() {
         return;
     }
     printf("fileNode:%d\n",fileNode);
-    eventInstance->eventAdd(fileNode,CEVENT_READ,onMonitor);
+    eventInstance->eventAdd(fileNode,CEVENT_READ,onModify);
+
+    //打开文件
+    fileFd = open(monitorPath.c_str(),O_RDONLY);
+
+    if(fileFd == -1)
+    {
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","open fd error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__<<"\n");
+        return;;
+    }
 
     eventInstance->eventLoop();
 }
@@ -58,14 +68,15 @@ void FileMonitor::run() {
 }
 
 //文件发生变化的逻辑在这里写
-bool FileMonitor::onMonitor(struct epoll_event eventData) {
+bool FileMonitor::onModify(struct epoll_event eventData) {
     struct inotify_event* event;
     //获取到实例
-    CEvent* eventInstance =  CSingleInstance<CEvent>::getInstance();
     char buf[BUFSIZ];
     int i = 0;
     bzero(buf,BUFSIZ);
-    ssize_t res = read(eventData.data.fd,buf,BUFSIZ);
+    ssize_t res;
+    ssize_t n;
+    res = read(eventData.data.fd,buf,BUFSIZ);
     if(res>0)
     {
         while(i<res)
@@ -76,31 +87,21 @@ bool FileMonitor::onMonitor(struct epoll_event eventData) {
                 printf("name=%s\n", event->name);
             }
 
-            i+=(sizeof(struct inotify_event)+event->len);
+            if(event->mask & IN_MODIFY)
+            {
+                //如果说发生了写入
 
-            LOG_TRACE(LOG_SUCESS,true,"FileMonitor::onMonitor","cookie:"<<event->cookie<<";wd:"<<event->wd);
+            }
+
+            lseek(fileFd, (off_t) -1, SEEK_CUR);
+            n = read(fileFd, buf, BUFSIZ);
+            if(n>0)
+            {
+                printf("read:%s\n",buf);
+            }
+            i+=(sizeof(struct inotify_event)+event->len);
+//            LOG_TRACE(LOG_SUCESS,true,"FileMonitor::onMonitor","cookie:"<<event->cookie<<";wd:"<<event->wd<<";mask:"<<event->mask);
         }
 
     }
-
-
-//    size_t buf_len=sizeof(inotify_event);
-//    ssize_t res;
-//    char buf[BUFSIZ];
-//    struct inotify_event *event;
-//    printf("fd:%d\n",eventData.data.fd);
-//
-//    switch(eventData.events)
-//    {
-//        case EPOLLIN:
-//            res = read(eventData.data.fd,buf,sizeof(buf)-1);
-//            printf("%ld\n",res);
-//            if(res>0)
-//            {
-//                (struct inotify_event *)&buf[0];
-//            }else{
-//                printf("%s\n",strerror(errno));
-//            }
-//            break;
-//    }
 }

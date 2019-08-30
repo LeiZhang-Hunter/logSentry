@@ -14,6 +14,8 @@ enum{
 
 enum {
     CEVENT_READ,
+    CEVENT_WRITE,
+    CEVENT_ERROR
 
 };
 
