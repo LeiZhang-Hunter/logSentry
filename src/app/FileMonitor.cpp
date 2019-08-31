@@ -6,20 +6,34 @@
 using namespace app;
 int FileMonitor::fileFd = 0;
 ssize_t FileMonitor::beginLength = 0;
-int workerNumberCount = 0;
 int(*unixPipe)[2] = NULL;
+int workerNumberCount;
+
 FileMonitor::FileMonitor() {
 
 }
 
 void FileMonitor::start() {
     //创建worker
-//    int res = this->createProcess();
-//    if(res != 0)
-//    {
-//        LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","create process error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<"line"<<__LINE__<<"\n");
-//        return;
-//    }
+    int res = this->createProcess();
+    if(res != 0)
+    {
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","create process error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<"line"<<__LINE__<<"\n");
+        return;
+    }
+
+}
+
+bool FileMonitor::setWorkerNumber(int number) {
+    workerNumber = number;
+}
+
+bool FileMonitor::setNotifyPath(string path) {
+    monitorPath = path;
+}
+
+//在这里编写逻辑
+void FileMonitor::run() {
     struct stat buf;
     int fileNode;
     int wd;
@@ -32,13 +46,13 @@ void FileMonitor::start() {
 
     if(fileNode < 0)
     {
-        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","create process error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__<<"\n");
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","create process error");
         return;
     }
-    wd = inotify_add_watch(fileNode,monitorPath.c_str(),IN_MODIFY);
+    wd = inotify_add_watch(fileNode,monitorPath.c_str(),IN_MODIFY|IN_IGNORED|IN_DELETE|IN_DELETE_SELF);
     if(wd == -1)
     {
-        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","create inotify_add_watch error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__<<"\n");
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","create inotify_add_watch error");
         return;
     }
 
@@ -46,7 +60,7 @@ void FileMonitor::start() {
     result = eventInstance->createEvent(512);
     if(!result)
     {
-        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","CEvent::createEvent error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__<<"\n");
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","CEvent::createEvent error");
         return;
     }
     eventInstance->eventAdd(fileNode,CEVENT_READ,onModify);
@@ -56,7 +70,7 @@ void FileMonitor::start() {
 
     if(fileFd == -1)
     {
-        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","open fd error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__<<"\n");
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","open fd error");
         return;
     }
 
@@ -65,13 +79,13 @@ void FileMonitor::start() {
     int res = fstat(fileFd,&buf);
     if(res == -1)
     {
-        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","fstat fd error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__<<"\n");
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","fstat fd error");
         return;
     }
 
     if(workerNumber<1)
     {
-        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","workerNumber  error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__<<"\n");
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","workerNumber  error");
         return;
     }
 
@@ -87,7 +101,7 @@ void FileMonitor::start() {
         res = socketpair(AF_UNIX,SOCK_DGRAM,0,unixPipe[thread_number]);
         if(res == -1)
         {
-            LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","socketpair  failed,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__<<"\n");
+            LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","socketpair  failed");
             continue;
         }
         CThreadSocket* socket_worker = new FileMonitorWorker(mContent["server"],unixPipe[thread_number][0]);
@@ -97,19 +111,6 @@ void FileMonitor::start() {
 
     beginLength = buf.st_size;
     eventInstance->eventLoop();
-}
-
-bool FileMonitor::setWorkerNumber(int number) {
-    workerNumber = number;
-}
-
-bool FileMonitor::setNotifyPath(string path) {
-    monitorPath = path;
-}
-
-//在这里编写逻辑
-void FileMonitor::run() {
-
 }
 
 //文件发生变化的逻辑在这里写
@@ -134,6 +135,7 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
         LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","unixPipe is null,errcode:" << errno << ";errmsg:" << strerror(errno) << ";line:"<< __LINE__ << "\n");
         return  false;
     }
+    cout<<"alertm"<<"\n";
 
 //    for(pipe_number =0;pipe_number<workerNumberCount;pipe_number++)
 //    {
@@ -196,6 +198,8 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
                 }
 
                 beginLength = file_buffer.st_size;
+            }else if(event->mask & IN_IGNORED)
+            {
             }
 
             i+=(sizeof(struct inotify_event)+event->len);

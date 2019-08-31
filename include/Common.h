@@ -10,6 +10,7 @@
 #include "../src/service/include/MainService.h"
 #include <sys/inotify.h>
 #include <sys/stat.h>
+#include <limits.h>
 using namespace std;
 using namespace service;
 #ifndef SOCKETSENTRY_CONFIG_H
@@ -36,3 +37,15 @@ typedef struct file_data{
     size_t begin;
     off_t offset;
 }file_read;
+
+//typedef struct _monitor_node{
+//    char buf[PATH_MAX];
+//    ssize_t file_offset;
+//    int fileFd;
+//    int(*pipe_collect)[2];
+//}monitor_node;
+
+//监控文件的集合
+//map<string,monitor_node>monitorCollect;
+
+
