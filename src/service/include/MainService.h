@@ -67,7 +67,7 @@
 
 
 #ifndef LOG_TRACE
-#define LOG_TRACE(logLevel,isSucess,Name,msg) std::cout<<msg<<"\n";
+#define LOG_TRACE(logLevel,isSucess,Name,msg) std::cout<<msg<<",errcode:" << errno << ";errmsg:" << strerror(errno) << ";line:"<< __LINE__ << ";file:"<<__FILE__<<"\n";
 #endif
 
 #ifndef LOGSENTRY_CUNIXOS_H

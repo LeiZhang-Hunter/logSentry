@@ -31,3 +31,8 @@ using namespace service;
 #ifndef LOGSENTRY_FILEMONITORWORKER_H
 #include "FileMonitorWorker.h"
 #endif
+
+typedef struct file_data{
+    size_t begin;
+    off_t offset;
+}file_read;

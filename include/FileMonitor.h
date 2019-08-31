@@ -12,20 +12,13 @@ namespace app {
     class FileMonitor : public CProcess {
     public:
         FileMonitor();
-
         bool setNotifyPath(string path);
-
         void start();
-
         void run() final;
-
         bool setWorkerNumber(int number);
-
         static bool onModify(struct epoll_event);
-
         static int fileFd;
         static ssize_t beginLength;
-
 
     private:
         string monitorPath;

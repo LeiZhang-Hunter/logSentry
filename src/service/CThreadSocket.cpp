@@ -31,7 +31,6 @@ void CThreadSocket::Execute()
         return;
     }
 
-    run = 1;
 
     this->onCreate();
 
@@ -47,6 +46,9 @@ void CThreadSocket::Execute()
     int i;
     char buf[BUFSIZ];
     ssize_t read_size;
+
+    run = 1;
+
     while(run)
     {
         nfds = epoll_wait(eventfd,eventCollect,512,-1);

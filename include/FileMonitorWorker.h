@@ -9,7 +9,7 @@
 namespace app {
     class FileMonitorWorker : public CThreadSocket {
     public:
-        FileMonitorWorker(map<string,string> socketConfig);
+        FileMonitorWorker(map<string,string> socketConfig,int pipe_fd);
         ~FileMonitorWorker();
         bool onCreate();
         bool onConnect() override;
@@ -18,5 +18,7 @@ namespace app {
 
     private:
         map<string,string>netConfig;
+        int pipe;
+        int fileFd;
     };
 }

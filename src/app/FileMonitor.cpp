@@ -6,6 +6,8 @@
 using namespace app;
 int FileMonitor::fileFd = 0;
 ssize_t FileMonitor::beginLength = 0;
+int workerNumberCount = 0;
+int(*unixPipe)[2] = NULL;
 FileMonitor::FileMonitor() {
 
 }
@@ -23,6 +25,7 @@ void FileMonitor::start() {
     int wd;
     bool result;
     int thread_number;
+    int pipe[2];
 
 
     fileNode = inotify_init();
@@ -32,7 +35,6 @@ void FileMonitor::start() {
         LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","create process error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__<<"\n");
         return;
     }
-    printf("%d\n",getpid());
     wd = inotify_add_watch(fileNode,monitorPath.c_str(),IN_MODIFY);
     if(wd == -1)
     {
@@ -47,7 +49,6 @@ void FileMonitor::start() {
         LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","CEvent::createEvent error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__<<"\n");
         return;
     }
-    printf("fileNode:%d\n",fileNode);
     eventInstance->eventAdd(fileNode,CEVENT_READ,onModify);
 
     //打开文件
@@ -68,14 +69,29 @@ void FileMonitor::start() {
         return;
     }
 
+    if(workerNumber<1)
+    {
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","workerNumber  error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__<<"\n");
+        return;
+    }
+
     Config* instance = CSingleInstance<Config>::getInstance();
     map<string,map<string,string>>mContent = instance->getConfig();
 
     //开始创建socket线程用来做读取后的数据收发
+    unixPipe = (int(*)[2])calloc((size_t)workerNumber,sizeof(pipe));
+    workerNumberCount = workerNumber;
     for(thread_number=0;thread_number<workerNumber;thread_number++)
     {
-        CThreadSocket* socket_worker = new FileMonitorWorker(mContent["server"]);
-//        启动线程
+
+        res = socketpair(AF_UNIX,SOCK_DGRAM,0,unixPipe[thread_number]);
+        if(res == -1)
+        {
+            LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","socketpair  failed,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__<<"\n");
+            continue;
+        }
+        CThreadSocket* socket_worker = new FileMonitorWorker(mContent["server"],unixPipe[thread_number][0]);
+        //启动线程
         socket_worker->Start();
     }
 
@@ -103,15 +119,31 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
     char buf[BUFSIZ];
     int i = 0;
     struct stat file_buffer;
+    file_read file_data;
     ssize_t readLen;
     bzero(buf,BUFSIZ);
-    ssize_t res;
-    ssize_t n;
+    ssize_t read_size;
+    int pipe_number;
+    int send_number = 0;
+    int pipe;
+    ssize_t write_size;
+    int res;
 
-    res = read(eventData.data.fd,buf,BUFSIZ);
-    if(res>0)
+    if(!unixPipe)
     {
-        while(i<res)
+        LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","unixPipe is null,errcode:" << errno << ";errmsg:" << strerror(errno) << ";line:"<< __LINE__ << "\n");
+        return  false;
+    }
+
+//    for(pipe_number =0;pipe_number<workerNumberCount;pipe_number++)
+//    {
+//         cout<<"number:"<<pipe_number<<";"<<<<"\n";
+//    }
+
+    read_size = read(eventData.data.fd,buf,BUFSIZ);
+    if(read_size>0)
+    {
+        while(i<read_size)
         {
             event = (struct inotify_event*)&buf[i];
 
@@ -119,13 +151,13 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
                 printf("name=%s\n", event->name);
             }
 
-            LOG_TRACE(LOG_SUCESS,true,"FileMonitor::onModify","cookie:"<<event->cookie<<";wd:"<<event->wd<<";mask:"<<event->mask);
+//            LOG_TRACE(LOG_SUCESS,true,"FileMonitor::onModify","cookie:"<<event->cookie<<";wd:"<<event->wd<<";mask:"<<event->mask);
 
             //如果说文件发生了修改事件
             if(event->mask & IN_MODIFY) {
                 //读取变化之后的文件大小
                 bzero(&file_buffer, sizeof(file_buffer));
-                int res = fstat(fileFd, &file_buffer);
+                res = fstat(fileFd, &file_buffer);
                 if (res == -1) {
                     LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","fstat fd error,errcode:" << errno << ";errmsg:" << strerror(errno) << ";line:"<< __LINE__ << "\n");
                     return false;
@@ -135,16 +167,32 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
                 {
                     readLen = file_buffer.st_size - beginLength;
 
-                    printf("readLen:%ld\n",readLen);
-                    n = pread(fileFd, buf, (size_t)readLen,file_buffer.st_size-readLen);
-                    buf[n] = '\0';
-                    if(n>0)
+                    bzero(&file_data, sizeof(file_data));
+
+                    file_data.begin = (size_t)(file_buffer.st_size-readLen);
+                    file_data.offset = readLen;
+
+                    pipe_number = send_number%workerNumberCount;
+
+                    if(unixPipe)
                     {
-                        printf("read:%s\n",buf);
-                    }else if(n<0)
-                    {
-                        LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","fstat fd error,errcode:" << errno << ";errmsg:" << strerror(errno) << ";line:"<< __LINE__ << "\n");
+                        pipe = *(unixPipe[pipe_number]+1);
+                        if(pipe > 0)
+                        {
+                            write_size = write(pipe,&file_data,sizeof(file_data));
+                            if(write_size<=0)
+                            {
+                                LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","Write Pipe Fd Error");
+                            }else{
+                                send_number++;
+                            }
+                        }else{
+                            LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","Get Pipe Fd Error");
+                            return false;
+                        }
                     }
+
+
                 }
 
                 beginLength = file_buffer.st_size;

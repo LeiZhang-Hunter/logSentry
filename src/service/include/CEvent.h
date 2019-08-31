@@ -29,6 +29,7 @@ namespace service {
 
     public:
         CEvent();
+        ~CEvent();
         bool createEvent(int size);
         bool eventAdd(int fd,uint32_t flags,eventHandle handle);
         bool eventUpdate(int fd,uint32_t flags,eventHandle handle);

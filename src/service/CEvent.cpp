@@ -22,7 +22,7 @@ bool CEvent::createEvent(int size) {
     epollFd = epoll_create(size);
     if(epollFd == -1)
     {
-        LOG_TRACE(LOG_ERROR,false,"CUnixOs::createEvent","errorcode:"<<errno<<";errormsg:"<<strerror(errno)<<";in line:"<<__LINE__);
+        LOG_TRACE(LOG_ERROR,false,"CUnixOs::createEvent","epoll_create failed;errorcode:"<<errno<<";errormsg:"<<strerror(errno)<<";in line:"<<__LINE__);
         return  false;
     }
 
@@ -48,7 +48,7 @@ bool CEvent::eventAdd(int fd,uint32_t flags,eventHandle handle) {
     int res = epoll_ctl(epollFd,EPOLL_CTL_ADD,fd,&event);
     if(res == -1)
     {
-        LOG_TRACE(LOG_ERROR,false,"CUnixOs::eventAdd","errorcode:"<<errno<<";errormsg:"<<strerror(errno)<<";in line:"<<__LINE__);
+        LOG_TRACE(LOG_ERROR,false,"CEvent::eventAdd","CEvent->eventAdd;errorcode:"<<errno<<";errormsg:"<<strerror(errno)<<";in line:"<<__LINE__);
         return  false;
     }else{
         return true;
@@ -131,4 +131,10 @@ void CEvent::eventLoop() {
         }
 
     }
+}
+
+CEvent::~CEvent()
+{
+    if(eventCollect)
+        free(eventCollect);
 }

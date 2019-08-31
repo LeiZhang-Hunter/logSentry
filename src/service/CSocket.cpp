@@ -46,7 +46,8 @@ bool CSocket::connect() {
 
     if(res == -1)
     {
-        LOG_TRACE(LOG_ERROR,false,"CSocket::connect","errno:"<<(errno)<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__);
+        LOG_TRACE(LOG_ERROR,false,"CSocket::connect","CSocket->connect failed;errno:"<<(errno)<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__);
+        return  false;
     }else{
         return  true;
     }
