@@ -68,11 +68,14 @@ void FileMonitor::start() {
         return;
     }
 
+    Config* instance = CSingleInstance<Config>::getInstance();
+    map<string,map<string,string>>mContent = instance->getConfig();
+
     //开始创建socket线程用来做读取后的数据收发
     for(thread_number=0;thread_number<workerNumber;thread_number++)
     {
-        CThreadSocket* socket_worker = new CThreadSocket();
-        //启动线程
+        CThreadSocket* socket_worker = new FileMonitorWorker(mContent["server"]);
+//        启动线程
         socket_worker->Start();
     }
 

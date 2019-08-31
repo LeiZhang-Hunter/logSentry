@@ -28,7 +28,7 @@ bool CEvent::createEvent(int size) {
 
     //创建一个事件集
     eventCollect = (struct epoll_event*)calloc(512,sizeof(struct epoll_event));
-    bzero(eventCollect,sizeof(eventCollect));
+    bzero(eventCollect,sizeof(struct epoll_event)*512);
 
     return  true;
 }

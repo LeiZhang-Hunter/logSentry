@@ -11,27 +11,26 @@ CSocket::CSocket()
     socket_fd = socket(AF_INET,SOCK_STREAM,0);
 }
 
-int CSocket::setConfig(map<string,string>config)
+int CSocket::setConfig(map<string,string>baseConfig)
 {
-
+    socketConfig = baseConfig;
 }
 
 bool CSocket::connect() {
 
     socklen_t len;
     int res;
-
     //检查ip地址
     if(socketConfig["ip"].empty())
     {
-        LOG_TRACE(LOG_ERROR,false,"CSocket::connect","line:"<<__LINE__<<";errmsg:socket of ip can not be empty");
+        LOG_TRACE(LOG_ERROR,false,"CSocket::connect","CSocket->connect;line:"<<__LINE__<<";errmsg:socket of ip can not be empty");
         return  false;
     }
 
     //检查端口
     if(socketConfig["port"].empty())
     {
-        LOG_TRACE(LOG_ERROR,false,"CSocket::connect","line:"<<__LINE__<<";errmsg:socket of port can not be empty");
+        LOG_TRACE(LOG_ERROR,false,"CSocket::connect",";line:"<<__LINE__<<";errmsg:socket of port can not be empty");
         return  false;
     }
 
@@ -47,7 +46,7 @@ bool CSocket::connect() {
 
     if(res == -1)
     {
-        LOG_TRACE(LOG_ERROR,false,"CSocket::connect","errno:"<<(errno)<<";errmsg:"<<strerror(errno)<<"line:"<<__LINE__);
+        LOG_TRACE(LOG_ERROR,false,"CSocket::connect","errno:"<<(errno)<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__);
     }else{
         return  true;
     }
@@ -61,5 +60,6 @@ int CSocket::getSocket()
 
 
 CSocket::~CSocket() {
-
+    //关闭掉套接字
+    close(socket_fd);
 }

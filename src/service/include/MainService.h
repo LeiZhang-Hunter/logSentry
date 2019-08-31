@@ -42,6 +42,10 @@
 #include "CSocket.h"
 #endif
 
+#ifndef LOGSENTRY_CEVENT_H
+#include "CEvent.h"
+#endif
+
 #ifndef LOGSENTRY_CTHREADSOCKET_H
 #include "CThreadSocket.h"
 #endif
@@ -54,9 +58,7 @@
 #include "CProcess.h"
 #endif
 
-#ifndef LOGSENTRY_CEVENT_H
-#include "CEvent.h"
-#endif
+
 
 #ifndef LOGSENTRY_CPROCESSFACTORY_H
 #include "CProcessFactory.h"

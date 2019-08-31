@@ -73,6 +73,7 @@ void* service::CThread::ThreadProc(void* arg)
         }
         //运行主题程序
         selfThread->Execute();
+        usleep(10000);
     }
 
     return (void*)0;
