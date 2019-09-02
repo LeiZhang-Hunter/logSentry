@@ -14,11 +14,14 @@ namespace app {
         bool onCreate();
         bool onConnect() override;
         bool onClose() override;
-        bool onReceive(int fd,char* buf) override;
+        bool onReceive(int fd,char* buf,size_t len) override;
+        bool onClientRead(int fd,char* buf);
 
     private:
+        void onPipe(int fd,char* buf,size_t len);
         map<string,string>netConfig;
         int pipe;
         int fileFd;
+        int client_fd;
     };
 }

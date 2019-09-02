@@ -19,7 +19,7 @@ namespace service{
         };
         virtual bool onConnect(){};
         virtual bool onClose(){};
-        virtual bool onReceive(int fd,char* buf){};
+        virtual bool onReceive(int fd,char* buf,size_t len){};
         bool addEvent(int fd,uint32_t flag);
         CSocket* getSocketHandle();
         struct epoll_event*eventCollect;

@@ -21,7 +21,7 @@ bool FileMonitorWorker::onCreate() {
         return  false;
     }
 
-    int client_fd = client_handle->getSocket();
+    client_fd = client_handle->getSocket();
     if(client_fd <= 0)
     {
         LOG_TRACE(LOG_ERROR,false,"FileMonitorWorker::onCreate","client_handle->getSocket failed;errno:"<<errno<<";errormsg:"<<strerror(errno)<<";"<<";line:"<<__LINE__);
@@ -41,20 +41,46 @@ bool FileMonitorWorker::onConnect() {
 
 }
 
-bool FileMonitorWorker::onReceive(int fd,char* buf) {
+bool FileMonitorWorker::onClientRead(int fd,char* buf)
+{
+
+}
+
+bool FileMonitorWorker::onReceive(int fd,char* buf,size_t len) {
+
+    if(fd == client_fd)
+    {
+        this->onClientRead(fd,buf);
+    }else{
+        this->onPipe(fd,buf,len);
+    }
+}
+
+//这个是pipe的处理逻辑
+void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
     file_read* data;
     ssize_t n;
+    char read_buf[BUFSIZ];
+    bool result;
     data = (file_read*)buf;
     cout<<data->begin<<"\n";
-    n = pread(fileFd, buf, (size_t)data->offset,data->begin-data->offset);
-    buf[n] = '\0';
+    n = pread(fileFd, read_buf, (size_t)data->offset,data->begin-data->offset);
+    read_buf[n] = '\0';
     if(n>0)
     {
-        printf("read:%s\n",buf);
+        printf("read:%s\n",read_buf);
     }else if(n<0)
     {
         LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","pread fd error");
     }
+
+    result = getSocketHandle()->send(client_fd,read_buf,(size_t)n);
+
+    if(!result)
+    {
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::onModify","send msg failed");
+    }
+
 }
 
 bool FileMonitorWorker::onClose() {

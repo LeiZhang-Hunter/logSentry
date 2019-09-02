@@ -53,6 +53,32 @@ bool CSocket::connect() {
     }
 }
 
+bool CSocket::send(int fd,void* vptr,size_t n)
+{
+    size_t nleft;
+    ssize_t nwrite;
+    char* ptr;
+    ptr = (char*)vptr;
+    nleft = n;
+
+    while(nleft > 0)
+    {
+        if((nwrite = ::send(fd,ptr,nleft,0)) > 0)
+        {
+            nleft -= nwrite;
+        }else{
+            if(errno == EINTR)
+            {
+                continue;
+            }else{
+                return  false;
+            }
+        }
+    }
+
+    return true;
+}
+
 
 int CSocket::getSocket()
 {

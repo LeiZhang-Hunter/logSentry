@@ -64,8 +64,7 @@ void CThreadSocket::Execute()
                     read_size = recv(eventCollect[i].data.fd,buf, sizeof(buf),0);
                     if(read_size == 0)
                     {
-                        close(socketHandle->getSocket());
-                        onClose();
+                        //套接字关闭处理
                     }else if(read_size < 0)
                     {
                         if(errno == EINTR)
@@ -73,7 +72,7 @@ void CThreadSocket::Execute()
                             continue;
                         }
                     }else{
-                        onReceive(eventCollect[i].data.fd,buf);
+                        onReceive(eventCollect[i].data.fd,buf,sizeof(buf));
                     }
                 }else if(eventCollect[i].events & (EPOLLRDHUP | EPOLLERR | EPOLLHUP))
                 {

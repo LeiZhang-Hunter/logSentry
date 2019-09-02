@@ -135,7 +135,6 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
         LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","unixPipe is null,errcode:" << errno << ";errmsg:" << strerror(errno) << ";line:"<< __LINE__ << "\n");
         return  false;
     }
-    cout<<"alertm"<<"\n";
 
 //    for(pipe_number =0;pipe_number<workerNumberCount;pipe_number++)
 //    {
@@ -171,7 +170,7 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
 
                     bzero(&file_data, sizeof(file_data));
 
-                    file_data.begin = (size_t)(file_buffer.st_size-readLen);
+                    file_data.begin = (size_t)(file_buffer.st_size);
                     file_data.offset = readLen;
 
                     pipe_number = send_number%workerNumberCount;
@@ -194,12 +193,14 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
                         }
                     }
 
+                    
 
                 }
 
                 beginLength = file_buffer.st_size;
             }else if(event->mask & IN_IGNORED)
             {
+
             }
 
             i+=(sizeof(struct inotify_event)+event->len);
