@@ -59,7 +59,7 @@ uint32_t CEvent::selectEventType(uint32_t flags)
 {
     if(flags == CEVENT_READ)
     {
-        flags |= (EPOLLIN|EPOLLET);
+        flags = (EPOLLIN|EPOLLET);
     }
 
     return  flags;
@@ -89,7 +89,7 @@ void CEvent::eventLoop() {
     //事件循环已经运行了
     if(mainLoop == EVENT_START)
     {
-        LOG_TRACE(LOG_ERROR,false,"CUnixOs::eventLoop","errorcode:"<<1000<<";errormsg:"<<"eventLoop have running"<<";in line:"<<__LINE__);
+        LOG_TRACE(LOG_ERROR,false,"CUnixOs::eventLoop","eventLoop have running");
         return;
     }
 
@@ -99,7 +99,7 @@ void CEvent::eventLoop() {
     while(mainLoop)
     {
         nfds = epoll_wait(epollFd,eventCollect,512,-1);
-        printf("222\n");
+        printf("nfds:%d\n",nfds);
 
         //返回准备就绪的描述符
         if(nfds>0)
@@ -130,7 +130,7 @@ void CEvent::eventLoop() {
                 continue;
             }
             //出现错误情况
-            LOG_TRACE(LOG_ERROR,false,"CEvent::eventLoop",__LINE__<<":epoll_wait failed,error msg:"<<strerror(errno));
+            LOG_TRACE(LOG_ERROR,false,"CEvent::eventLoop",__LINE__<<":epoll_wait failed");
         }
 
     }

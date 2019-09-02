@@ -18,7 +18,9 @@ bool CUnixOs::getRlimit(int resource,struct rlimit *rlim) {
     {
         return  true;
     }else{
-        LOG_TRACE(LOG_ERROR,false,"CUnixOs::getRlimit","errorcode"<<errno<<";errormsg:"<<strerror(errno)<<";in line:"<<__LINE__);
+        LOG_TRACE(LOG_ERROR,false,"CUnixOs::getRlimit","getRlimit failed");
         return  false;
     }
 }
+
+

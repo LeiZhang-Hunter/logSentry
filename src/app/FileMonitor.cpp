@@ -4,10 +4,7 @@
 
 #include "../../include/Common.h"
 using namespace app;
-int FileMonitor::fileFd = 0;
-ssize_t FileMonitor::beginLength = 0;
-int(*unixPipe)[2] = NULL;
-int workerNumberCount;
+
 
 FileMonitor::FileMonitor() {
 
@@ -15,41 +12,52 @@ FileMonitor::FileMonitor() {
 
 void FileMonitor::start() {
     //创建worker
-    int res = this->createProcess();
-    if(res != 0)
-    {
-        LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","create process error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<"line"<<__LINE__<<"\n");
-        return;
-    }
+//    int res = this->createProcess();
+//    if(res != 0)
+//    {
+//        LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","create process error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<"line"<<__LINE__<<"\n");
+//        return;
+//    }
 
-}
-
-bool FileMonitor::setWorkerNumber(int number) {
-    workerNumber = number;
-}
-
-bool FileMonitor::setNotifyPath(string path) {
-    monitorPath = path;
-}
-
-//在这里编写逻辑
-void FileMonitor::run() {
     struct stat buf;
-    int fileNode;
     int wd;
     bool result;
     int thread_number;
     int pipe[2];
 
+    bzero(&file_node,sizeof(file_node));
 
-    fileNode = inotify_init();
+    //打开文件
+    file_node.file_fd = open(monitorPath.c_str(),O_RDWR|O_CREAT,S_IRWXU);
 
-    if(fileNode < 0)
+    if(file_node.file_fd == -1)
+    {
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","open fd error");
+        return;
+    }
+
+    //初始化文件node节点
+    strcpy(file_node.path,monitorPath.c_str());
+
+    //加载文件的初始大小
+    bzero(&buf, sizeof(buf));
+    int res = fstat(file_node.file_fd,&buf);
+    if(res == -1)
+    {
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","fstat fd error");
+        return;
+    }
+
+    file_node.inotify_fd = inotify_init();
+
+    if(file_node.inotify_fd < 0)
     {
         LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","create process error");
         return;
     }
-    wd = inotify_add_watch(fileNode,monitorPath.c_str(),IN_MODIFY|IN_IGNORED|IN_DELETE|IN_DELETE_SELF);
+
+    //监控文件内容修改以及元数据变动
+    wd = inotify_add_watch(file_node.inotify_fd,file_node.path,IN_MODIFY|IN_ATTRIB|IN_MOVE_SELF);
     if(wd == -1)
     {
         LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","create inotify_add_watch error");
@@ -63,25 +71,9 @@ void FileMonitor::run() {
         LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","CEvent::createEvent error");
         return;
     }
-    eventInstance->eventAdd(fileNode,CEVENT_READ,onModify);
+    eventInstance->eventAdd(file_node.inotify_fd,CEVENT_READ,onModify);
 
-    //打开文件
-    fileFd = open(monitorPath.c_str(),O_RDONLY);
 
-    if(fileFd == -1)
-    {
-        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","open fd error");
-        return;
-    }
-
-    //加载文件的初始大小
-    bzero(&buf, sizeof(buf));
-    int res = fstat(fileFd,&buf);
-    if(res == -1)
-    {
-        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","fstat fd error");
-        return;
-    }
 
     if(workerNumber<1)
     {
@@ -93,24 +85,37 @@ void FileMonitor::run() {
     map<string,map<string,string>>mContent = instance->getConfig();
 
     //开始创建socket线程用来做读取后的数据收发
-    unixPipe = (int(*)[2])calloc((size_t)workerNumber,sizeof(pipe));
-    workerNumberCount = workerNumber;
+    file_node.pipe_collect = (int(*)[2])calloc((size_t)workerNumber,sizeof(pipe));
+    file_node.workerNumberCount = workerNumber;
     for(thread_number=0;thread_number<workerNumber;thread_number++)
     {
 
-        res = socketpair(AF_UNIX,SOCK_DGRAM,0,unixPipe[thread_number]);
+        res = socketpair(AF_UNIX,SOCK_DGRAM,0,file_node.pipe_collect[thread_number]);
         if(res == -1)
         {
             LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","socketpair  failed");
             continue;
         }
-        CThreadSocket* socket_worker = new FileMonitorWorker(mContent["server"],unixPipe[thread_number][0]);
+        CThreadSocket* socket_worker = new FileMonitorWorker(mContent["server"],file_node.pipe_collect[thread_number][0]);
         //启动线程
         socket_worker->Start();
     }
 
-    beginLength = buf.st_size;
+    file_node.begin_length = buf.st_size;
     eventInstance->eventLoop();
+}
+
+bool FileMonitor::setWorkerNumber(int number) {
+    workerNumber = number;
+}
+
+bool FileMonitor::setNotifyPath(string path) {
+    monitorPath = path;
+}
+
+//在这里编写逻辑
+void FileMonitor::run() {
+
 }
 
 //文件发生变化的逻辑在这里写
@@ -129,17 +134,14 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
     int pipe;
     ssize_t write_size;
     int res;
+    int wd;
 
-    if(!unixPipe)
+    if(!file_node.pipe_collect)
     {
-        LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","unixPipe is null,errcode:" << errno << ";errmsg:" << strerror(errno) << ";line:"<< __LINE__ << "\n");
+        LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","unixPipe is null");
         return  false;
     }
 
-//    for(pipe_number =0;pipe_number<workerNumberCount;pipe_number++)
-//    {
-//         cout<<"number:"<<pipe_number<<";"<<<<"\n";
-//    }
 
     read_size = read(eventData.data.fd,buf,BUFSIZ);
     if(read_size>0)
@@ -152,35 +154,36 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
                 printf("name=%s\n", event->name);
             }
 
-//            LOG_TRACE(LOG_SUCESS,true,"FileMonitor::onModify","cookie:"<<event->cookie<<";wd:"<<event->wd<<";mask:"<<event->mask);
+            LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","mask:"<<event->mask);
 
             //如果说文件发生了修改事件
             if(event->mask & IN_MODIFY) {
                 //读取变化之后的文件大小
                 bzero(&file_buffer, sizeof(file_buffer));
-                res = fstat(fileFd, &file_buffer);
+                res = fstat(file_node.file_fd, &file_buffer);
                 if (res == -1) {
-                    LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","fstat fd error,errcode:" << errno << ";errmsg:" << strerror(errno) << ";line:"<< __LINE__ << "\n");
+                    LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","fstat fd error");
                     return false;
                 }
 
-                if(file_buffer.st_size>beginLength)
+                if(file_buffer.st_size>file_node.begin_length)
                 {
-                    readLen = file_buffer.st_size - beginLength;
+                    readLen = file_buffer.st_size - file_node.begin_length;
 
                     bzero(&file_data, sizeof(file_data));
 
                     file_data.begin = (size_t)(file_buffer.st_size);
                     file_data.offset = readLen;
 
-                    pipe_number = send_number%workerNumberCount;
+                    pipe_number = send_number%file_node.workerNumberCount;
 
-                    if(unixPipe)
+                    if(file_node.pipe_collect)
                     {
-                        pipe = *(unixPipe[pipe_number]+1);
+                        pipe = *(file_node.pipe_collect[pipe_number]+1);
                         if(pipe > 0)
                         {
                             write_size = write(pipe,&file_data,sizeof(file_data));
+                            printf("write_size:%ld\n",write_size);
                             if(write_size<=0)
                             {
                                 LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","Write Pipe Fd Error");
@@ -192,18 +195,38 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
                             return false;
                         }
                     }
+                }
 
-                    
+                file_node.begin_length = file_buffer.st_size;
+            }else if(event->mask & IN_ATTRIB)
+            {
+                //检查文件是否被删除
+                res = access(file_node.path,F_OK);
+                printf("res:%d\n",res);
+                //文件不存在被删除掉了
+                if(res < 0)
+                {
+                    //创建文件
+                    file_node.file_fd = open(file_node.path,O_RDWR|O_CREAT,S_IRWXU);
+                    if(file_node.file_fd == -1)
+                    {
+                        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","open fd error");
+                        return false;
+                    }
 
                 }
 
-                beginLength = file_buffer.st_size;
-            }else if(event->mask & IN_IGNORED)
-            {
-
+                //添加文件到监视
+                //监控文件内容修改以及元数据变动
+                wd = inotify_add_watch(file_node.inotify_fd,file_node.path,IN_MODIFY|IN_ATTRIB);
+                if(wd == -1)
+                {
+                    LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","create inotify_add_watch error");
+                    return false;
+                }
             }
-
             i+=(sizeof(struct inotify_event)+event->len);
+
         }
 
     }

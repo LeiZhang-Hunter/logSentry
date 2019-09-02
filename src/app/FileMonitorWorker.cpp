@@ -34,7 +34,7 @@ bool FileMonitorWorker::onCreate() {
     addEvent(pipe,EPOLLET|EPOLLIN);
 
     //打开文件的描述符
-    fileFd = open("/home/zhanglei/data.log",O_RDONLY);
+    fileFd = open(file_node.path,O_RDONLY);
 }
 
 bool FileMonitorWorker::onConnect() {

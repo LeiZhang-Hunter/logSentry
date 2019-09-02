@@ -3,6 +3,9 @@
 //
 #include "../../include/Common.h"
 using namespace app;
+
+monitor_node file_node;
+
 bool FileMonitorManager::start() {
     map<string,string>::iterator it;
     Config* instance = CSingleInstance<Config>::getInstance();
