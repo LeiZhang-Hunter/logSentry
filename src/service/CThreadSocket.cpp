@@ -8,7 +8,7 @@ CThreadSocket::CThreadSocket()
     //创建一个socket的句柄
     socketHandle = new CSocket();
     //创建epoll
-    eventfd = epoll_create(512);
+    eventfd = epoll_create(3);
 
     if(eventfd == -1)
     {
@@ -17,8 +17,8 @@ CThreadSocket::CThreadSocket()
     }
 
     //创建一个事件集
-    eventCollect = (struct epoll_event*)calloc(512,sizeof(struct epoll_event));
-    bzero(eventCollect,sizeof(struct epoll_event)*512);
+    eventCollect = (struct epoll_event*)calloc(2,sizeof(struct epoll_event));
+    bzero(eventCollect,sizeof(struct epoll_event)*2);
 }
 
 void CThreadSocket::Execute()
@@ -107,7 +107,7 @@ bool CThreadSocket::addEvent(int fd,uint32_t flags)
     int res = epoll_ctl(eventfd,EPOLL_CTL_ADD,fd,&event);
     if(res == -1)
     {
-        LOG_TRACE(LOG_ERROR,false,"CUnixOs::eventAdd","errorcode:"<<errno<<";errormsg:"<<strerror(errno)<<";in line:"<<__LINE__);
+        LOG_TRACE(LOG_ERROR,false,"CUnixOs::eventAdd","add event error");
         return  false;
     }else{
         return true;

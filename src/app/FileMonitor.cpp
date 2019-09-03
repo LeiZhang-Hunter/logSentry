@@ -18,8 +18,7 @@ void FileMonitor::start() {
 //        LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","create process error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<"line"<<__LINE__<<"\n");
 //        return;
 //    }
-
-    struct stat buf;
+    int res;
     int wd;
     bool result;
     int thread_number;
@@ -39,14 +38,7 @@ void FileMonitor::start() {
     //初始化文件node节点
     strcpy(file_node.path,monitorPath.c_str());
 
-    //加载文件的初始大小
-    bzero(&buf, sizeof(buf));
-    int res = fstat(file_node.file_fd,&buf);
-    if(res == -1)
-    {
-        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","fstat fd error");
-        return;
-    }
+
 
     file_node.inotify_fd = inotify_init();
 
@@ -73,8 +65,6 @@ void FileMonitor::start() {
     }
     eventInstance->eventAdd(file_node.inotify_fd,CEVENT_READ,onModify);
 
-
-
     if(workerNumber<1)
     {
         LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","workerNumber  error");
@@ -85,6 +75,7 @@ void FileMonitor::start() {
     map<string,map<string,string>>mContent = instance->getConfig();
 
     //开始创建socket线程用来做读取后的数据收发
+    printf("workerNumber:%d\n",workerNumber);
     file_node.pipe_collect = (int(*)[2])calloc((size_t)workerNumber,sizeof(pipe));
     file_node.workerNumberCount = workerNumber;
     for(thread_number=0;thread_number<workerNumber;thread_number++)
@@ -100,8 +91,7 @@ void FileMonitor::start() {
         //启动线程
         socket_worker->Start();
     }
-
-    file_node.begin_length = buf.st_size;
+//    file_node.begin_length = buf.st_size;
     eventInstance->eventLoop();
 }
 
