@@ -64,7 +64,8 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
     bool result;
     data = (file_read*)buf;
     cout<<data->begin<<"\n";
-    n = pread(fileFd, read_buf, (size_t)data->offset,data->begin-data->offset);
+    n = pread(file_node.file_fd, read_buf, (size_t)data->offset,data->begin-data->offset);
+    printf("read size:%ld;begin:%ld;end:%ld\n",n,data->offset,data->begin-data->offset);
     read_buf[n] = '\0';
     if(n>0)
     {

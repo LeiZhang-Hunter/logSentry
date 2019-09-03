@@ -99,7 +99,6 @@ void CEvent::eventLoop() {
     while(mainLoop)
     {
         nfds = epoll_wait(epollFd,eventCollect,512,-1);
-        printf("nfds:%d\n",nfds);
 
         //返回准备就绪的描述符
         if(nfds>0)

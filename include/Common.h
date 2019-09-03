@@ -40,13 +40,22 @@ typedef struct file_data{
 
 //监控节点
 typedef struct _monitor_node{
+    //路径名字
     char path[PATH_MAX];
+    //监控的文件名字
     int inotify_fd;
+    //文件的偏移量
     ssize_t file_offset;
+    //描述符的fd
     int file_fd;
+    //管道地址
     int(*pipe_collect)[2];
+    //起始长度
     ssize_t begin_length;
+    //工作的线程数目
     int workerNumberCount;
+    //发送次数
+    int send_number;
 }monitor_node;
 
 extern monitor_node file_node;

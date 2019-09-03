@@ -130,7 +130,6 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
     bzero(buf,BUFSIZ);
     ssize_t read_size;
     int pipe_number;
-    int send_number = 0;
     int pipe;
     ssize_t write_size;
     int res;
@@ -153,18 +152,18 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
             if(event->len) {
                 printf("name=%s\n", event->name);
             }
-
-            LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","mask:"<<event->mask);
-
+            bzero(&file_buffer, sizeof(file_buffer));
+//            LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","mask:"<<event->mask);
             //如果说文件发生了修改事件
             if(event->mask & IN_MODIFY) {
                 //读取变化之后的文件大小
-                bzero(&file_buffer, sizeof(file_buffer));
+
                 res = fstat(file_node.file_fd, &file_buffer);
                 if (res == -1) {
                     LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","fstat fd error");
                     return false;
                 }
+                LOG_TRACE(LOG_SUCESS,false,"FileMonitor::run","st_size:"<<file_buffer.st_size<<";begin_length:"<<file_node.begin_length);
 
                 if(file_buffer.st_size>file_node.begin_length)
                 {
@@ -175,7 +174,7 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
                     file_data.begin = (size_t)(file_buffer.st_size);
                     file_data.offset = readLen;
 
-                    pipe_number = send_number%file_node.workerNumberCount;
+                    pipe_number = file_node.send_number%file_node.workerNumberCount;
 
                     if(file_node.pipe_collect)
                     {
@@ -183,12 +182,12 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
                         if(pipe > 0)
                         {
                             write_size = write(pipe,&file_data,sizeof(file_data));
-                            printf("write_size:%ld\n",write_size);
+                            printf("write_size:%ld;pipeFd:%d;send_number:%d;pipe_number:%d;file_node.workerNumberCount:%d\n",write_size,pipe,file_node.send_number,pipe_number,file_node.workerNumberCount);
                             if(write_size<=0)
                             {
                                 LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","Write Pipe Fd Error");
                             }else{
-                                send_number++;
+                                file_node.send_number++;
                             }
                         }else{
                             LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","Get Pipe Fd Error");
@@ -202,19 +201,29 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
             {
                 //检查文件是否被删除
                 res = access(file_node.path,F_OK);
-                printf("res:%d\n",res);
-                //文件不存在被删除掉了
-                if(res < 0)
-                {
-                    //创建文件
-                    file_node.file_fd = open(file_node.path,O_RDWR|O_CREAT,S_IRWXU);
-                    if(file_node.file_fd == -1)
-                    {
-                        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","open fd error");
-                        return false;
-                    }
 
+                //关闭掉旧的描述符
+                if(file_node.file_fd > 0) {
+                    close(file_node.file_fd);
                 }
+
+                //用新的文件句柄
+                file_node.file_fd = open(file_node.path,O_RDWR|O_CREAT,S_IRWXU);
+                if(file_node.file_fd == -1)
+                {
+                    LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","open fd error");
+                    return false;
+                }
+
+                res = fstat(file_node.file_fd, &file_buffer);
+                if (res == -1) {
+                    LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","fstat fd error");
+                    return false;
+                }
+
+
+                //更新文件起始读的位置
+                file_node.begin_length = file_buffer.st_size;
 
                 //添加文件到监视
                 //监控文件内容修改以及元数据变动
