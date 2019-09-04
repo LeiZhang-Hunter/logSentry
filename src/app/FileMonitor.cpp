@@ -63,6 +63,7 @@ void FileMonitor::start() {
         LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","CEvent::createEvent error");
         return;
     }
+
     eventInstance->eventAdd(file_node.inotify_fd,CEVENT_READ,onModify);
 
     if(workerNumber<1)
@@ -87,10 +88,12 @@ void FileMonitor::start() {
             LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","socketpair  failed");
             continue;
         }
+
         CThreadSocket* socket_worker = new FileMonitorWorker(mContent["server"],file_node.pipe_collect[thread_number][0]);
         //启动线程
         socket_worker->Start();
     }
+
 //    file_node.begin_length = buf.st_size;
     eventInstance->eventLoop();
 }

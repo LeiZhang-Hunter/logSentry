@@ -21,12 +21,15 @@ namespace service{
         int getSocket();
 
         //设置配置文件
-        int setConfig(map<string,string>config);
+        int setConfig(const char* ip,const char* port);
 
         bool send(int fd,void* vptr,size_t n);
 
+
+
     private:
         int socket_fd;
-        map<string,string> socketConfig;
+        char socketIp[INET_ADDRSTRLEN];
+        uint16_t socketPort;
     };
 }

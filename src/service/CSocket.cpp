@@ -11,24 +11,25 @@ CSocket::CSocket()
     socket_fd = socket(AF_INET,SOCK_STREAM,0);
 }
 
-int CSocket::setConfig(map<string,string>baseConfig)
+int CSocket::setConfig(const char* ip,const char* port)
 {
-    socketConfig = baseConfig;
+    if(ip)
+    {
+        strcpy(socketIp,ip);
+    }
+
+    if(port)
+    {
+        socketPort = (uint16_t)atoi(port);
+    }
 }
 
 bool CSocket::connect() {
 
     socklen_t len;
     int res;
-    //检查ip地址
-    if(socketConfig["ip"].empty())
-    {
-        LOG_TRACE(LOG_ERROR,false,"CSocket::connect","CSocket->connect;line:"<<__LINE__<<";errmsg:socket of ip can not be empty");
-        return  false;
-    }
-
     //检查端口
-    if(socketConfig["port"].empty())
+    if(!socketPort)
     {
         LOG_TRACE(LOG_ERROR,false,"CSocket::connect",";line:"<<__LINE__<<";errmsg:socket of port can not be empty");
         return  false;
@@ -38,7 +39,7 @@ bool CSocket::connect() {
     struct sockaddr_in client_address;
 
     client_address.sin_family = AF_INET;
-    client_address.sin_port = htons((uint16_t)atoi(socketConfig["port"].c_str()));
+    client_address.sin_port = htons(socketPort);
 
     len = sizeof(client_address);
 

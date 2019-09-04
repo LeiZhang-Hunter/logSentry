@@ -14,7 +14,7 @@ FileMonitorWorker::FileMonitorWorker(map<string,string> socketConfig,int pipe_fd
 bool FileMonitorWorker::onCreate() {
 
     CSocket* client_handle = this->getSocketHandle();
-    printf("111\n");
+
     if(!client_handle)
     {
         LOG_TRACE(LOG_ERROR,false,"FileMonitorWorker::onCreate","client_handle must not be null;line:"<<__LINE__);
@@ -30,7 +30,10 @@ bool FileMonitorWorker::onCreate() {
 
     int flag=1;
     setsockopt(client_fd,SOL_SOCKET,SO_REUSEADDR,&flag, sizeof(flag));
-    client_handle->setConfig(netConfig);
+
+    client_handle->setConfig(netConfig["ip"].c_str(),netConfig["port"].c_str());
+
+
     addEvent(pipe,EPOLLET|EPOLLIN);
 //
 //    //打开文件的描述符

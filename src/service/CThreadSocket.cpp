@@ -23,6 +23,7 @@ CThreadSocket::CThreadSocket()
 
 void CThreadSocket::Execute()
 {
+
     int res;
 
     if(run == 1)
@@ -33,6 +34,7 @@ void CThreadSocket::Execute()
 
 
     this->onCreate();
+
 
     //进行连接
     res = socketHandle->connect();
