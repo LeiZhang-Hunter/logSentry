@@ -29,6 +29,10 @@
 #include "CSingleInstance.h"
 #endif
 
+#ifndef LOGSENTRY_CMUTEXLOCK_H
+#include "CLock.h"
+#endif
+
 #ifndef LOGSENTRY_CSERVICELOG_H
 #include "CServiceLog.h"
 #endif
@@ -65,10 +69,9 @@
 #endif
 
 
+extern CServiceLog* logInstance;
 
-#ifndef LOG_TRACE
-#define LOG_TRACE(logLevel,isSucess,Name,msg) std::cout<<msg<<",errcode:" << errno << ";errmsg:" << strerror(errno) << ";line:"<< __LINE__ << ";file:"<<__FILE__<<"\n";
-#endif
+#define LOG_TRACE(logLevel,isSucess,name,msg) logInstance->addLog(name,msg,__FILE__,__LINE__);
 
 #ifndef LOGSENTRY_CUNIXOS_H
 #include "CUnixOs.h"

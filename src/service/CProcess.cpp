@@ -23,7 +23,7 @@ int CProcess::createDaemon()
 
     if(pid < 0)
     {
-        LOG_TRACE(LOG_ERROR,false,"CProcess::createDaemon",__LINE__<<":create daemon process error");
+        LOG_TRACE(LOG_ERROR,false,"CProcess::createDaemon","create daemon process error");
         return  -1;
     }else if(pid > 0)
     {
@@ -34,7 +34,7 @@ int CProcess::createDaemon()
     //如果说设置进程组组长失败，
     if(setsid() < 0)
     {
-        LOG_TRACE(LOG_ERROR,false,"CProcess::createDaemon",__LINE__<<":create process leader error");
+        LOG_TRACE(LOG_ERROR,false,"CProcess::createDaemon","create process leader error");
         return  -1;
     }
 

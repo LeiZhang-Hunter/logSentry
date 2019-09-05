@@ -13,3 +13,14 @@ enum {
     LOG_ERROR = 2,
     LOG_SUCESS = 3,
 };
+using namespace service;
+class CServiceLog{
+public:
+    CServiceLog(const char* dir);
+    bool addLog(const char* name,const char* log,const char* file,int file_number);
+    ~CServiceLog();
+private:
+    CMutexLock* logLock;
+    int logFd;
+
+};

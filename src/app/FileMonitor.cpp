@@ -156,7 +156,6 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
                     LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","fstat fd error");
                     return false;
                 }
-                LOG_TRACE(LOG_SUCESS,false,"FileMonitor::run","st_size:"<<file_buffer.st_size<<";begin_length:"<<file_node.begin_length);
 
                 if(file_buffer.st_size>file_node.begin_length)
                 {
@@ -192,9 +191,6 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
                 file_node.begin_length = file_buffer.st_size;
             }else if(event->mask & IN_ATTRIB)
             {
-                //检查文件是否被删除
-                res = access(file_node.path,F_OK);
-
                 //关闭掉旧的描述符
                 if(file_node.file_fd > 0) {
                     close(file_node.file_fd);

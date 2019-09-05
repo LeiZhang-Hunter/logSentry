@@ -15,14 +15,14 @@ bool CEvent::createEvent(int size) {
 
     if(mainLoop == EVENT_START)
     {
-        LOG_TRACE(LOG_ERROR,false,"CUnixOs::createEvent","Event loop has been running"<<";in line:"<<__LINE__);
+        LOG_TRACE(LOG_ERROR,false,"CUnixOs::createEvent","Event loop has been running");
         return  false;
     }
 
     epollFd = epoll_create(size);
     if(epollFd == -1)
     {
-        LOG_TRACE(LOG_ERROR,false,"CUnixOs::createEvent","epoll_create failed;errorcode:"<<errno<<";errormsg:"<<strerror(errno)<<";in line:"<<__LINE__);
+        LOG_TRACE(LOG_ERROR,false,"CUnixOs::createEvent","epoll_create failed");
         return  false;
     }
 
@@ -129,7 +129,7 @@ void CEvent::eventLoop() {
                 continue;
             }
             //出现错误情况
-            LOG_TRACE(LOG_ERROR,false,"CEvent::eventLoop",__LINE__<<":epoll_wait failed");
+            LOG_TRACE(LOG_ERROR,false,"CEvent::eventLoop",":epoll_wait failed");
         }
 
     }

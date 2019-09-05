@@ -18,10 +18,7 @@ CMutexLock::CMutexLock(uint8_t shared_flag)
     pthread_mutexattr_init(&c_mutex_attr);
 
     if(shared_flag == LOCK_PROCESS_IS_SHARED) {
-        shared_flag = LOCK_PROCESS_IS_SHARED;
         pthread_mutexattr_setpshared(&c_mutex_attr,PTHREAD_PROCESS_SHARED);
-    }else{
-        shared_flag = LOCK_PROCESS_NO_SHARED;
     }
 
     pthread_mutex_init(&c_mutex,&c_mutex_attr);
@@ -29,17 +26,22 @@ CMutexLock::CMutexLock(uint8_t shared_flag)
 
 //加锁
 int CMutexLock::lock() {
-    return pthread_mutex_lock(&c_mutex);
+//    printf("11\n");
+//    int res= pthread_mutex_lock(&c_mutex);
+//    printf("%d\n",res);
+    return  0;
 }
 
 //解锁
 int CMutexLock::unLock() {
     return pthread_mutex_unlock(&c_mutex);
+    return 0;
 }
 
 //析构函数
 CMutexLock::~CMutexLock()
 {
+    printf("destroy\n");
     //释放属性锁
     pthread_mutexattr_destroy(&c_mutex_attr);
     pthread_mutex_destroy(&c_mutex);

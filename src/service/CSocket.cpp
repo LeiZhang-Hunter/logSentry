@@ -31,7 +31,7 @@ bool CSocket::connect() {
     //检查端口
     if(!socketPort)
     {
-        LOG_TRACE(LOG_ERROR,false,"CSocket::connect",";line:"<<__LINE__<<";errmsg:socket of port can not be empty");
+        LOG_TRACE(LOG_ERROR,false,"CSocket::connect","socket of port can not be empty");
         return  false;
     }
 
@@ -47,7 +47,8 @@ bool CSocket::connect() {
 
     if(res == -1)
     {
-        LOG_TRACE(LOG_ERROR,false,"CSocket::connect","CSocket->connect failed;errno:"<<(errno)<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__);
+//        LOG_TRACE(LOG_ERROR,false,"CSocket::connect","CSocket->connect failed");
+//        logInstance->addLog(log.c_str(),log.length())
         return  false;
     }else{
         return  true;

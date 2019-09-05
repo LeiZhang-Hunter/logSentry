@@ -12,7 +12,7 @@ CThreadSocket::CThreadSocket()
 
     if(eventfd == -1)
     {
-        LOG_TRACE(LOG_ERROR,false,"CThreadSocket::CThreadSocket","errorcode:"<<errno<<";errormsg:"<<strerror(errno)<<";in line:"<<__LINE__);
+        LOG_TRACE(LOG_ERROR,false,"CThreadSocket::CThreadSocket","");
         return;
     }
 
@@ -28,7 +28,7 @@ void CThreadSocket::Execute()
 
     if(run == 1)
     {
-        LOG_TRACE(LOG_ERROR,false,"CThreadSocket::Execute","socketHandle Client Has Running"<<";line:"<<__LINE__<<"\n");
+        LOG_TRACE(LOG_ERROR,false,"CThreadSocket::Execute","socketHandle Client Has Running");
         return;
     }
 
@@ -40,10 +40,10 @@ void CThreadSocket::Execute()
     res = socketHandle->connect();
     if(res == 0)
     {
-        LOG_TRACE(LOG_ERROR,false,"CThreadSocket::Execute","socketHandle->connect error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<";line:"<<__LINE__<<"\n");
+        LOG_TRACE(LOG_ERROR,false,"CThreadSocket::Execute","socketHandle->connect error");
         return;
     }
-
+    sleep(10000);
     int nfds;
     int i;
     char buf[BUFSIZ];
@@ -90,7 +90,7 @@ void CThreadSocket::Execute()
                 continue;
             }
             //出现错误情况
-            LOG_TRACE(LOG_ERROR,false,"CEvent::eventLoop",__LINE__<<":epoll_wait failed,error msg:"<<strerror(errno));
+            LOG_TRACE(LOG_ERROR,false,"CEvent::eventLoop","epoll_wait failed");
         }
 
     }

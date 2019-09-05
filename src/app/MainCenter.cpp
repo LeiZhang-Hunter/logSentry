@@ -19,6 +19,6 @@ void MainCenter::start() {
         //启动管理者进程
         manager->start();
     }else{
-        LOG_TRACE(LOG_ERROR,false,"MainCenter::run",__LINE__<<":The log option in the configuration file does not exist");
+        LOG_TRACE(LOG_ERROR,false,"MainCenter::run","The log option in the configuration file does not exist");
     }
 }

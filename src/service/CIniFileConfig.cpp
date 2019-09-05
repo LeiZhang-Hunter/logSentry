@@ -8,8 +8,8 @@ using namespace std;
 bool service::CIniFileConfig::readConfig(string &filename) {
 
     if (access(filename.c_str(), R_OK) == -1) {
-        LOG_TRACE(LOG_WARING, false, "Log",
-                  "CIniFileConfig::readConfig" << __LINE__ << ":" << filename << " is not file;");
+//        LOG_TRACE(LOG_WARING, false, "Log",
+//                  "CIniFileConfig::readConfig" << __LINE__ << ":" << filename << " is not file;");
         return false;
     }
 
@@ -17,8 +17,8 @@ bool service::CIniFileConfig::readConfig(string &filename) {
     fileFd = open(filename.c_str(), O_RDWR);
 
     if (!fileFd) {
-        LOG_TRACE(LOG_WARING, false, "Log",
-                  "CIniFileConfig::readConfig" << __LINE__ << ":" << filename << " open failed;");
+//        LOG_TRACE(LOG_WARING, false, "Log",
+//                  "CIniFileConfig::readConfig" << __LINE__ << ":" << filename << " open failed;");
         return false;
     }
 

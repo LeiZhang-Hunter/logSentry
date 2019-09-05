@@ -8,7 +8,7 @@ using namespace service;
 bool CUnixOs::getRlimit(int resource,struct rlimit *rlim) {
     if(!rlim)
     {
-        LOG_TRACE(LOG_ERROR,false,"CUnixOs::getRlimit","rlimit is not NULL;in line:"<<__LINE__);
+        LOG_TRACE(LOG_ERROR,false,"CUnixOs::getRlimit","rlimit is not NULL;");
         return  false;
     }
 

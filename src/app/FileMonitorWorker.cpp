@@ -17,14 +17,14 @@ bool FileMonitorWorker::onCreate() {
 
     if(!client_handle)
     {
-        LOG_TRACE(LOG_ERROR,false,"FileMonitorWorker::onCreate","client_handle must not be null;line:"<<__LINE__);
+        LOG_TRACE(LOG_ERROR,false,"FileMonitorWorker::onCreate","client_handle must not be null;");
         return  false;
     }
 
     client_fd = client_handle->getSocket();
     if(client_fd <= 0)
     {
-        LOG_TRACE(LOG_ERROR,false,"FileMonitorWorker::onCreate","client_handle->getSocket failed;errno:"<<errno<<";errormsg:"<<strerror(errno)<<";"<<";line:"<<__LINE__);
+        LOG_TRACE(LOG_ERROR,false,"FileMonitorWorker::onCreate","client_handle->getSocket failed;");
         return  false;
     }
 
