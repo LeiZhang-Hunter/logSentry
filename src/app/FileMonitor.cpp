@@ -78,6 +78,7 @@ void FileMonitor::run() {
         return;
     }
 
+
     eventInstance->eventAdd(file_node.inotify_fd,CEVENT_READ,onModify);
 
     if(workerNumber<1)
@@ -91,7 +92,6 @@ void FileMonitor::run() {
 
 
     //开始创建socket线程用来做读取后的数据收发
-    printf("workerNumber:%d\n",workerNumber);
     file_node.pipe_collect = (int(*)[2])calloc((size_t)workerNumber,sizeof(pipe));
     file_node.workerNumberCount = workerNumber;
     for(thread_number=0;thread_number<workerNumber;thread_number++)
@@ -104,7 +104,9 @@ void FileMonitor::run() {
             continue;
         }
 
-        CThreadSocket* socket_worker = new FileMonitorWorker(mContent["server"],file_node.pipe_collect[thread_number][0]);
+        FileMonitorWorker* socket_worker = new FileMonitorWorker(mContent["server"],file_node.pipe_collect[thread_number][0]);
+        //设置线程为守护线程
+        socket_worker->SetDaemonize();
         //启动线程
         socket_worker->Start();
     }
