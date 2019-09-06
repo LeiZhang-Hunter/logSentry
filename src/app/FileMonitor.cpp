@@ -100,7 +100,7 @@ void FileMonitor::run() {
         res = socketpair(AF_UNIX,SOCK_DGRAM,0,file_node.pipe_collect[thread_number]);
         if(res == -1)
         {
-            LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","socketpair  failed");
+            LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","socketpair  failed");
             continue;
         }
 
