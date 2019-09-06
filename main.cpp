@@ -7,13 +7,8 @@ using app::Config;
 using service::CSingleInstance;
 using app::MainCenter;
 
-CServiceLog* logInstance;
 int main(int argc,char** argv)
 {
-     logInstance = new CServiceLog("/home/zhanglei/log.log");
-//    LOG_INIT("/home/zhanglei/log.log")
-
-
     //解析命令行参数,获取配置文件路径
     Config* instance = CSingleInstance<Config>::getInstance();
 
@@ -50,6 +45,7 @@ int main(int argc,char** argv)
     }else{
         exit(-1);
     }
+
 
 
     //运行入口函数创建进程

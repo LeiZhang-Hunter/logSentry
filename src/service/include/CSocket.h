@@ -7,6 +7,8 @@
 
 #endif //LOGSENTRY_CSOCKET_H
 
+#include <arpa/inet.h>
+
 using namespace std;
 namespace service{
     class CSocket{
@@ -15,7 +17,7 @@ namespace service{
         ~CSocket();
 
         //链接
-        bool connect();
+        bool connect(int nsec);
 
         //获取socket描述符
         int getSocket();

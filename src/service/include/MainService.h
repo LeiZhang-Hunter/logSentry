@@ -68,6 +68,10 @@
 #include "CProcessFactory.h"
 #endif
 
+#ifndef LOGSENTRY_CSIGNAL_H
+#include "CSignal.h"
+#endif
+
 
 extern CServiceLog* logInstance;
 

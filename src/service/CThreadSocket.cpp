@@ -41,7 +41,7 @@ void CThreadSocket::Execute()
 
 
     //进行连接
-    res = socketHandle->connect();
+    res = socketHandle->connect(2000);
     if(res == 0)
     {
         LOG_TRACE(LOG_ERROR,false,"CThreadSocket::Execute","socketHandle->connect error");

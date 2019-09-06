@@ -6,12 +6,16 @@ using app::MainCenter;
 using service::CSingleInstance;
 using namespace std;
 //运行逻辑
+CServiceLog* logInstance;
 
 //执行逻辑
 void MainCenter::start() {
     Config* instance = CSingleInstance<Config>::getInstance();
     map<string,map<string,string>>mContent = instance->getConfig();
     FileMonitorManager* manager = CSingleInstance<FileMonitorManager>::getInstance();
+
+    logInstance = new CServiceLog(mContent["file_path"]["file_path"].c_str());
+
     if(!mContent["sentry_log_file"].empty())
     {
         //设置配置文件

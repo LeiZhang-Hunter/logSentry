@@ -12,7 +12,7 @@ CServiceLog::CServiceLog(const char* dir)
         return;
     }
 
-    logFd = open("/home/zhanglei/log.log",O_RDWR|O_CREAT,S_IRWXU);
+    logFd = open("/home/zhanglei/log.log",O_RDWR|O_CREAT|O_APPEND,S_IRWXU);
     if(logFd == -1)
     {
         printf("failed\n");
@@ -37,7 +37,7 @@ bool CServiceLog::addLog(const char* name,const char* log,const char* file,int f
     bzero(buf,sizeof(buf));
     snprintf(buf,sizeof(buf),"[%s]:%s;errno:%d;errormsg:%s;file:%s;line:%d\n",name,log,errno,strerror(errno),file,file_number);
     cout<<buf;
-    res = write(logFd,"aaa\n", strlen("aaa\n"));
+    res = write(logFd,buf, strlen(buf));
     if(res == -1)
     {
         logLock->unLock();

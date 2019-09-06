@@ -24,10 +24,15 @@ int CSocket::setConfig(const char* ip,const char* port)
     }
 }
 
-bool CSocket::connect() {
+bool CSocket::connect(int nsec) {
 
     socklen_t len;
     int res;
+    int flags,n,error;
+    fd_set rset,wset;
+    //暂时只支持ipv4
+    struct sockaddr_in client_address;
+    struct timeval tval;
     //检查端口
     if(!socketPort)
     {
@@ -35,22 +40,71 @@ bool CSocket::connect() {
         return  false;
     }
 
-    //暂时只支持ipv4
-    struct sockaddr_in client_address;
+    flags = fcntl(socket_fd,F_GETFL,0);
+
+    fcntl(socket_fd,F_SETFL,flags|O_NONBLOCK);
+
+    error = 0;
 
     client_address.sin_family = AF_INET;
     client_address.sin_port = htons(socketPort);
-
+    client_address.sin_addr.s_addr = inet_addr(socketIp);
     len = sizeof(client_address);
 
     res = ::connect(socket_fd,(struct sockaddr*)&client_address,len);
 
-    if(res == -1)
+    if(res<0)
     {
-        return  false;
-    }else{
+        if(errno != EINPROGRESS)
+        {
+            return  false;
+        }
+    }
+
+    if(res == 0)
+    {
         return  true;
     }
+
+    FD_ZERO(&rset);
+
+    FD_SET(socket_fd,&rset);
+
+    wset = rset;
+
+    tval.tv_sec = nsec;
+    tval.tv_usec = 0;
+
+    if((n=select(socket_fd+1,&rset,&wset, nullptr,nsec ? &tval : nullptr)) == 0)
+    {
+        errno = ETIMEDOUT;
+        close(socket_fd);
+        return  false;
+    }
+
+    if(FD_ISSET(socket_fd,&rset) || FD_ISSET(socket_fd,&wset))
+    {
+        len = sizeof(error);
+
+        if(getsockopt(socket_fd,SOL_SOCKET,SO_ERROR,&error,&len) < 0)
+        {
+            return  false;
+        }
+    }else{
+        LOG_TRACE(LOG_ERROR,false,"CSocket::connect","socket fd not set");
+        return  false;
+    }
+
+    fcntl(socket_fd,F_SETFL,flags);
+
+    if(error)
+    {
+        close(socket_fd);
+        errno = error;
+        return  false;
+    }
+
+    return  true;
 }
 
 bool CSocket::send(int fd,void* vptr,size_t n)
