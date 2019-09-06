@@ -12,12 +12,25 @@ FileMonitor::FileMonitor() {
 
 void FileMonitor::start() {
     //创建worker
-//    int res = this->createProcess();
-//    if(res != 0)
-//    {
-//        LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","create process error,errcode:"<<errno<<";errmsg:"<<strerror(errno)<<"line"<<__LINE__<<"\n");
-//        return;
-//    }
+    int res = this->createProcess();
+    if(res != 0)
+    {
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","create process error");
+        return;
+    }
+
+}
+
+bool FileMonitor::setWorkerNumber(int number) {
+    workerNumber = number;
+}
+
+bool FileMonitor::setNotifyPath(string path) {
+    monitorPath = path;
+}
+
+//在这里编写逻辑
+void FileMonitor::run() {
     int res;
     int wd;
     bool result;
@@ -98,19 +111,6 @@ void FileMonitor::start() {
 
 //    file_node.begin_length = buf.st_size;
     eventInstance->eventLoop();
-}
-
-bool FileMonitor::setWorkerNumber(int number) {
-    workerNumber = number;
-}
-
-bool FileMonitor::setNotifyPath(string path) {
-    monitorPath = path;
-}
-
-//在这里编写逻辑
-void FileMonitor::run() {
-
 }
 
 //文件发生变化的逻辑在这里写
