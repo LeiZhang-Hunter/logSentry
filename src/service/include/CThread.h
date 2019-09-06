@@ -29,6 +29,8 @@ class CThread{
         //线程的运行状态
         bool Status();
 
+        bool SetDaemonize();
+
     protected:
         virtual void Execute();
 
@@ -38,6 +40,8 @@ class CThread{
         pthread_cond_t mCondLock;
 
         pthread_t mThreadID;
+
+        uint8_t daemonize;
 
         static void* ThreadProc(void* arg);
 

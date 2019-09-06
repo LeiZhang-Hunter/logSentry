@@ -14,6 +14,11 @@ service::CThread::~CThread() {
     pthread_cond_destroy(&mCondLock);
 }
 
+bool service::CThread::SetDaemonize()
+{
+    daemonize = 1;
+}
+
 //启动线程
 bool service::CThread::Start() {
     /*
@@ -61,6 +66,11 @@ void* service::CThread::ThreadProc(void* arg)
     CThread* selfThread = (CThread*)arg;
 
     selfThread->mTerminated = false;
+
+    if(selfThread->daemonize)
+    {
+        pthread_detach(pthread_self());
+    }
 
     //如果说没有被停止
     while(!selfThread->mTerminated)
