@@ -3,9 +3,7 @@
 //
 //#include "include/CThread.h"
 #include "include/Common.h"
-using app::Config;
-using service::CSingleInstance;
-using app::MainCenter;
+using namespace app;
 
 int main(int argc,char** argv)
 {

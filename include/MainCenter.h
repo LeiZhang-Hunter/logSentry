@@ -14,7 +14,7 @@ namespace app {
     class MainCenter :public CProcess{
     public:
 
-
+        static void sigHandle(int sig);
         void start();
     };
 }

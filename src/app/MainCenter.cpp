@@ -8,6 +8,18 @@ using namespace std;
 //运行逻辑
 CServiceLog* logInstance;
 
+void MainCenter::sigHandle(int sig)
+{
+    switch (sig)
+    {
+        case SIGINT:
+            break;
+        case SIGTERM:
+            printf("SIGTERM\n");
+            break;
+    }
+}
+
 //执行逻辑
 void MainCenter::start() {
     Config* instance = CSingleInstance<Config>::getInstance();
@@ -15,6 +27,18 @@ void MainCenter::start() {
     FileMonitorManager* manager = CSingleInstance<FileMonitorManager>::getInstance();
 
     logInstance = new CServiceLog(mContent["file_path"]["file_path"].c_str());
+
+    //加入信号处理函数
+    CSignal* sig_handle= CSingleInstance<CSignal>::getInstance();
+
+    //处理关闭事件关掉子进程
+    sig_handle->setSignalHandle(SIGTERM,sigHandle);
+
+    //忽略掉SIGPIPE防止信号挂掉
+    sig_handle->setSignalHandle(SIGPIPE,SIG_IGN);
+
+    //
+    sig_handle->setSignalHandle(SIGINT,sigHandle);
 
     if(!mContent["sentry_log_file"].empty())
     {
