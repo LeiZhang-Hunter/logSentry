@@ -25,6 +25,10 @@ void CThreadSocket::Execute()
 {
 
     int res;
+    int nfds;
+    int i;
+    char buf[BUFSIZ];
+    ssize_t read_size;
 
     if(run == 1)
     {
@@ -43,13 +47,12 @@ void CThreadSocket::Execute()
         LOG_TRACE(LOG_ERROR,false,"CThreadSocket::Execute","socketHandle->connect error");
         return;
     }
-    sleep(10000);
-    int nfds;
-    int i;
-    char buf[BUFSIZ];
-    ssize_t read_size;
 
     run = 1;
+
+    //连接成功的时候触发的函数
+    this->onConnect();
+
 
     while(run)
     {

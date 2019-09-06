@@ -24,6 +24,7 @@ void FileMonitor::start() {
     int thread_number;
     int pipe[2];
 
+
     bzero(&file_node,sizeof(file_node));
 
     //打开文件
@@ -74,6 +75,7 @@ void FileMonitor::start() {
 
     Config* instance = CSingleInstance<Config>::getInstance();
     map<string,map<string,string>>mContent = instance->getConfig();
+
 
     //开始创建socket线程用来做读取后的数据收发
     printf("workerNumber:%d\n",workerNumber);

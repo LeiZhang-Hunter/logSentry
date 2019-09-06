@@ -32,16 +32,11 @@ bool FileMonitorWorker::onCreate() {
     setsockopt(client_fd,SOL_SOCKET,SO_REUSEADDR,&flag, sizeof(flag));
 
     client_handle->setConfig(netConfig["ip"].c_str(),netConfig["port"].c_str());
-
-
-    addEvent(pipe,EPOLLET|EPOLLIN);
-//
-//    //打开文件的描述符
-//    fileFd = open(file_node.path,O_RDONLY);
 }
 
 bool FileMonitorWorker::onConnect() {
-
+    //加套接字加入事件循环
+    addEvent(pipe,EPOLLET|EPOLLIN);
 }
 
 bool FileMonitorWorker::onClientRead(int fd,char* buf)

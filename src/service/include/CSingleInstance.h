@@ -20,7 +20,6 @@ namespace service {
         static T *getInstance(void) {
             if (instance == nullptr) {
                 //加锁
-                CMutexLock guard(0);
                 guard.lock();
                 if(instance == nullptr) {
                     instance = new T();
@@ -32,8 +31,11 @@ namespace service {
 
     private:
         static T *instance;
+        static CMutexLock guard;
     };
 
     template <class T>
     T* CSingleInstance<T>::instance = 0;
+    template <class T>
+    CMutexLock CSingleInstance<T>::guard(0);/* NOLINT */
 }
