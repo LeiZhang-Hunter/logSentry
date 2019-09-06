@@ -26,16 +26,12 @@ CMutexLock::CMutexLock(uint8_t shared_flag)
 
 //加锁
 int CMutexLock::lock() {
-//    printf("11\n");
-//    int res= pthread_mutex_lock(&c_mutex);
-//    printf("%d\n",res);
-    return  0;
+    return pthread_mutex_lock(&c_mutex);
 }
 
 //解锁
 int CMutexLock::unLock() {
     return pthread_mutex_unlock(&c_mutex);
-    return 0;
 }
 
 //析构函数
