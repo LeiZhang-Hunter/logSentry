@@ -17,6 +17,7 @@ namespace service{
     public:
         ~CProcessFactory();
         virtual void onMonitor(pid_t,int){};
+        virtual void stopMonitor(pid_t,int){};
         int startMonitor(pid_t monitor_process_id,int options);
         bool setPidFile(const char* pid_file);
 
