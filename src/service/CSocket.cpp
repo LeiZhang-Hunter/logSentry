@@ -79,7 +79,6 @@ bool CSocket::connect(int nsec) {
     if((n=select(socket_fd+1,&rset,&wset, nullptr,nsec ? &tval : nullptr)) == 0)
     {
         errno = ETIMEDOUT;
-        close(socket_fd);
         return  false;
     }
 
@@ -117,10 +116,7 @@ bool CSocket::reconnect()
         //防止cpu刷的过高
         sleep(2);
         res = ::close(socket_fd);
-        if (!res) {
-            LOG_TRACE(LOG_ERROR, false, "CSocket::reconnect", "close socket failed");
-            continue;
-        }
+
         socket_fd = socket(AF_INET, SOCK_STREAM, 0);
         if (socket_fd < 0) {
             LOG_TRACE(LOG_ERROR, false, "CSocket::reconnect", "create socket failed");
@@ -136,7 +132,7 @@ bool CSocket::reconnect()
         //重新连接成功
         break;
     }
-
+    printf("end\n");
     return  true;
 }
 
@@ -158,12 +154,49 @@ bool CSocket::send(int fd,void* vptr,size_t n)
             {
                 continue;
             }else{
+
+                if(errno == EBADF || errno == EPIPE)
+                {
+                    //执行重连
+                    this->reconnect();
+                }
                 return  false;
             }
         }
     }
 
     return true;
+}
+
+//接收位置出现断线则直接重新连接
+ssize_t CSocket::recv(int fd,void* vptr,size_t n)
+{
+    size_t nleft;
+    ssize_t nread;
+    char *ptr;
+    ptr = (char*)vptr;
+    nleft = n;
+
+    while(nleft > 0)
+    {
+        if((nread = read(fd,ptr,nleft)) < 0)
+        {
+            if(errno == EINTR)
+            {
+                nread=0;
+            }else{
+                return  -1;
+            }
+        }else if(nread == 0)
+        {
+            break;
+        }
+
+        nleft -= nread;
+        ptr += nread;
+    }
+
+    return (n-nleft);
 }
 
 bool CSocket::setConnectFlag(uint8_t flag)

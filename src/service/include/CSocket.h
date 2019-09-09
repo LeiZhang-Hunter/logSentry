@@ -27,6 +27,8 @@ namespace service{
 
         bool send(int fd,void* vptr,size_t n);
 
+        ssize_t recv(int fd,void* vptr,size_t n);
+
         //是否断线重连的标志
         bool setConnectFlag(uint8_t flag);
 

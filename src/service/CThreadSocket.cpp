@@ -24,6 +24,7 @@ CThreadSocket::CThreadSocket()
 void CThreadSocket::Execute()
 {
 
+
     bool res;
     int nfds;
     int i;
@@ -45,14 +46,13 @@ void CThreadSocket::Execute()
     if(!res)
     {
         LOG_TRACE(LOG_ERROR,false,"CThreadSocket::Execute","socketHandle->connect error");
-        return;
+        socketHandle->reconnect();
     }
 
     run = 1;
 
     //连接成功的时候触发的函数
     this->onConnect();
-
 
     while(run)
     {
@@ -66,17 +66,15 @@ void CThreadSocket::Execute()
                 //触发可读事件
                 if(eventCollect[i].events&EPOLLIN)
                 {
-                    read_size = recv(eventCollect[i].data.fd,buf, sizeof(buf),0);
-                    if(read_size == 0)
+                    read_size = socketHandle->recv(eventCollect[i].data.fd,buf, sizeof(buf));
+                    if(read_size == -1)
                     {
-                        //套接字关闭处理
-                    }else if(read_size < 0)
-                    {
-                        if(errno == EINTR)
-                        {
-                            continue;
-                        }
+                        LOG_TRACE(LOG_ERROR,false,"CThreadSocket::Execute","socketHandle->recv error");
+                    }else if(read_size == 0){
+                        //断线进行重新链接
+                        socketHandle->reconnect();
                     }else{
+                        buf[read_size] = '\0';
                         this->onReceive(eventCollect[i].data.fd,buf,sizeof(buf));
                     }
                 }else if(eventCollect[i].events & (EPOLLRDHUP | EPOLLERR | EPOLLHUP))

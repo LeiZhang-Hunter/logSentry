@@ -36,7 +36,8 @@ bool FileMonitorWorker::onCreate() {
 
 bool FileMonitorWorker::onConnect() {
     //加套接字加入事件循环
-    addEvent(pipe,EPOLLET|EPOLLIN);
+    addEvent(pipe,EPOLLET|EPOLLIN|EPOLLERR|EPOLLHUP);
+    addEvent(this->getSocketHandle()->getSocket(),EPOLLET|EPOLLIN|EPOLLERR|EPOLLHUP);
 }
 
 bool FileMonitorWorker::onClientRead(int fd,char* buf)
