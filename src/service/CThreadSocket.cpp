@@ -63,16 +63,19 @@ void CThreadSocket::Execute()
         {
             for(i=0;i<nfds;i++)
             {
+
                 //触发可读事件
                 if(eventCollect[i].events&EPOLLIN)
                 {
                     read_size = socketHandle->recv(eventCollect[i].data.fd,buf, sizeof(buf));
+                    printf("read_size:%ld\n",read_size);
+
                     if(read_size == -1)
                     {
                         LOG_TRACE(LOG_ERROR,false,"CThreadSocket::Execute","socketHandle->recv error");
                     }else if(read_size == 0){
-                        //断线进行重新链接
-                        socketHandle->reconnect();
+                        LOG_TRACE(LOG_ERROR,false,"CThreadSocket::Execute","client socket has closed");
+                        reconnect(eventCollect[i].data.fd);
                     }else{
                         buf[read_size] = '\0';
                         this->onReceive(eventCollect[i].data.fd,buf,sizeof(buf));
@@ -98,6 +101,8 @@ void CThreadSocket::Execute()
 
 }
 
+
+
 bool CThreadSocket::addEvent(int fd,uint32_t flags)
 {
     struct epoll_event event;
@@ -111,6 +116,45 @@ bool CThreadSocket::addEvent(int fd,uint32_t flags)
     if(res == -1)
     {
         LOG_TRACE(LOG_ERROR,false,"CUnixOs::eventAdd","add event error");
+        return  false;
+    }else{
+        return true;
+    }
+}
+
+bool CThreadSocket::deleteEvent(int fd)
+{
+    struct epoll_event event;
+    bzero(&event,sizeof(event));
+
+    epoll_ctl(eventfd,EPOLL_CTL_DEL,fd,NULL);
+}
+
+bool CThreadSocket::reconnect(int fd)
+{
+    //删除事件
+    deleteEvent(fd);
+    //断线进行重新链接
+    socketHandle->reconnect();
+    //加入事件循环
+    addEvent(fd,EPOLLET|EPOLLIN|EPOLLERR|EPOLLHUP);
+}
+
+ssize_t CThreadSocket::sendData(int fd,void* vptr,size_t n)
+{
+    bool res;
+    send:
+    res = socketHandle->send(fd,vptr,n);
+
+    if(res == false)
+    {
+        if(errno == EPIPE and errno == EBADF)
+        {
+            LOG_TRACE(LOG_ERROR,false,"CThreadSocket::sendData","send msg failed,write error.socket close");
+            this->reconnect(fd);
+            goto  send;
+        }
+
         return  false;
     }else{
         return true;

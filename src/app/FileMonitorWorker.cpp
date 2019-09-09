@@ -60,7 +60,7 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
     file_read* data;
     ssize_t n;
     char read_buf[BUFSIZ];
-    bool result;
+    ssize_t result;
     data = (file_read*)buf;
     cout<<data->begin<<"\n";
     n = pread(file_node.file_fd, read_buf, (size_t)data->offset,data->begin-data->offset);
@@ -74,9 +74,11 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
         LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","pread fd error");
     }
 
-    result = getSocketHandle()->send(client_fd,read_buf,(size_t)n);
+//    result = getSocketHandle()->send(client_fd,read_buf,(size_t)n);
+    result = sendData(client_fd,read_buf,(size_t)n);
+    printf("%ld\n",result);
 
-    if(!result)
+    if(result < 0 )
     {
         LOG_TRACE(LOG_ERROR,false,"FileMonitor::onModify","send msg failed");
     }

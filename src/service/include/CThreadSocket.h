@@ -23,6 +23,11 @@ namespace service{
         bool addEvent(int fd,uint32_t flag);
         CSocket* getSocketHandle();
         struct epoll_event*eventCollect;
+        //发送数据
+        ssize_t sendData(int fd,void* vptr,size_t n);
+        //重连
+        bool reconnect(int fd);
+        bool deleteEvent(int fd);
 
     private:
         CSocket* socketHandle;

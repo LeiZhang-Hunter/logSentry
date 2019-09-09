@@ -178,7 +178,6 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
                         if(pipe > 0)
                         {
                             write_size = write(pipe,&file_data,sizeof(file_data));
-                            printf("write_size:%ld;pipeFd:%d;send_number:%d;pipe_number:%d;file_node.workerNumberCount:%d\n",write_size,pipe,file_node.send_number,pipe_number,file_node.workerNumberCount);
                             if(write_size<=0)
                             {
                                 LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","Write Pipe Fd Error");

@@ -132,7 +132,6 @@ bool CSocket::reconnect()
         //重新连接成功
         break;
     }
-    printf("end\n");
     return  true;
 }
 
@@ -154,12 +153,6 @@ bool CSocket::send(int fd,void* vptr,size_t n)
             {
                 continue;
             }else{
-
-                if(errno == EBADF || errno == EPIPE)
-                {
-                    //执行重连
-                    this->reconnect();
-                }
                 return  false;
             }
         }
@@ -171,32 +164,9 @@ bool CSocket::send(int fd,void* vptr,size_t n)
 //接收位置出现断线则直接重新连接
 ssize_t CSocket::recv(int fd,void* vptr,size_t n)
 {
-    size_t nleft;
     ssize_t nread;
-    char *ptr;
-    ptr = (char*)vptr;
-    nleft = n;
-
-    while(nleft > 0)
-    {
-        if((nread = read(fd,ptr,nleft)) < 0)
-        {
-            if(errno == EINTR)
-            {
-                nread=0;
-            }else{
-                return  -1;
-            }
-        }else if(nread == 0)
-        {
-            break;
-        }
-
-        nleft -= nread;
-        ptr += nread;
-    }
-
-    return (n-nleft);
+    nread = ::recv(fd,vptr,n,0);
+    return  nread;
 }
 
 bool CSocket::setConnectFlag(uint8_t flag)
