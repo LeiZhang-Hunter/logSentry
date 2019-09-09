@@ -68,7 +68,6 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
     read_buf[n] = '\0';
     if(n>0)
     {
-        printf("read:%s\n",read_buf);
     }else if(n<0)
     {
         LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","pread fd error");
@@ -76,7 +75,6 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
 
 //    result = getSocketHandle()->send(client_fd,read_buf,(size_t)n);
     result = sendData(client_fd,read_buf,(size_t)n);
-    printf("%ld\n",result);
 
     if(result < 0 )
     {

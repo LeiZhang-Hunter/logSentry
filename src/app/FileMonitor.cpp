@@ -110,8 +110,13 @@ void FileMonitor::run() {
         //启动线程
         socket_worker->Start();
     }
-
-//    file_node.begin_length = buf.st_size;
+    struct stat buf;
+    res = fstat(file_node.file_fd, &buf);
+    if (res == -1) {
+        LOG_TRACE(LOG_ERROR, false, "FileMonitor::run","fstat fd error");
+        return;
+    }
+    file_node.begin_length = buf.st_size;
     eventInstance->eventLoop();
 }
 
@@ -146,9 +151,7 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
         {
             event = (struct inotify_event*)&buf[i];
 
-            if(event->len) {
-                printf("name=%s\n", event->name);
-            }
+
             bzero(&file_buffer, sizeof(file_buffer));
 //            LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","mask:"<<event->mask);
             //如果说文件发生了修改事件
@@ -160,7 +163,6 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
                     LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","fstat fd error");
                     return false;
                 }
-
                 if(file_buffer.st_size>file_node.begin_length)
                 {
                     readLen = file_buffer.st_size - file_node.begin_length;
@@ -178,6 +180,7 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
                         if(pipe > 0)
                         {
                             write_size = write(pipe,&file_data,sizeof(file_data));
+                            printf("begin:%ld,end:%ld\n",file_data.begin,file_data.offset);
                             if(write_size<=0)
                             {
                                 LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","Write Pipe Fd Error");

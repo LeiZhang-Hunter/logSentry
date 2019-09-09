@@ -37,7 +37,6 @@ int CMutexLock::unLock() {
 //析构函数
 CMutexLock::~CMutexLock()
 {
-    printf("lock destroy\n");
     //释放属性锁
     pthread_mutexattr_destroy(&c_mutex_attr);
     pthread_mutex_destroy(&c_mutex);

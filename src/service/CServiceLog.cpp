@@ -12,11 +12,9 @@ CServiceLog::CServiceLog(const char* dir)
         return;
     }
 
-    logFd = open("/home/zhanglei/log.log",O_RDWR|O_CREAT|O_APPEND,S_IRWXU);
+    logFd = open(dir,O_RDWR|O_CREAT|O_APPEND,S_IRWXU);
     if(logFd == -1)
     {
-        printf("failed\n");
-        printf("errno:%d,msg:%s\n",errno,strerror(errno));
         return  ;
     }
 }
