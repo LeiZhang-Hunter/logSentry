@@ -9,6 +9,7 @@ using service::CSocket;
 CSocket::CSocket()
 {
     socket_fd = socket(AF_INET,SOCK_STREAM,0);
+    connectFlag = 1;
 }
 
 int CSocket::setConfig(const char* ip,const char* port)
@@ -107,6 +108,38 @@ bool CSocket::connect(int nsec) {
     return  true;
 }
 
+//重新连接
+bool CSocket::reconnect()
+{
+    int res;
+    //释放掉socketfd
+    while(connectFlag) {
+        //防止cpu刷的过高
+        sleep(2);
+        res = ::close(socket_fd);
+        if (!res) {
+            LOG_TRACE(LOG_ERROR, false, "CSocket::reconnect", "close socket failed");
+            continue;
+        }
+        socket_fd = socket(AF_INET, SOCK_STREAM, 0);
+        if (socket_fd < 0) {
+            LOG_TRACE(LOG_ERROR, false, "CSocket::reconnect", "create socket failed");
+            continue;
+        }
+
+        res = this->connect(2000);
+        if(res == 0)
+        {
+            continue;
+        }
+
+        //重新连接成功
+        break;
+    }
+
+    return  true;
+}
+
 bool CSocket::send(int fd,void* vptr,size_t n)
 {
     size_t nleft;
@@ -133,6 +166,11 @@ bool CSocket::send(int fd,void* vptr,size_t n)
     return true;
 }
 
+bool CSocket::setConnectFlag(uint8_t flag)
+{
+    connectFlag = flag;
+}
+
 
 int CSocket::getSocket()
 {
@@ -141,6 +179,7 @@ int CSocket::getSocket()
 
 
 CSocket::~CSocket() {
+    connectFlag = 0;
     //关闭掉套接字
     if(socket_fd > 0) {
         close(socket_fd);

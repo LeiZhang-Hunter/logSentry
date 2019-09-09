@@ -13,6 +13,7 @@ namespace service{
         CThreadSocket();
         ~CThreadSocket() override;
         void Execute() override;
+        void Finish() override;
         //创建套接字的时候
         virtual bool onCreate(){
 

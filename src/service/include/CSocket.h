@@ -27,11 +27,15 @@ namespace service{
 
         bool send(int fd,void* vptr,size_t n);
 
+        //是否断线重连的标志
+        bool setConnectFlag(uint8_t flag);
 
+        bool reconnect();
 
     private:
         int socket_fd;
         char socketIp[INET_ADDRSTRLEN];
         uint16_t socketPort;
+        uint8_t connectFlag;
     };
 }

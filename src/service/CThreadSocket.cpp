@@ -24,7 +24,7 @@ CThreadSocket::CThreadSocket()
 void CThreadSocket::Execute()
 {
 
-    int res;
+    bool res;
     int nfds;
     int i;
     char buf[BUFSIZ];
@@ -42,7 +42,7 @@ void CThreadSocket::Execute()
 
     //进行连接
     res = socketHandle->connect(2000);
-    if(res == 0)
+    if(!res)
     {
         LOG_TRACE(LOG_ERROR,false,"CThreadSocket::Execute","socketHandle->connect error");
         return;
@@ -77,7 +77,7 @@ void CThreadSocket::Execute()
                             continue;
                         }
                     }else{
-                        onReceive(eventCollect[i].data.fd,buf,sizeof(buf));
+                        this->onReceive(eventCollect[i].data.fd,buf,sizeof(buf));
                     }
                 }else if(eventCollect[i].events & (EPOLLRDHUP | EPOLLERR | EPOLLHUP))
                 {
