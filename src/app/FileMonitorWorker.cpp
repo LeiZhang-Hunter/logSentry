@@ -35,8 +35,8 @@ bool FileMonitorWorker::onCreate() {
 
 bool FileMonitorWorker::onConnect() {
     //加套接字加入事件循环
-    addEvent(pipe,EPOLLET|EPOLLIN|EPOLLERR|EPOLLHUP);
-    addEvent(this->getSocketHandle()->getSocket(),EPOLLET|EPOLLIN|EPOLLERR|EPOLLHUP);
+    threadSocketEvent->eventAdd(pipe,CEVENT_READ,onReceive);
+    threadSocketEvent->eventAdd(getSocketHandle()->getSocket(),CEVENT_READ,onReceive);
 }
 
 bool FileMonitorWorker::onClientRead(int fd,char* buf)
@@ -44,13 +44,17 @@ bool FileMonitorWorker::onClientRead(int fd,char* buf)
 
 }
 
-bool FileMonitorWorker::onReceive(int fd,char* buf,size_t len) {
+bool FileMonitorWorker::onReceive(struct pollfd event,void* ptr) {
 
-    if(fd == client_fd)
+    auto monitor = (FileMonitorWorker*)ptr;
+
+    char buf[512];
+
+    if(event.fd == monitor->client_fd)
     {
-        this->onClientRead(fd,buf);
+        monitor->onClientRead(event.fd,buf);
     }else{
-        this->onPipe(fd,buf,len);
+        monitor->onPipe(event.fd,buf,100);
     }
 }
 

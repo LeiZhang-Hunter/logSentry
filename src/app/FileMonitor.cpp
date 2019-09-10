@@ -146,11 +146,11 @@ void FileMonitor::run() {
         return;
     }
     file_node.begin_length = buf.st_size;
-    eventInstance->eventLoop();
+    eventInstance->eventLoop(this);
 }
 
 //文件发生变化的逻辑在这里写
-bool FileMonitor::onModify(struct epoll_event eventData) {
+bool FileMonitor::onModify(struct pollfd eventData,void* ptr) {
     struct inotify_event* event;
     //获取到实例
     char buf[BUFSIZ];
@@ -173,7 +173,7 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
     }
 
 
-    read_size = read(eventData.data.fd,buf,BUFSIZ);
+    read_size = read(eventData.fd,buf,BUFSIZ);
     if(read_size>0)
     {
         while(i<read_size)
