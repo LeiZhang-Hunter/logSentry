@@ -59,8 +59,14 @@ void FileMonitor::run() {
     int thread_number;
     int pipe[2];
 
+#ifdef __linux__
+    if(prctl(PR_SET_PDEATHSIG, SIGTERM) != 0)
+    {
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","prctl set error");
+    }
+#endif
+
     eventInstance = CSingleInstance<CEvent>::getInstance();
-    CSignal* sig_handle= CSingleInstance<CSignal>::getInstance();
     sig_handle->setSignalHandle(SIGTERM,onStop);
 
     bzero(&file_node,sizeof(file_node));

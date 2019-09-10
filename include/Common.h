@@ -11,6 +11,7 @@
 #include <sys/inotify.h>
 #include <sys/stat.h>
 #include <limits.h>
+#include <sys/prctl.h>
 using namespace std;
 using namespace service;
 #ifndef SOCKETSENTRY_CONFIG_H
