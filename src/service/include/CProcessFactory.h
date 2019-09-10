@@ -7,7 +7,6 @@
 
 #endif //LOGSENTRY_CPROCESSFACTORY_H
 
-#include <limits.h>
 enum {
     FACTORY_STOP = 0,
     FACTORY_RUN = 1,
@@ -27,6 +26,7 @@ namespace service{
         int monitorStatus;
         char pidFile[PATH_MAX];
         pid_t pid;
+
         int pidFd;
         //建立一个进程守护锁，防止进程被重复启动
         struct flock guard;

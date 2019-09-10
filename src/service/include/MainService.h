@@ -23,6 +23,7 @@
 #include <sys/resource.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <limits.h>
 
 //自己的组件库
 #ifndef LOGSENTRY_CSINGLEINSTANCE_H

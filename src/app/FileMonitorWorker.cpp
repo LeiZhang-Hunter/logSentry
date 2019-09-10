@@ -2,7 +2,6 @@
 // Created by zhanglei on 19-8-30.
 //
 #include "../../include/Common.h"
-using namespace app;
 
 //构造函数
 FileMonitorWorker::FileMonitorWorker(map<string,string> socketConfig,int pipe_fd)

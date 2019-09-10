@@ -3,10 +3,11 @@
 //
 #include "../../include/Common.h"
 using app::MainCenter;
-using service::CSingleInstance;
-using namespace std;
-//运行逻辑
+//声明全局变量
 CServiceLog* logInstance;
+Config* config_instance;
+CSignal* sig_handle;
+FileMonitorManager* manager;
 
 void MainCenter::sigHandle(int sig)
 {
@@ -18,7 +19,7 @@ void MainCenter::sigHandle(int sig)
             //进程管理者的实例
             if(manager) {
                 int i = 0;
-                for (it = manager->monitorPool.begin(); it != manager->monitorPool.end(); it++) {
+                for (it = manager->processPool.begin(); it != manager->processPool.end(); it++) {
                     ::kill(it->second->getPid(), SIGTERM);
                 }
 

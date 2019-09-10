@@ -13,9 +13,12 @@ namespace app {
     public:
         FileMonitor();
         bool setNotifyPath(string path);
+        string getNotifyPath();
+
         void start();
         void run() final;
         bool setWorkerNumber(int number);
+        int getWorkerNumber();
         static bool onModify(struct epoll_event);
         static void onStop(int sig);
 

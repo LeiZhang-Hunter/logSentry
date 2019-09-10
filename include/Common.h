@@ -28,6 +28,8 @@ using namespace service;
 #include "FileMonitor.h"
 #endif
 
+
+
 #ifndef LOGSENTRY_FILEMONITORMANAGER_H
 #include "FileMonitorManager.h"
 #endif
@@ -68,3 +70,4 @@ extern app::Config* config_instance;
 extern app::FileMonitorManager* manager;
 extern CSignal* sig_handle;
 
+using namespace app;

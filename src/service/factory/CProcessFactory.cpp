@@ -89,8 +89,6 @@ bool CProcessFactory::setPidFile(const char *file) {
 }
 
 
-
-
 CProcessFactory::~CProcessFactory()
 {
     if(pidFd > 0)

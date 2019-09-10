@@ -3,7 +3,6 @@
 //
 
 #include "../../include/Common.h"
-using namespace app;
 
 
 FileMonitor::FileMonitor() {
@@ -41,6 +40,15 @@ bool FileMonitor::setWorkerNumber(int number) {
 
 bool FileMonitor::setNotifyPath(string path) {
     monitorPath = path;
+}
+
+string FileMonitor::getNotifyPath(){
+    return monitorPath;
+}
+
+int FileMonitor::getWorkerNumber()
+{
+    return workerNumber;
 }
 
 //在这里编写逻辑

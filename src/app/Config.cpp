@@ -6,7 +6,6 @@
 //设置配置文件加载的路径
 using std::string;
 using std::map;
-using app::Config;
 bool Config::setPath(std::string& path) {
     configPath = path;
     return true;
