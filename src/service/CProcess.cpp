@@ -6,8 +6,6 @@ using service::CProcess;
 
 //守护进程
 CProcess::CProcess(){
-    status = PROCESS_STOP;
-    monitorStatus = MONITOR_RUN;
 }
 
 //获取进程的pid
