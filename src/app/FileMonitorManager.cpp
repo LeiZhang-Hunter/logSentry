@@ -20,6 +20,7 @@ bool FileMonitorManager::start() {
         i++;
     }
 
+
     this->startMonitor(-1,0);
 
     this->stopMonitor();
