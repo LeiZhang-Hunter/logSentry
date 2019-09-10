@@ -17,10 +17,12 @@ namespace app {
         void run() final;
         bool setWorkerNumber(int number);
         static bool onModify(struct epoll_event);
+        static void onStop(int sig);
 
     private:
         string monitorPath;
         int workerNumber;
+        CEvent* eventInstance;
     };
 
 }

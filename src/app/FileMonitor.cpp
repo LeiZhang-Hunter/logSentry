@@ -10,6 +10,20 @@ FileMonitor::FileMonitor() {
 
 }
 
+void FileMonitor::onStop(int sig)
+{
+    switch(sig)
+    {
+        case SIGTERM:
+            CEvent* eventInstance = CSingleInstance<CEvent>::getInstance();
+            //停止主事件循环
+            eventInstance->stopLoop();
+            //停止主重连事件
+            break;
+    }
+
+}
+
 void FileMonitor::start() {
     //创建worker
     int res = this->createProcess();
@@ -37,6 +51,9 @@ void FileMonitor::run() {
     int thread_number;
     int pipe[2];
 
+    eventInstance = CSingleInstance<CEvent>::getInstance();
+    CSignal* sig_handle= CSingleInstance<CSignal>::getInstance();
+    sig_handle->setSignalHandle(SIGTERM,onStop);
 
     bzero(&file_node,sizeof(file_node));
 
@@ -70,7 +87,6 @@ void FileMonitor::run() {
         return;
     }
 
-    CEvent* eventInstance = CSingleInstance<CEvent>::getInstance();
     result = eventInstance->createEvent(512);
     if(!result)
     {

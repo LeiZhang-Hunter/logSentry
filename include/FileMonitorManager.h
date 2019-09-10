@@ -17,8 +17,13 @@ namespace app {
 
         void onMonitor(pid_t, int);
 
+        bool stopMonitor();
+        map<pid_t, FileMonitor *> monitorPool;
+
+
     private:
         map<string, string> monitorConfig;
-        map<int, FileMonitor *> monitorPool;
+
     };
 }
+

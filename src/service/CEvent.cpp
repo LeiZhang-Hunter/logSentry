@@ -81,6 +81,10 @@ bool CEvent::eventDelete(int fd) {
     epoll_ctl(epollFd,EPOLL_CTL_DEL,fd,NULL);
 }
 
+void CEvent::stopLoop()
+{
+    mainLoop = EVENT_STOP;
+}
 
 
 

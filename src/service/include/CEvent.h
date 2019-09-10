@@ -36,6 +36,7 @@ namespace service {
         bool eventDelete(int fd);
         uint32_t selectEventType(uint32_t flags);
         void eventLoop();
+        void stopLoop();
 
     private:
         int epollFd;

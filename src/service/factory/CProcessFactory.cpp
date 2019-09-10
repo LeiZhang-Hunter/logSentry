@@ -5,7 +5,7 @@
 using namespace service;
 
 int CProcessFactory::startMonitor(pid_t monitor_process_id,int options){
-    monitorStatus = MONITOR_RUN;
+    monitorStatus = FACTORY_RUN;
 
     int status;
     pid_t stop_pid;
@@ -26,10 +26,15 @@ int CProcessFactory::startMonitor(pid_t monitor_process_id,int options){
     }
 }
 
+bool CProcessFactory::stopFactory()
+{
+    monitorStatus = FACTORY_STOP;
+}
+
 //设置pid文件的路径
 bool CProcessFactory::setPidFile(const char *file) {
     ssize_t res;
-    char buf[sizeof(pid)];
+    char buf[sizeof(pid_t)+1];
 
     if(!file)
     {
@@ -69,9 +74,10 @@ bool CProcessFactory::setPidFile(const char *file) {
 
     bzero(buf,sizeof(buf));
 
-    snprintf(buf,sizeof(buf),"%d",getpid());
 
-    res = write(pidFd,buf,sizeof(buf));
+    snprintf(buf,sizeof(buf)+1,"%d\n",getpid());
+
+    res = write(pidFd,buf,strlen(buf));
 
     if(res <= 0)
     {

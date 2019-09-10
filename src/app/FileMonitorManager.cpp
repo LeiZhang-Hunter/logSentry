@@ -23,6 +23,8 @@ bool FileMonitorManager::start() {
     }
 
     this->startMonitor(-1,0);
+
+    this->stopMonitor();
 }
 
 bool FileMonitorManager::setConfig(map<string,string>config) {
@@ -31,4 +33,18 @@ bool FileMonitorManager::setConfig(map<string,string>config) {
 
 void FileMonitorManager::onMonitor(pid_t stop_pid,int status)
 {
+
 }
+
+bool FileMonitorManager::stopMonitor()
+{
+    //循环进程池 删除掉每一个文件监控者
+    map<int, FileMonitor *>::iterator it;
+    for(it=monitorPool.begin();it!=monitorPool.end();it++)
+    {
+        if(it->second) {
+            delete it->second;
+        }
+    }
+}
+

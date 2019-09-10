@@ -12,10 +12,21 @@ void MainCenter::sigHandle(int sig)
 {
     switch (sig)
     {
-        case SIGINT:
-            break;
         case SIGTERM:
-            printf("SIGTERM\n");
+            //进程管理者的实例
+            map<pid_t,FileMonitor*>::iterator it;
+            //进程管理者的实例
+            FileMonitorManager* manager = CSingleInstance<FileMonitorManager>::getInstance();
+            if(manager) {
+                int i = 0;
+                for (it = manager->monitorPool.begin(); it != manager->monitorPool.end(); it++) {
+                    ::kill(it->second->getPid(), SIGTERM);
+                }
+
+                sleep(1);
+
+                manager->stopFactory();
+            }
             break;
     }
 }
@@ -23,13 +34,15 @@ void MainCenter::sigHandle(int sig)
 //执行逻辑
 void MainCenter::start() {
     Config* instance = CSingleInstance<Config>::getInstance();
-    map<string,map<string,string>>mContent = instance->getConfig();
+    //加入信号处理函数
+    CSignal* sig_handle= CSingleInstance<CSignal>::getInstance();
+    //进程管理者的实例
     FileMonitorManager* manager = CSingleInstance<FileMonitorManager>::getInstance();
+    map<string,map<string,string>>mContent = instance->getConfig();
 
     logInstance = new CServiceLog(mContent["file_path"]["file_path"].c_str());
 
-    //加入信号处理函数
-    CSignal* sig_handle= CSingleInstance<CSignal>::getInstance();
+
 
     //处理关闭事件关掉子进程
     sig_handle->setSignalHandle(SIGTERM,sigHandle);
@@ -37,8 +50,6 @@ void MainCenter::start() {
     //忽略掉SIGPIPE防止信号挂掉
     sig_handle->setSignalHandle(SIGPIPE,SIG_IGN);
 
-    //
-    sig_handle->setSignalHandle(SIGINT,sigHandle);
 
     if(!mContent["sentry_log_file"].empty())
     {
@@ -50,4 +61,10 @@ void MainCenter::start() {
     }else{
         LOG_TRACE(LOG_ERROR,false,"MainCenter::run","The log option in the configuration file does not exist");
     }
+
+    //销毁掉实例防止内存泄露
+    delete instance;
+    delete sig_handle;
+    delete manager;
 }
+

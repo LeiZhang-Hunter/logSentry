@@ -20,6 +20,9 @@ using namespace service;
 #ifndef LOGSENTRY_MAINCENTER_H
 #include "MainCenter.h"
 #endif
+#ifndef LOGSENTRY_FILEMONITORWORKER_H
+#include "FileMonitorWorker.h"
+#endif
 
 #ifndef LOGSENTRY_FILEMONITOR_H
 #include "FileMonitor.h"
@@ -29,9 +32,7 @@ using namespace service;
 #include "FileMonitorManager.h"
 #endif
 
-#ifndef LOGSENTRY_FILEMONITORWORKER_H
-#include "FileMonitorWorker.h"
-#endif
+
 
 typedef struct file_data{
     size_t begin;

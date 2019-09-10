@@ -9,8 +9,8 @@
 
 #include <limits.h>
 enum {
-    PROCESS_STOP = 0,
-    MONITOR_RUN = 1,
+    FACTORY_STOP = 0,
+    FACTORY_RUN = 1,
 };
 namespace service{
     class CProcessFactory{
@@ -20,6 +20,8 @@ namespace service{
         virtual void stopMonitor(pid_t,int){};
         int startMonitor(pid_t monitor_process_id,int options);
         bool setPidFile(const char* pid_file);
+        //停止工厂
+        bool stopFactory();
 
     private:
         int monitorStatus;
