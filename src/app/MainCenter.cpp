@@ -16,7 +16,6 @@ void MainCenter::sigHandle(int sig)
             //进程管理者的实例
             map<pid_t,FileMonitor*>::iterator it;
             //进程管理者的实例
-            FileMonitorManager* manager = CSingleInstance<FileMonitorManager>::getInstance();
             if(manager) {
                 int i = 0;
                 for (it = manager->monitorPool.begin(); it != manager->monitorPool.end(); it++) {
@@ -31,14 +30,36 @@ void MainCenter::sigHandle(int sig)
     }
 }
 
+bool MainCenter::init(string path)
+{
+    //解析命令行参数,获取配置文件路径
+    config_instance = CSingleInstance<Config>::getInstance();
+
+    if(!config_instance)
+    {
+        exit(-1);
+    }
+
+    config_instance->setPath(path);
+
+    //如果说存在
+    if(config_instance->getPath().c_str())
+    {
+        config_instance->loadConfig();
+    }else{
+        exit(-1);
+    }
+
+    //加入信号处理函数
+    sig_handle= CSingleInstance<CSignal>::getInstance();
+    //进程管理者的实例
+    manager = CSingleInstance<FileMonitorManager>::getInstance();
+}
+
 //执行逻辑
 void MainCenter::start() {
-    Config* instance = CSingleInstance<Config>::getInstance();
-    //加入信号处理函数
-    CSignal* sig_handle= CSingleInstance<CSignal>::getInstance();
-    //进程管理者的实例
-    FileMonitorManager* manager = CSingleInstance<FileMonitorManager>::getInstance();
-    map<string,map<string,string>>mContent = instance->getConfig();
+
+    map<string,map<string,string>>mContent = config_instance->getConfig();
 
     logInstance = new CServiceLog(mContent["file_path"]["file_path"].c_str());
 
@@ -61,10 +82,15 @@ void MainCenter::start() {
     }else{
         LOG_TRACE(LOG_ERROR,false,"MainCenter::run","The log option in the configuration file does not exist");
     }
-
-    //销毁掉实例防止内存泄露
-    delete instance;
-    delete sig_handle;
-    delete manager;
 }
 
+bool MainCenter::destroy()
+{
+    delete config_instance;
+
+    delete sig_handle;
+
+    manager->stopMonitor();
+
+    delete manager;
+}

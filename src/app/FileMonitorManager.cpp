@@ -8,8 +8,7 @@ monitor_node file_node;
 
 bool FileMonitorManager::start() {
     map<string,string>::iterator it;
-    Config* instance = CSingleInstance<Config>::getInstance();
-    map<string,map<string,string>>mContent = instance->getConfig();
+    map<string,map<string,string>>mContent = config_instance->getConfig();
 
     int i = 0;
     for(it=monitorConfig.begin();it!=monitorConfig.end();it++)

@@ -15,6 +15,9 @@ namespace app {
     public:
 
         static void sigHandle(int sig);
+        //配置文件的路径
+        bool init(string path);
         void start();
+        bool destroy();
     };
 }

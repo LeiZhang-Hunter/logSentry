@@ -7,13 +7,7 @@ using namespace app;
 
 int main(int argc,char** argv)
 {
-    //解析命令行参数,获取配置文件路径
-    Config* instance = CSingleInstance<Config>::getInstance();
 
-    if(!instance)
-    {
-        exit(-1);
-    }
 
 
     int opt;
@@ -34,21 +28,11 @@ int main(int argc,char** argv)
         path = (DEFAULT_CONFIG_DIR);
     }
 
-    instance->setPath(path);
-
-    //如果说存在
-    if(instance->getPath().c_str())
-    {
-        instance->loadConfig();
-    }else{
-        exit(-1);
-    }
-
-
-
     //运行入口函数创建进程
     MainCenter* main_instance = CSingleInstance<MainCenter>::getInstance();
+    main_instance->init(path);
     main_instance->start();
+    main_instance->destroy();
     //删除掉主要实例
     delete main_instance;
 }

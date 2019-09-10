@@ -64,5 +64,7 @@ extern monitor_node file_node;
 
 //监控文件的集合
 //map<string,monitor_node>monitorCollect;
-
+extern app::Config* config_instance;
+extern app::FileMonitorManager* manager;
+extern CSignal* sig_handle;
 

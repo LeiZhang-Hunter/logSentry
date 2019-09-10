@@ -87,7 +87,7 @@ void FileMonitor::run() {
         return;
     }
 
-    result = eventInstance->createEvent(512);
+    result = eventInstance->createEvent(1);
     if(!result)
     {
         LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","CEvent::createEvent error");
@@ -103,8 +103,7 @@ void FileMonitor::run() {
         return;
     }
 
-    Config* instance = CSingleInstance<Config>::getInstance();
-    map<string,map<string,string>>mContent = instance->getConfig();
+    map<string,map<string,string>>mContent = config_instance->getConfig();
 
 
     //开始创建socket线程用来做读取后的数据收发
