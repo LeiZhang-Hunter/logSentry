@@ -81,7 +81,6 @@ ssize_t CThreadSocket::sendData(int fd,void* vptr,size_t n)
 
         return  false;
     }else{
-        printf("ok\n");
         return res;
     }
 }

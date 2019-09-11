@@ -35,11 +35,13 @@ using namespace service;
 #include "FileMonitorManager.h"
 #endif
 
+#define READBUF 1024
+
 
 
 typedef struct file_data{
     size_t begin;
-    off_t offset;
+    ssize_t offset;
 }file_read;
 
 //监控节点

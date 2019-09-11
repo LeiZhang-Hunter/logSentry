@@ -63,9 +63,9 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
 
     char buf[BUFSIZ];
 
-    size = read(fd, buf, sizeof(buf));
-
     if (fd == monitor->client_fd) {
+        size = read(fd, buf, sizeof(buf));
+
         if (size == 0) {
 
             monitor->reconnect(fd,CEVENT_READ);
@@ -81,8 +81,8 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
             monitor->onClientRead(fd,buf);
         }
     } else {
-        buf[size] = '\0';
-        monitor->onPipe(fd, buf, (size_t) size);
+        size = read(fd, &buf, sizeof(buf));
+        monitor->onPipe(fd, buf, (size_t)size);
     }
 #ifdef _SYS_EPOLL_H
 }
@@ -92,34 +92,45 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
 #endif
 
 //这个是pipe的处理逻辑
-void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
+void FileMonitorWorker::onPipe(int fd, char *buf2,size_t len) {
     file_read* data;
     ssize_t n;
     char read_buf[BUFSIZ];
+    bzero(&read_buf, sizeof(read_buf));
     ssize_t result;
-    data = (file_read*)buf;
-    n = pread(file_node.file_fd, read_buf, (size_t)data->offset,data->begin-data->offset);
-    read_buf[n] = '\0';
-    if(n>0)
-    {
-    }else if(n<0)
-    {
-        LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","pread fd error");
-    }
+    data = (file_read*)buf2;
 
-//    struct protocolStruct dataBuf;
-//    bzero(&dataBuf,sizeof(protocolStruct));
-//    strcpy(dataBuf.path,filePath.c_str());
-//    strcpy(dataBuf.logName,fileName.c_str());
-//    strcpy(dataBuf.buf,read_buf);
-    printf("begin\n");
-    result = sendData(client_fd,&read_buf,sizeof(read_buf));
-    printf("result:%ld\n",result);
+    ssize_t offset;
 
-    if(result < 0 )
-    {
-        LOG_TRACE(LOG_ERROR,false,"FileMonitor::onModify","send msg failed");
-    }
+
+
+    //读取的buffer 很可能超过最大的buffer 长度如果说超过了需要分次去读
+    do{
+        if(data->offset > BUFSIZ)
+        {
+            offset = BUFSIZ;
+        }else{
+            offset = data->offset;
+        }
+        printf("offset:%ld\n",data->offset);
+        n = pread(file_node.file_fd, read_buf,  (size_t)offset, data->begin-offset);
+        printf("offset:end\n");
+        read_buf[n] = '\0';
+        if(n>0)
+        {
+            result = sendData(client_fd,&read_buf,strlen(read_buf));
+
+            if(result < 0 )
+            {
+                LOG_TRACE(LOG_ERROR,false,"FileMonitor::onModify","send msg failed");
+            }
+        }else if(n<0)
+        {
+            LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","pread fd error");
+        }
+
+        data->offset -= n;
+    }while(data->offset > 0);
 
 }
 
