@@ -17,8 +17,12 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <signal.h>
-#include <wait.h>
+#include <sys/wait.h>
+#ifdef linux
 #include <sys/epoll.h>
+#else
+#include <sys/poll.h>
+#endif
 #include <sys/time.h>
 #include <sys/resource.h>
 #include <sys/socket.h>
@@ -47,9 +51,19 @@
 #include "CSocket.h"
 #endif
 
+
+
+#ifdef _SYS_EPOLL_H
 #ifndef LOGSENTRY_CEVENT_H
-#include "CEvent.h"
+#include "CEpoll.h"
 #endif
+#else
+#ifndef LOGSENTRY_CPOLL_H
+#include "CPoll.h"
+#endif
+#endif
+
+#include "CEvent.h"
 
 #ifndef LOGSENTRY_CTHREADSOCKET_H
 #include "CThreadSocket.h"
@@ -73,6 +87,8 @@
 #include "CSignal.h"
 #endif
 
+#define DECLARE_LOG CServiceLog* logInstance;
+
 
 extern CServiceLog* logInstance;
 
@@ -82,9 +98,4 @@ extern CServiceLog* logInstance;
 #include "CUnixOs.h"
 #endif
 
-enum {
-    LOCK_PROCESS_IS_SHARED = 1,
-    LOCK_PROCESS_NO_SHARED = 0,
-    READ_LOCK = 1,
-    WRITE_LOCK = 0
-};
+

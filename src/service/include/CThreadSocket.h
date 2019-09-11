@@ -20,18 +20,20 @@ namespace service{
         virtual bool onConnect(){};
         virtual bool onClose(){};
         virtual bool onReceive(int fd,char* buf,size_t len){};
-        bool addEvent(int fd,uint32_t flag);
         CSocket* getSocketHandle();
         struct epoll_event*eventCollect;
         //发送数据
         ssize_t sendData(int fd,void* vptr,size_t n);
         //重连
-        bool reconnect(int fd);
-        bool deleteEvent(int fd);
+#ifdef _SYS_EPOLL_H
+        bool reconnect(int fd,uint32_t flags);
+#else
+        bool reconnect(int fd,short flags);
+#endif
+        CEvent* threadSocketEvent;
 
     private:
         CSocket* socketHandle;
-        CEvent* threadSocketEvent;
         static CThreadSocket* instance;
         string ip;
         string port;

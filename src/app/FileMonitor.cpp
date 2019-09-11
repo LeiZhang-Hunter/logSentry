@@ -34,6 +34,17 @@ void FileMonitor::start() {
 
 }
 
+bool FileMonitor::setFileName(string file_name)
+{
+    fileName = file_name;
+}
+
+string FileMonitor::getFileName()
+{
+    return fileName;
+}
+
+
 bool FileMonitor::setWorkerNumber(int number) {
     workerNumber = number;
 }
@@ -134,6 +145,11 @@ void FileMonitor::run() {
         }
 
         FileMonitorWorker* socket_worker = new FileMonitorWorker(mContent["server"],file_node.pipe_collect[thread_number][0]);
+
+        socket_worker->filePath = monitorPath;
+
+        socket_worker->fileName = fileName;
+
         //设置线程为守护线程
         socket_worker->SetDaemonize();
         //启动线程
@@ -146,11 +162,16 @@ void FileMonitor::run() {
         return;
     }
     file_node.begin_length = buf.st_size;
-    eventInstance->eventLoop();
+    eventInstance->eventLoop(this);
 }
 
 //文件发生变化的逻辑在这里写
-bool FileMonitor::onModify(struct epoll_event eventData) {
+#ifdef _SYS_EPOLL_H
+bool FileMonitor::onModify(struct epoll_event eventData,void* ptr)
+#else
+bool FileMonitor::onModify(struct pollfd eventData,void* ptr)
+#endif
+{
     struct inotify_event* event;
     //获取到实例
     char buf[BUFSIZ];
@@ -165,6 +186,13 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
     ssize_t write_size;
     int res;
     int wd;
+    int fd;
+
+#ifdef _SYS_EPOLL_H
+    fd = eventData.data.fd;
+#else
+    fd = eventData.fd;
+#endif
 
     if(!file_node.pipe_collect)
     {
@@ -173,7 +201,7 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
     }
 
 
-    read_size = read(eventData.data.fd,buf,BUFSIZ);
+    read_size = read(fd,buf,BUFSIZ);
     if(read_size>0)
     {
         while(i<read_size)
@@ -185,6 +213,8 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
 //            LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","mask:"<<event->mask);
             //如果说文件发生了修改事件
             if(event->mask & IN_MODIFY) {
+                printf("modify\n");
+
                 //读取变化之后的文件大小
 
                 res = fstat(file_node.file_fd, &file_buffer);
@@ -208,8 +238,9 @@ bool FileMonitor::onModify(struct epoll_event eventData) {
                         pipe = *(file_node.pipe_collect[pipe_number]+1);
                         if(pipe > 0)
                         {
+                            printf("begin:%d;number:%d;send:%d,count:%d\n",pipe,pipe_number,file_node.send_number,file_node.workerNumberCount);
                             write_size = write(pipe,&file_data,sizeof(file_data));
-                            printf("begin:%ld,end:%ld\n",file_data.begin,file_data.offset);
+                            printf("end\n");
                             if(write_size<=0)
                             {
                                 LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","Write Pipe Fd Error");

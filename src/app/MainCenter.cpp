@@ -4,7 +4,7 @@
 #include "../../include/Common.h"
 using app::MainCenter;
 //声明全局变量
-CServiceLog* logInstance;
+DECLARE_LOG
 Config* config_instance;
 CSignal* sig_handle;
 FileMonitorManager* manager;

@@ -13,18 +13,25 @@ namespace app {
     public:
         FileMonitor();
         bool setNotifyPath(string path);
+        bool setFileName(string file_name);
+        string getFileName();
         string getNotifyPath();
 
         void start();
         void run() final;
         bool setWorkerNumber(int number);
         int getWorkerNumber();
-        static bool onModify(struct epoll_event);
+#ifdef _SYS_EPOLL_H
+        static bool onModify(struct epoll_event,void* ptr);
+#else
+        static bool onModify(struct pollfd,void* ptr);
+#endif
         static void onStop(int sig);
 
     private:
         string monitorPath;
         int workerNumber;
+        string fileName;
         CEvent* eventInstance;
     };
 

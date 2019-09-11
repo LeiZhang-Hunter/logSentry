@@ -35,24 +35,61 @@ bool FileMonitorWorker::onCreate() {
 
 bool FileMonitorWorker::onConnect() {
     //加套接字加入事件循环
-    addEvent(pipe,EPOLLET|EPOLLIN|EPOLLERR|EPOLLHUP);
-    addEvent(this->getSocketHandle()->getSocket(),EPOLLET|EPOLLIN|EPOLLERR|EPOLLHUP);
+    threadSocketEvent->eventAdd(pipe,CEVENT_READ,onReceive);
+    threadSocketEvent->eventAdd(getSocketHandle()->getSocket(),CEVENT_READ,onReceive);
 }
 
 bool FileMonitorWorker::onClientRead(int fd,char* buf)
 {
 
 }
+#ifdef _SYS_EPOLL_H
+bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
+#else
+    bool FileMonitorWorker::onReceive(struct pollfd event,void* ptr)
+#endif
+{
 
-bool FileMonitorWorker::onReceive(int fd,char* buf,size_t len) {
 
-    if(fd == client_fd)
-    {
-        this->onClientRead(fd,buf);
-    }else{
-        this->onPipe(fd,buf,len);
+    int fd;
+    ssize_t size;
+    auto monitor = (FileMonitorWorker *) ptr;
+
+#ifdef _SYS_EPOLL_H
+    fd = event.data.fd;
+#else
+    fd = event.fd;
+#endif
+
+    char buf[BUFSIZ];
+
+    size = read(fd, buf, sizeof(buf));
+
+    if (fd == monitor->client_fd) {
+        if (size == 0) {
+
+            monitor->reconnect(fd,CEVENT_READ);
+
+        } else if (size < 0) {
+            if (errno == EINTR) {//被信号中断
+                return false;
+            } else {
+                LOG_TRACE(LOG_ERROR,false,"FileMonitorWorker::onReceive","recv failed");
+            }
+
+        } else {
+            monitor->onClientRead(fd,buf);
+        }
+    } else {
+        buf[size] = '\0';
+        monitor->onPipe(fd, buf, (size_t) size);
     }
+#ifdef _SYS_EPOLL_H
 }
+
+#else
+}
+#endif
 
 //这个是pipe的处理逻辑
 void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
@@ -70,7 +107,13 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
         LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","pread fd error");
     }
 
-    result = sendData(client_fd,read_buf,(size_t)n);
+    struct protocolStruct dataBuf;
+    bzero(&dataBuf,sizeof(protocolStruct));
+    strcpy(dataBuf.path,filePath.c_str());
+    strcpy(dataBuf.logName,fileName.c_str());
+    strcpy(dataBuf.buf,read_buf);
+
+    result = sendData(client_fd,&dataBuf,sizeof(dataBuf));
 
     if(result < 0 )
     {
