@@ -6,7 +6,12 @@
 #define LOGSENTRY_CMUTEXLOCK_H
 
 #endif //LOGSENTRY_CMUTEKLOCK_H
-
+enum {
+    LOCK_PROCESS_IS_SHARED = 1,
+    LOCK_PROCESS_NO_SHARED = 0,
+    READ_LOCK = 1,
+    WRITE_LOCK = 0
+};
 //这是一个互斥锁的类
 namespace service {
 

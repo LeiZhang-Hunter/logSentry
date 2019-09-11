@@ -96,9 +96,4 @@ extern CServiceLog* logInstance;
 #include "CUnixOs.h"
 #endif
 
-enum {
-    LOCK_PROCESS_IS_SHARED = 1,
-    LOCK_PROCESS_NO_SHARED = 0,
-    READ_LOCK = 1,
-    WRITE_LOCK = 0
-};
+
