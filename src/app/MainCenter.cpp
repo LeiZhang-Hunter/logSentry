@@ -92,4 +92,6 @@ bool MainCenter::destroy()
     manager->stopMonitor();
 
     delete manager;
+
+    delete logInstance;
 }
