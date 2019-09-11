@@ -15,7 +15,7 @@ CServiceLog::CServiceLog(const char* dir)
     logFd = open(dir,O_RDWR|O_CREAT|O_APPEND,S_IRWXU);
     if(logFd == -1)
     {
-        cout<<"[CServiceLog::CServiceLog]:open log file failed;file:"<<__FILE__<<";line:"<<__LINE__;
+        cout<<"[CServiceLog::CServiceLog]:open log file failed;errno"<<errno<<";errormsg:"<<strerror(errno)<<";file:"<<__FILE__<<";line:"<<__LINE__;
         exit(-1);
     }
 }
