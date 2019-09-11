@@ -20,6 +20,13 @@ namespace app {
         static bool onReceive(struct pollfd event,void* ptr);
 #endif
         bool onClientRead(int fd,char* buf);
+        struct protocolStruct{
+            char path[PATH_MAX];
+            char buf[BUFSIZ];
+            char logName[NAME_MAX];
+        };
+        string filePath;
+        string fileName;
 
     private:
         void onPipe(int fd,char* buf,size_t len);
@@ -27,5 +34,6 @@ namespace app {
         int pipe;
         int fileFd;
         int client_fd;
+
     };
 }

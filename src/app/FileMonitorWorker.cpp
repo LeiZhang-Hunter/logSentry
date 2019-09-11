@@ -49,6 +49,7 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr) {
     bool FileMonitorWorker::onReceive(struct pollfd event,void* ptr) {
 #endif
 
+
     int fd;
     ssize_t size;
     auto monitor = (FileMonitorWorker *) ptr;
@@ -105,7 +106,13 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
         LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","pread fd error");
     }
 
-    result = sendData(client_fd,read_buf,(size_t)n);
+    struct protocolStruct dataBuf;
+    bzero(&dataBuf,sizeof(protocolStruct));
+    strcpy(dataBuf.path,filePath.c_str());
+    strcpy(dataBuf.logName,fileName.c_str());
+    strcpy(dataBuf.buf,read_buf);
+
+    result = sendData(client_fd,&dataBuf,sizeof(dataBuf));
 
     if(result < 0 )
     {

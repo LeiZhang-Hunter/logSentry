@@ -13,6 +13,8 @@ namespace app {
     public:
         FileMonitor();
         bool setNotifyPath(string path);
+        bool setFileName(string file_name);
+        string getFileName();
         string getNotifyPath();
 
         void start();
@@ -29,6 +31,7 @@ namespace app {
     private:
         string monitorPath;
         int workerNumber;
+        string fileName;
         CEvent* eventInstance;
     };
 

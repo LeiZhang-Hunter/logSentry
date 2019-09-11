@@ -13,6 +13,7 @@ bool FileMonitorManager::start() {
     for(it=monitorConfig.begin();it!=monitorConfig.end();it++)
     {
         auto monitor = new FileMonitor();
+        monitor->setFileName(it->first);
         monitor->setNotifyPath(it->second);
         monitor->setWorkerNumber(atoi(mContent["server"]["work_thread_number"].c_str()));
         monitor->start();
@@ -37,6 +38,7 @@ void FileMonitorManager::onMonitor(pid_t stop_pid,int status)
     {
         //重新拉起
         auto monitor = new FileMonitor();
+        monitor->setFileName(processPool[stop_pid]->getFileName());
         monitor->setNotifyPath(processPool[stop_pid]->getNotifyPath());
         monitor->setWorkerNumber(processPool[stop_pid]->getWorkerNumber());
         monitor->start();
