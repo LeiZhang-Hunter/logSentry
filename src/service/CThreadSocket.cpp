@@ -61,7 +61,6 @@ bool CThreadSocket::reconnect(int fd,short flags)
     //断线进行重新链接
     socketHandle->reconnect();
     //加入事件循环
-    printf("%d\n",socketHandle->getSocket());
     threadSocketEvent->eventAdd(socketHandle->getSocket(),flags);
 }
 

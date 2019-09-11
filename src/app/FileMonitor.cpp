@@ -157,8 +157,7 @@ void FileMonitor::run() {
         socket_worker->SetDaemonize();
         //启动线程
         socket_worker->Start();
-
-        eventInstance->eventAdd(file_node.pipe_collect[thread_number][0],EPOLLOUT|EPOLLET);
+        eventInstance->eventAdd(file_node.pipe_collect[thread_number][1],EPOLLET|EPOLLIN);
     }
     struct stat buf;
     res = fstat(file_node.file_fd, &buf);
@@ -184,16 +183,14 @@ bool FileMonitor::onModify(struct pollfd eventData,void* ptr)
     char buf[BUFSIZ];
     int i = 0;
     struct stat file_buffer;
-    file_read file_data;
-    ssize_t readLen;
     bzero(buf,BUFSIZ);
     ssize_t read_size;
     int pipe_number;
-    int pipe;
-    ssize_t write_size;
     int res;
     int wd;
     int fd;
+    int pipeFd;
+    auto monitor = (FileMonitor*)ptr;
 
 #ifdef _SYS_EPOLL_H
     fd = eventData.data.fd;
@@ -220,52 +217,12 @@ bool FileMonitor::onModify(struct pollfd eventData,void* ptr)
 //            LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","mask:"<<event->mask);
             //如果说文件发生了修改事件
             if(event->mask & IN_MODIFY) {
+                //选中一个管道的序号
+                pipe_number = file_node.send_number%file_node.workerNumberCount;
 
-                //读取变化之后的文件大小
+                pipeFd = *(file_node.pipe_collect[pipe_number]+1);
+                monitor->eventInstance->eventUpdate(pipeFd,EPOLLOUT|EPOLLET);
 
-                res = fstat(file_node.file_fd, &file_buffer);
-                if (res == -1) {
-                    LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","fstat fd error");
-                    return false;
-                }
-                if(file_buffer.st_size>file_node.begin_length)
-                {
-                    readLen = file_buffer.st_size - file_node.begin_length;
-
-                    bzero(&file_data, sizeof(file_data));
-
-                    file_data.begin = (size_t)(file_buffer.st_size);
-                    file_data.offset = readLen;
-
-                    pipe_number = file_node.send_number%file_node.workerNumberCount;
-
-                    if(file_node.pipe_collect)
-                    {
-                        pipe = *(file_node.pipe_collect[pipe_number]+1);
-                        if(pipe > 0)
-                        {
-                            printf("%d\n",pipe);
-                            if(fff == 0) {
-                                int flags = fcntl(pipe, F_GETFL, 0);
-                                flags |= O_NONBLOCK;
-                                fcntl(pipe, F_SETFL, flags);
-                                fff = 1;
-                            }
-                            write_size = write(pipe,&file_data,sizeof(file_data));
-                            if(write_size<=0)
-                            {
-                                LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","Write Pipe Fd Error");
-                            }else{
-                                file_node.send_number++;
-                            }
-                        }else{
-                            LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","Get Pipe Fd Error");
-                            return false;
-                        }
-                    }
-                }
-
-                file_node.begin_length = file_buffer.st_size;
             }else if(event->mask & IN_ATTRIB)
             {
                 //关闭掉旧的描述符
@@ -313,4 +270,44 @@ bool FileMonitor::onPipeWrite(struct epoll_event eventData,void* ptr)
 bool FileMonitor::onPipeWrite(struct pollfd eventData,void* ptr)
 #endif
 {
+    int fd;
+    ssize_t write_size;
+    file_read file_data;
+    ssize_t readLen;
+    int res;
+    struct stat file_buffer;
+
+    //读取变化之后的文件大小
+    fd = eventData.data.fd;
+    res = fstat(file_node.file_fd, &file_buffer);
+    if (res == -1) {
+        LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","fstat fd error");
+        return false;
+    }
+    if(file_buffer.st_size>file_node.begin_length)
+    {
+        readLen = file_buffer.st_size - file_node.begin_length;
+
+        bzero(&file_data, sizeof(file_data));
+
+        file_data.begin = (size_t)(file_buffer.st_size);
+        file_data.offset = readLen;
+
+
+        if(file_node.pipe_collect)
+        {
+            write_size = write(fd,&file_data,sizeof(file_data));
+
+            if(write_size<=0)
+            {
+
+                LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","Write Pipe Fd Error");
+            }else{
+
+                file_node.send_number++;
+            }
+        }
+    }
+
+    file_node.begin_length = file_buffer.st_size;
 }

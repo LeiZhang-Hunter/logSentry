@@ -75,6 +75,7 @@ bool CEpoll::eventUpdate(int fd,uint32_t flags) {
     struct epoll_event event;
     bzero(&event,sizeof(event));
     event.events = flags;
+    event.data.fd = fd;
 
     epoll_ctl(epollFd,EPOLL_CTL_MOD,fd,&event);
 }
@@ -128,6 +129,11 @@ void CEpoll::eventLoop(void* ptr) {
 
                     if(eventFunctionHandle[CEVENT_ERROR]) {
                         eventFunctionHandle[CEVENT_ERROR](eventCollect[i],ptr);
+                    }
+                }else if(eventCollect[i].events & EPOLLOUT)
+                {
+                    if(eventFunctionHandle[CEVENT_WRITE]) {
+                        eventFunctionHandle[CEVENT_WRITE](eventCollect[i],ptr);
                     }
                 }
             }

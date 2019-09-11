@@ -61,7 +61,6 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
 #else
     fd = event.fd;
 #endif
-
     char buf[BUFSIZ];
 
     if (fd == monitor->client_fd) {
@@ -115,6 +114,7 @@ void FileMonitorWorker::onPipe(int fd, char *buf2,size_t len) {
         }
         n = pread(file_node.file_fd, read_buf,  (size_t)offset, data->begin-offset);
         read_buf[n] = '\0';
+
         if(n>0)
         {
             result = sendData(client_fd,&read_buf,strlen(read_buf));
