@@ -120,7 +120,7 @@ void FileMonitor::run() {
     }
 
 
-    eventInstance->eventAdd(file_node.inotify_fd,CEVENT_READ|CEVENT_WRITE,onModify);
+    eventInstance->eventAdd(file_node.inotify_fd,CEVENT_READ,onModify);
 
     if(workerNumber<1)
     {
@@ -239,12 +239,13 @@ bool FileMonitor::onModify(struct pollfd eventData,void* ptr)
                         pipe = *(file_node.pipe_collect[pipe_number]+1);
                         if(pipe > 0)
                         {
-//                            if(fff == 0) {
-//                                int flags = fcntl(pipe, F_GETFL, 0);
-//                                flags |= O_NONBLOCK;
-//                                fcntl(pipe, F_SETFL, flags);
-//                                fff = 1;
-//                            }
+                            printf("%d\n",pipe);
+                            if(fff == 0) {
+                                int flags = fcntl(pipe, F_GETFL, 0);
+                                flags |= O_NONBLOCK;
+                                fcntl(pipe, F_SETFL, flags);
+                                fff = 1;
+                            }
                             write_size = write(pipe,&file_data,sizeof(file_data));
                             if(write_size<=0)
                             {
