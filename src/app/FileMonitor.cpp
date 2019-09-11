@@ -25,13 +25,13 @@ void FileMonitor::onStop(int sig)
 
 void FileMonitor::start() {
     //创建worker
-//    int res = this->createProcess();
-//    if(res != 0)
-//    {
-//        LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","create process error");
-//        return;
-//    }
-    this->run();
+    int res = this->createProcess();
+    if(res != 0)
+    {
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","create process error");
+        return;
+    }
+//    this->run();
 }
 
 bool FileMonitor::setFileName(string file_name)
@@ -169,7 +169,6 @@ void FileMonitor::run() {
     eventInstance->eventLoop(this);
 }
 
-int fff = 0;
 
 //文件发生变化的逻辑在这里写
 #ifdef _SYS_EPOLL_H
