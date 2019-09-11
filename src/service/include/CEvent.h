@@ -11,9 +11,10 @@
 
 namespace service {
 #ifdef _SYS_EPOLL_H
-    class CEvent :public CEpoll{
+    class CEvent :public CEpoll
 #else
-    class CEvent :public CPoll{
+    class CEvent :public CPoll
 #endif
+    {
     };
 }

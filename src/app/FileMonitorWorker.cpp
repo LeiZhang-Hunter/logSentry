@@ -44,10 +44,11 @@ bool FileMonitorWorker::onClientRead(int fd,char* buf)
 
 }
 #ifdef _SYS_EPOLL_H
-bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr) {
+bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
 #else
-    bool FileMonitorWorker::onReceive(struct pollfd event,void* ptr) {
+    bool FileMonitorWorker::onReceive(struct pollfd event,void* ptr)
 #endif
+{
 
 
     int fd;
@@ -62,7 +63,7 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr) {
 
     char buf[BUFSIZ];
 
-    size = recv(fd, buf, sizeof(buf), 0);
+    size = read(fd, buf, sizeof(buf));
 
     if (fd == monitor->client_fd) {
         if (size == 0) {
