@@ -22,7 +22,7 @@ enum {
 //在epoll里最大的种类是32
 #define EPOLL_EVENTS_MAX 32
 
-typedef bool (*eventHandle)(struct epoll_event events);
+typedef bool (*eventHandle)(struct epoll_event events,void* ptr);
 
 namespace service {
     class CEvent {
@@ -35,8 +35,10 @@ namespace service {
         bool eventUpdate(int fd,uint32_t flags,eventHandle handle);
         bool eventDelete(int fd);
         uint32_t selectEventType(uint32_t flags);
-        void eventLoop();
+        void eventLoop(void* ptr);
         void stopLoop();
+        eventHandle eventFunctionHandle[EPOLL_EVENTS_MAX];
+        int eventSize;
 
     private:
         int epollFd;
@@ -44,6 +46,5 @@ namespace service {
         int nfds;
         int pollSize;
         struct epoll_event*eventCollect;
-        eventHandle eventFunctionHandle[EPOLL_EVENTS_MAX];
     };
 }

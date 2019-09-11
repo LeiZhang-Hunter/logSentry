@@ -18,8 +18,11 @@
 #include <stdio.h>
 #include <signal.h>
 #include <sys/wait.h>
-//#include <sys/epoll.h>
+#ifdef linux
+#include <sys/epoll.h>
+#else
 #include <sys/poll.h>
+#endif
 #include <sys/time.h>
 #include <sys/resource.h>
 #include <sys/socket.h>
@@ -48,13 +51,17 @@
 #include "CSocket.h"
 #endif
 
-//#ifndef LOGSENTRY_CEVENT_H
-//#include "CEvent.h"
-//#endif
-
+#ifdef _SYS_EPOLL_H
+#ifndef LOGSENTRY_CEVENT_H
+#include "CEvent.h"
+#endif
+#else
 #ifndef LOGSENTRY_CPOLL_H
 #include "CPoll.h"
 #endif
+#endif
+
+
 
 #ifndef LOGSENTRY_CTHREADSOCKET_H
 #include "CThreadSocket.h"

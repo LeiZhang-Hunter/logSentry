@@ -7,7 +7,7 @@ CThreadSocket::CThreadSocket()
 {
     //创建一个socket的句柄
     socketHandle = new CSocket();
-    //创建epoll
+    //创建事件集合
     threadSocketEvent = new CEvent();
 }
 
@@ -27,6 +27,7 @@ void CThreadSocket::Execute()
         return;
     }
 
+    threadSocketEvent->createEvent(2);
 
     this->onCreate();
 
@@ -49,15 +50,18 @@ void CThreadSocket::Execute()
 }
 
 
-
-bool CThreadSocket::reconnect(int fd)
+#ifdef _SYS_EPOLL_H
+bool CThreadSocket::reconnect(int fd,uint32_t flags)
+#else
+bool CThreadSocket::reconnect(int fd,short flags)
+#endif
 {
     //删除事件
-//    deleteEvent(fd);
+    threadSocketEvent->eventDelete(fd);
     //断线进行重新链接
     socketHandle->reconnect();
     //加入事件循环
-//    addEvent(fd,POLLIN);
+    threadSocketEvent->eventAdd(fd,flags,threadSocketEvent->eventFunctionHandle[flags]);
 }
 
 ssize_t CThreadSocket::sendData(int fd,void* vptr,size_t n)
@@ -66,12 +70,12 @@ ssize_t CThreadSocket::sendData(int fd,void* vptr,size_t n)
     send:
     res = socketHandle->send(fd,vptr,n);
 
-    if(res == false)
+    if(!res)
     {
         if(errno == EPIPE and errno == EBADF)
         {
             LOG_TRACE(LOG_ERROR,false,"CThreadSocket::sendData","send msg failed,write error.socket close");
-            this->reconnect(fd);
+            this->reconnect(fd,CEVENT_READ);
             goto  send;
         }
 

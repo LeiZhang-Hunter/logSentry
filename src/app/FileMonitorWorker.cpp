@@ -43,20 +43,51 @@ bool FileMonitorWorker::onClientRead(int fd,char* buf)
 {
 
 }
+#ifdef _SYS_EPOLL_H
+bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr) {
+#else
+    bool FileMonitorWorker::onReceive(struct pollfd event,void* ptr) {
+#endif
 
-bool FileMonitorWorker::onReceive(struct pollfd event,void* ptr) {
+    int fd;
+    ssize_t size;
+    auto monitor = (FileMonitorWorker *) ptr;
 
-    auto monitor = (FileMonitorWorker*)ptr;
+#ifdef _SYS_EPOLL_H
+    fd = event.data.fd;
+#else
+    fd = event.fd;
+#endif
 
-    char buf[512];
+    char buf[BUFSIZ];
 
-    if(event.fd == monitor->client_fd)
-    {
-        monitor->onClientRead(event.fd,buf);
-    }else{
-        monitor->onPipe(event.fd,buf,100);
+    size = recv(fd, buf, sizeof(buf), 0);
+
+    if (fd == monitor->client_fd) {
+        if (size == 0) {
+
+            monitor->reconnect(fd,CEVENT_READ);
+
+        } else if (size < 0) {
+            if (errno == EINTR) {//被信号中断
+                return false;
+            } else {
+                LOG_TRACE(LOG_ERROR,false,"FileMonitorWorker::onReceive","recv failed");
+            }
+
+        } else {
+            monitor->onClientRead(fd,buf);
+        }
+    } else {
+        buf[size] = '\0';
+        monitor->onPipe(fd, buf, (size_t) size);
     }
+#ifdef _SYS_EPOLL_H
 }
+
+#else
+}
+#endif
 
 //这个是pipe的处理逻辑
 void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {

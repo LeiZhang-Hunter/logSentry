@@ -25,7 +25,11 @@ namespace service{
         //发送数据
         ssize_t sendData(int fd,void* vptr,size_t n);
         //重连
-        bool reconnect(int fd);
+#ifdef _SYS_EPOLL_H
+        bool reconnect(int fd,uint32_t flags);
+#else
+        bool reconnect(int fd,short flags);
+#endif
         CEvent* threadSocketEvent;
 
     private:

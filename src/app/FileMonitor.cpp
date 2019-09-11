@@ -150,7 +150,11 @@ void FileMonitor::run() {
 }
 
 //文件发生变化的逻辑在这里写
+#ifdef _SYS_EPOLL_H
+bool FileMonitor::onModify(struct epoll_event eventData,void* ptr) {
+#else
 bool FileMonitor::onModify(struct pollfd eventData,void* ptr) {
+#endif
     struct inotify_event* event;
     //获取到实例
     char buf[BUFSIZ];
@@ -165,6 +169,13 @@ bool FileMonitor::onModify(struct pollfd eventData,void* ptr) {
     ssize_t write_size;
     int res;
     int wd;
+    int fd;
+
+#ifdef linux
+    fd = eventData.data.fd;
+#else
+    fd = eventData.fd;
+#endif
 
     if(!file_node.pipe_collect)
     {
@@ -173,7 +184,7 @@ bool FileMonitor::onModify(struct pollfd eventData,void* ptr) {
     }
 
 
-    read_size = read(eventData.fd,buf,BUFSIZ);
+    read_size = read(fd,buf,BUFSIZ);
     if(read_size>0)
     {
         while(i<read_size)

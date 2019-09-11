@@ -14,7 +14,11 @@ namespace app {
         bool onCreate();
         bool onConnect() override;
         bool onClose() override;
-        bool onReceive(int fd,char* buf,size_t len) override;
+#ifdef _SYS_EPOLL_H
+        static bool onReceive(struct epoll_event event,void* ptr);
+#else
+        static bool onReceive(int fd,char* buf,size_t len);
+#endif
         bool onClientRead(int fd,char* buf);
 
     private:

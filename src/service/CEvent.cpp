@@ -26,6 +26,7 @@ bool CEvent::createEvent(int size) {
         return  false;
     }
 
+    eventSize = size;
     //创建一个事件集
     eventCollect = (struct epoll_event*)calloc(2,sizeof(struct epoll_event));
     bzero(eventCollect,sizeof(struct epoll_event)*2);
@@ -81,6 +82,8 @@ bool CEvent::eventDelete(int fd) {
     epoll_ctl(epollFd,EPOLL_CTL_DEL,fd,NULL);
 }
 
+
+
 void CEvent::stopLoop()
 {
     mainLoop = EVENT_STOP;
@@ -89,7 +92,7 @@ void CEvent::stopLoop()
 
 
 //时间循环
-void CEvent::eventLoop() {
+void CEvent::eventLoop(void* ptr) {
     //事件循环已经运行了
     if(mainLoop == EVENT_START)
     {
@@ -102,7 +105,7 @@ void CEvent::eventLoop() {
 
     while(mainLoop)
     {
-        nfds = epoll_wait(epollFd,eventCollect,512,-1);
+        nfds = epoll_wait(epollFd,eventCollect,eventSize,-1);
 
         //返回准备就绪的描述符
         if(nfds>0)
@@ -114,13 +117,13 @@ void CEvent::eventLoop() {
                 if(eventCollect[i].events&EPOLLIN)
                 {
                     if(eventFunctionHandle[CEVENT_READ]) {
-                        eventFunctionHandle[CEVENT_READ](eventCollect[i]);
+                        eventFunctionHandle[CEVENT_READ](eventCollect[i],ptr);
                     }
                 }else if(eventCollect[i].events & (EPOLLRDHUP | EPOLLERR | EPOLLHUP))
                 {
 
                     if(eventFunctionHandle[CEVENT_ERROR]) {
-                        eventFunctionHandle[CEVENT_ERROR](eventCollect[i]);
+                        eventFunctionHandle[CEVENT_ERROR](eventCollect[i],ptr);
                     }
                 }
             }
