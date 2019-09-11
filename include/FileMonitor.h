@@ -26,6 +26,12 @@ namespace app {
 #else
         static bool onModify(struct pollfd,void* ptr);
 #endif
+
+#ifdef _SYS_EPOLL_H
+        static bool onPipeWrite(struct epoll_event eventData,void* ptr);
+#else
+        static bool onPipeWrite(struct pollfd eventData,void* ptr);
+#endif
         static void onStop(int sig);
 
     private:

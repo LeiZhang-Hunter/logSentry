@@ -35,18 +35,22 @@ bool CEpoll::createEvent(int size) {
     return  true;
 }
 
-bool CEpoll::eventAdd(int fd,uint32_t flags,eventHandle handle) {
+bool CEpoll::hookAdd(int flag,eventHandle handle)
+{
+    if(flag > EPOLL_EVENTS_MAX){
+        LOG_TRACE(LOG_ERROR,false,"CUnixOs::eventAdd","hookAdd failed");
+        return  false;
+    }
+    eventFunctionHandle[flag] = handle;
+    return  true;
+}
+
+bool CEpoll::eventAdd(int fd,uint32_t flags) {
     struct epoll_event event;
     bzero(&event,sizeof(event));
     event.data.fd = fd;
-    event.events = selectEventType(flags);
+    event.events = (flags);
 
-    if(flags > EPOLL_EVENTS_MAX)
-    {
-        LOG_TRACE(LOG_ERROR,false,"CUnixOs::eventAdd","eventAdd failed");
-        return  false;
-    }
-    eventFunctionHandle[flags] = handle;
     int res = epoll_ctl(epollFd,EPOLL_CTL_ADD,fd,&event);
     if(res == -1)
     {
@@ -67,11 +71,10 @@ uint32_t CEpoll::selectEventType(uint32_t flags)
     return  flags;
 }
 
-bool CEpoll::eventUpdate(int fd,uint32_t flags,eventHandle handle) {
+bool CEpoll::eventUpdate(int fd,uint32_t flags) {
     struct epoll_event event;
     bzero(&event,sizeof(event));
     event.events = flags;
-    event.data.ptr = (void*)handle;
 
     epoll_ctl(epollFd,EPOLL_CTL_MOD,fd,&event);
 }

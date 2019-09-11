@@ -61,7 +61,8 @@ bool CThreadSocket::reconnect(int fd,short flags)
     //断线进行重新链接
     socketHandle->reconnect();
     //加入事件循环
-    threadSocketEvent->eventAdd(fd,flags,threadSocketEvent->eventFunctionHandle[flags]);
+    printf("%d\n",socketHandle->getSocket());
+    threadSocketEvent->eventAdd(socketHandle->getSocket(),flags);
 }
 
 ssize_t CThreadSocket::sendData(int fd,void* vptr,size_t n)
@@ -75,7 +76,7 @@ ssize_t CThreadSocket::sendData(int fd,void* vptr,size_t n)
         if(errno == EPIPE and errno == EBADF)
         {
             LOG_TRACE(LOG_ERROR,false,"CThreadSocket::sendData","send msg failed,write error.socket close");
-            this->reconnect(fd,CEVENT_READ);
+            this->reconnect(fd,EPOLLIN);
             goto  send;
         }
 

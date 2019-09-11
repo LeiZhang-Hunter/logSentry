@@ -31,14 +31,15 @@ namespace service {
         CEpoll();
         ~CEpoll();
         bool createEvent(int size);
-        bool eventAdd(int fd,uint32_t flags,eventHandle handle);
-        bool eventUpdate(int fd,uint32_t flags,eventHandle handle);
+        bool eventAdd(int fd,uint32_t flags);
+        bool eventUpdate(int fd,uint32_t flags);
         bool eventDelete(int fd);
         uint32_t selectEventType(uint32_t flags);
         void eventLoop(void* ptr);
         void stopLoop();
         eventHandle eventFunctionHandle[EPOLL_EVENTS_MAX];
         int eventSize;
+        bool hookAdd(int flag,eventHandle handle);
 
     private:
         int epollFd;

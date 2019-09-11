@@ -31,12 +31,14 @@ bool FileMonitorWorker::onCreate() {
     setsockopt(client_fd,SOL_SOCKET,SO_REUSEADDR,&flag, sizeof(flag));
 
     client_handle->setConfig(netConfig["ip"].c_str(),netConfig["port"].c_str());
+
+    threadSocketEvent->hookAdd(CEVENT_READ,onReceive);
 }
 
 bool FileMonitorWorker::onConnect() {
     //加套接字加入事件循环
-    threadSocketEvent->eventAdd(pipe,CEVENT_READ,onReceive);
-    threadSocketEvent->eventAdd(getSocketHandle()->getSocket(),CEVENT_READ,onReceive);
+    threadSocketEvent->eventAdd(pipe,EPOLLIN|EPOLLET);
+    threadSocketEvent->eventAdd(getSocketHandle()->getSocket(),EPOLLIN|EPOLLET);
 }
 
 bool FileMonitorWorker::onClientRead(int fd,char* buf)
@@ -49,7 +51,6 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
     bool FileMonitorWorker::onReceive(struct pollfd event,void* ptr)
 #endif
 {
-
 
     int fd;
     ssize_t size;
@@ -68,7 +69,7 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
 
         if (size == 0) {
 
-            monitor->reconnect(fd,CEVENT_READ);
+            monitor->reconnect(fd,EPOLLIN);
 
         } else if (size < 0) {
             if (errno == EINTR) {//被信号中断
@@ -112,9 +113,7 @@ void FileMonitorWorker::onPipe(int fd, char *buf2,size_t len) {
         }else{
             offset = data->offset;
         }
-        printf("offset:%ld\n",data->offset);
         n = pread(file_node.file_fd, read_buf,  (size_t)offset, data->begin-offset);
-        printf("offset:end\n");
         read_buf[n] = '\0';
         if(n>0)
         {

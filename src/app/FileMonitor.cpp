@@ -112,7 +112,7 @@ void FileMonitor::run() {
         return;
     }
 
-    result = eventInstance->createEvent(1);
+    result = eventInstance->createEvent(1+workerNumber);
     if(!result)
     {
         LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","CEvent::createEvent error");
@@ -120,7 +120,11 @@ void FileMonitor::run() {
     }
 
 
-    eventInstance->eventAdd(file_node.inotify_fd,CEVENT_READ,onModify);
+    eventInstance->hookAdd(CEVENT_READ,onModify);
+
+    eventInstance->hookAdd(CEVENT_WRITE,onPipeWrite);
+
+    eventInstance->eventAdd(file_node.inotify_fd,EPOLLIN|EPOLLET);
 
     if(workerNumber<1)
     {
@@ -136,7 +140,6 @@ void FileMonitor::run() {
     file_node.workerNumberCount = workerNumber;
     for(thread_number=0;thread_number<workerNumber;thread_number++)
     {
-
         res = socketpair(AF_UNIX,SOCK_DGRAM,0,file_node.pipe_collect[thread_number]);
         if(res == -1)
         {
@@ -154,6 +157,8 @@ void FileMonitor::run() {
         socket_worker->SetDaemonize();
         //启动线程
         socket_worker->Start();
+
+        eventInstance->eventAdd(file_node.pipe_collect[thread_number][0],EPOLLOUT|EPOLLET);
     }
     struct stat buf;
     res = fstat(file_node.file_fd, &buf);
@@ -300,4 +305,12 @@ bool FileMonitor::onModify(struct pollfd eventData,void* ptr)
         }
 
     }
+}
+
+#ifdef _SYS_EPOLL_H
+bool FileMonitor::onPipeWrite(struct epoll_event eventData,void* ptr)
+#else
+bool FileMonitor::onPipeWrite(struct pollfd eventData,void* ptr)
+#endif
+{
 }
