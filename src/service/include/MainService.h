@@ -87,6 +87,8 @@
 #include "CSignal.h"
 #endif
 
+#define DECLARE_LOG CServiceLog* logInstance;
+
 
 extern CServiceLog* logInstance;
 

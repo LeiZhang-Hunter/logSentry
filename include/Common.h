@@ -70,5 +70,4 @@ extern monitor_node file_node;
 extern app::Config* config_instance;
 extern app::FileMonitorManager* manager;
 extern CSignal* sig_handle;
-extern char** environ;
 using namespace app;
