@@ -62,7 +62,7 @@ void MainCenter::start() {
 
     map<string,map<string,string>>mContent = config_instance->getConfig();
 
-    logInstance = new CServiceLog(mContent["file_path"]["file_path"].c_str());
+    logInstance = new CServiceLog(mContent["log_file"]["file_path"].c_str());
 
     //处理关闭事件关掉子进程
     sig_handle->setSignalHandle(SIGTERM,sigHandle);
