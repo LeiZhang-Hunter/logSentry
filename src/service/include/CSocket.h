@@ -25,7 +25,7 @@ namespace service{
         //设置配置文件
         int setConfig(const char* ip,const char* port);
 
-        bool send(int fd,void* vptr,size_t n);
+        ssize_t send(int fd,void* vptr,size_t n);
 
         ssize_t recv(int fd,void* vptr,size_t n);
 

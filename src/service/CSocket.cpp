@@ -135,7 +135,7 @@ bool CSocket::reconnect()
     return  true;
 }
 
-bool CSocket::send(int fd,void* vptr,size_t n)
+ssize_t CSocket::send(int fd,void* vptr,size_t n)
 {
     size_t nleft;
     ssize_t nwrite;
@@ -153,12 +153,12 @@ bool CSocket::send(int fd,void* vptr,size_t n)
             {
                 continue;
             }else{
+                LOG_TRACE(LOG_ERROR,false,"CSocket::send","write failed");
                 return  false;
             }
         }
     }
-
-    return true;
+    return n-nleft;
 }
 
 //接收位置出现断线则直接重新连接

@@ -107,13 +107,14 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
         LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","pread fd error");
     }
 
-    struct protocolStruct dataBuf;
-    bzero(&dataBuf,sizeof(protocolStruct));
-    strcpy(dataBuf.path,filePath.c_str());
-    strcpy(dataBuf.logName,fileName.c_str());
-    strcpy(dataBuf.buf,read_buf);
-
-    result = sendData(client_fd,&dataBuf,sizeof(dataBuf));
+//    struct protocolStruct dataBuf;
+//    bzero(&dataBuf,sizeof(protocolStruct));
+//    strcpy(dataBuf.path,filePath.c_str());
+//    strcpy(dataBuf.logName,fileName.c_str());
+//    strcpy(dataBuf.buf,read_buf);
+    printf("begin\n");
+    result = sendData(client_fd,&read_buf,sizeof(read_buf));
+    printf("result:%ld\n",result);
 
     if(result < 0 )
     {

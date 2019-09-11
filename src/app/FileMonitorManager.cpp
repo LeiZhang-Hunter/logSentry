@@ -36,6 +36,7 @@ void FileMonitorManager::onMonitor(pid_t stop_pid,int status)
     //如果说存在这个实例
     if(processPool[stop_pid])
     {
+        printf("stop\n");
         //重新拉起
         auto monitor = new FileMonitor();
         monitor->setFileName(processPool[stop_pid]->getFileName());

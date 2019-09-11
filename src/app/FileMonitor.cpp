@@ -25,13 +25,13 @@ void FileMonitor::onStop(int sig)
 
 void FileMonitor::start() {
     //创建worker
-    int res = this->createProcess();
-    if(res != 0)
-    {
-        LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","create process error");
-        return;
-    }
-
+//    int res = this->createProcess();
+//    if(res != 0)
+//    {
+//        LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","create process error");
+//        return;
+//    }
+    this->run();
 }
 
 bool FileMonitor::setFileName(string file_name)
@@ -213,7 +213,6 @@ bool FileMonitor::onModify(struct pollfd eventData,void* ptr)
 //            LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","mask:"<<event->mask);
             //如果说文件发生了修改事件
             if(event->mask & IN_MODIFY) {
-                printf("modify\n");
 
                 //读取变化之后的文件大小
 
@@ -238,9 +237,7 @@ bool FileMonitor::onModify(struct pollfd eventData,void* ptr)
                         pipe = *(file_node.pipe_collect[pipe_number]+1);
                         if(pipe > 0)
                         {
-                            printf("begin:%d;number:%d;send:%d,count:%d\n",pipe,pipe_number,file_node.send_number,file_node.workerNumberCount);
                             write_size = write(pipe,&file_data,sizeof(file_data));
-                            printf("end\n");
                             if(write_size<=0)
                             {
                                 LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","Write Pipe Fd Error");

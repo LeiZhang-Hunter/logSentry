@@ -66,7 +66,7 @@ bool CThreadSocket::reconnect(int fd,short flags)
 
 ssize_t CThreadSocket::sendData(int fd,void* vptr,size_t n)
 {
-    bool res;
+    ssize_t res;
     send:
     res = socketHandle->send(fd,vptr,n);
 
@@ -81,7 +81,8 @@ ssize_t CThreadSocket::sendData(int fd,void* vptr,size_t n)
 
         return  false;
     }else{
-        return true;
+        printf("ok\n");
+        return res;
     }
 }
 
