@@ -6,7 +6,7 @@
 #define LOGSENTRY_CPOLL_H
 
 #endif //LOGSENTRY_CEVENT_H
-
+#ifndef _SYS_EPOLL_H
 enum{
     EVENT_START = 1,
     EVENT_STOP = 0
@@ -23,7 +23,7 @@ enum {
 #define EPOLL_EVENTS_MAX 32
 
 #ifndef FOPEN_MAX
-#define  128
+#define FOPEN_MAX  128
 #endif
 
 #include <list>
@@ -31,27 +31,26 @@ enum {
 typedef bool (*eventHandle)(struct pollfd events,void* ptr);
 
 namespace service {
-    class CEvent {
+    class CPoll {
 
     public:
-        CEvent();
-        ~CEvent();
+        CPoll();
+        ~CPoll();
         bool createEvent(size_t size);
-        bool eventAdd(int fd,uint32_t flags,eventHandle handle);
+        bool eventAdd(int fd,short flags,eventHandle handle);
         bool eventUpdate(int fd,uint32_t flags,eventHandle handle);
         bool eventDelete(int fd);
-        short selectEventType(uint32_t flags);
+        short selectEventType(short flags);
         void eventLoop(void* ptr);
         void stopLoop();
         struct pollfd clientCollect[FOPEN_MAX];
         size_t eventSize;
         list<int> collect;
+        eventHandle eventFunctionHandle[EPOLL_EVENTS_MAX];
 
     private:
-        int epollFd;
         short mainLoop;
         int nfds;
-        int pollSize;
-        eventHandle eventFunctionHandle[EPOLL_EVENTS_MAX];
     };
 }
+#endif

@@ -17,7 +17,7 @@ namespace app {
 #ifdef _SYS_EPOLL_H
         static bool onReceive(struct epoll_event event,void* ptr);
 #else
-        static bool onReceive(int fd,char* buf,size_t len);
+        static bool onReceive(struct pollfd event,void* ptr);
 #endif
         bool onClientRead(int fd,char* buf);
 

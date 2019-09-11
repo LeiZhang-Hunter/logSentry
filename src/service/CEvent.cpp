@@ -56,7 +56,7 @@ bool CEvent::eventAdd(int fd,uint32_t flags,eventHandle handle) {
     }
 }
 
-uint32_t CEvent::selectEventType(uint32_t flags)
+uint32_t CEvent::selectEventType(short flags)
 {
     if(flags == CEVENT_READ)
     {

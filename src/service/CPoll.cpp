@@ -7,15 +7,16 @@
 //
 
 #include "include/MainService.h"
+#ifndef _SYS_EPOLL_H
 using namespace service;
 
-CEvent::CEvent() {
+CPoll::CPoll() {
     mainLoop = EVENT_STOP;
     bzero(eventFunctionHandle, sizeof(eventFunctionHandle));
 }
 
 //创建事件
-bool CEvent::createEvent(size_t size) {
+bool CPoll::createEvent(size_t size) {
 
     if(mainLoop == EVENT_START)
     {
@@ -29,7 +30,7 @@ bool CEvent::createEvent(size_t size) {
     return  true;
 }
 
-bool CEvent::eventAdd(int fd,uint32_t flags,eventHandle handle) {
+bool CPoll::eventAdd(int fd,short flags,eventHandle handle) {
     struct pollfd client;
     int i;
     bzero(&client,sizeof(client));
@@ -52,7 +53,7 @@ bool CEvent::eventAdd(int fd,uint32_t flags,eventHandle handle) {
     return true;
 }
 
-short CEvent::selectEventType(uint32_t flags)
+short CPoll::selectEventType(short flags)
 {
     if(flags == CEVENT_READ)
     {
@@ -62,7 +63,7 @@ short CEvent::selectEventType(uint32_t flags)
     return  flags;
 }
 
-bool CEvent::eventUpdate(int fd,uint32_t flags,eventHandle handle) {
+bool CPoll::eventUpdate(int fd,uint32_t flags,eventHandle handle) {
 //    struct epoll_event event;
 //    bzero(&event,sizeof(event));
 //    event.events = flags;
@@ -71,14 +72,14 @@ bool CEvent::eventUpdate(int fd,uint32_t flags,eventHandle handle) {
 //    epoll_ctl(epollFd,EPOLL_CTL_MOD,fd,&event);
 }
 
-bool CEvent::eventDelete(int fd) {
+bool CPoll::eventDelete(int fd) {
 //    struct epoll_event event;
 //    bzero(&event,sizeof(event));
 //
 //    epoll_ctl(epollFd,EPOLL_CTL_DEL,fd,NULL);
 }
 
-void CEvent::stopLoop()
+void CPoll::stopLoop()
 {
     mainLoop = EVENT_STOP;
 }
@@ -86,7 +87,7 @@ void CEvent::stopLoop()
 
 
 //时间循环
-void CEvent::eventLoop(void* ptr) {
+void CPoll::eventLoop(void* ptr) {
     //事件循环已经运行了
     if(mainLoop == EVENT_START)
     {
@@ -130,7 +131,9 @@ void CEvent::eventLoop(void* ptr) {
     }
 }
 
-CEvent::~CEvent()
+CPoll::~CPoll()
 {
         free(clientCollect);
 }
+
+#endif

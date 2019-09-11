@@ -51,9 +51,11 @@
 #include "CSocket.h"
 #endif
 
+
+
 #ifdef _SYS_EPOLL_H
 #ifndef LOGSENTRY_CEVENT_H
-#include "CEvent.h"
+#include "CEpoll.h"
 #endif
 #else
 #ifndef LOGSENTRY_CPOLL_H
@@ -61,7 +63,7 @@
 #endif
 #endif
 
-
+#include "CEvent.h"
 
 #ifndef LOGSENTRY_CTHREADSOCKET_H
 #include "CThreadSocket.h"

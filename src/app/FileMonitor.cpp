@@ -171,7 +171,7 @@ bool FileMonitor::onModify(struct pollfd eventData,void* ptr) {
     int wd;
     int fd;
 
-#ifdef linux
+#ifdef _SYS_EPOLL_H
     fd = eventData.data.fd;
 #else
     fd = eventData.fd;
@@ -220,7 +220,6 @@ bool FileMonitor::onModify(struct pollfd eventData,void* ptr) {
                         if(pipe > 0)
                         {
                             write_size = write(pipe,&file_data,sizeof(file_data));
-                            printf("begin:%ld,end:%ld\n",file_data.begin,file_data.offset);
                             if(write_size<=0)
                             {
                                 LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","Write Pipe Fd Error");
