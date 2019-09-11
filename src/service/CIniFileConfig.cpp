@@ -8,16 +8,16 @@ using namespace std;
 bool service::CIniFileConfig::readConfig(string &filename) {
 
     if (access(filename.c_str(), R_OK) == -1) {
-        LOG_TRACE(LOG_WARING, false, "CIniFileConfig::readConfig","log file is not exist");
-        return false;
+        cout<<"log file is not exist;file:"<<__FILE__<<";line:"<<__LINE__;
+        exit(-1);
     }
 
     //打开配置文件进行读取
     fileFd = open(filename.c_str(), O_RDWR);
 
     if (!fileFd) {
-        LOG_TRACE(LOG_WARING, false, "CIniFileConfig::readConfig"," open log failed;");
-        return false;
+        cout<<"open log failed:"<<__FILE__<<";line:"<<__LINE__;
+        exit(-1);
     }
 
     //开始循环一个一个字节的读取配置文件,加载入map中
