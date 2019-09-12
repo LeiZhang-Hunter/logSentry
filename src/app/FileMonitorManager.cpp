@@ -54,7 +54,7 @@ bool FileMonitorManager::stopMonitor()
     map<pid_t, FileMonitor *>::iterator it;
     for(it=processPool.begin();it!=processPool.end();it++)
     {
-        if(it->second) {
+        if(it->second != nullptr) {
             delete it->second;
         }
     }

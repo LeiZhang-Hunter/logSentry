@@ -24,7 +24,6 @@ bool service::CThread::Start() {
     /*
      * 初始化一个锁属性
      */
-    pthread_attr_t attr;
     pthread_attr_init(&attr);
 
     bool mRunStatus = false;
@@ -63,7 +62,7 @@ void  service::CThread::Execute() {
 //线程运行的主体程序
 void* service::CThread::ThreadProc(void* arg)
 {
-    CThread* selfThread = (CThread*)arg;
+    auto selfThread = (CThread*)arg;
 
     selfThread->mTerminated = false;
 

@@ -16,10 +16,6 @@ void CThreadSocket::Execute()
 
 
     bool res;
-    int nfds;
-    int i;
-    char buf[BUFSIZ];
-    ssize_t read_size;
 
     if(run == 1)
     {

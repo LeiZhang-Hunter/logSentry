@@ -8,6 +8,7 @@ bool CSignal::setSignalHandle(int signo, __sighandler_t sighandler_fun)
 {
     struct sigaction act, act_g;
 
+    sigemptyset(&act.sa_mask);
     act.sa_handler = sighandler_fun;
 
     act.sa_flags = 0;

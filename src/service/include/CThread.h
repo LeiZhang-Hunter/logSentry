@@ -47,9 +47,12 @@ class CThread{
 
         bool mTerminated;
 
-        bool isSuspend;
+        bool isSuspend = false;
 
         //线程运行状态
         bool mRunStatus;
+
+        pthread_attr_t attr;
+
 };
 }

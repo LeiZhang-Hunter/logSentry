@@ -14,6 +14,7 @@ void FileMonitor::onStop(int sig)
     switch(sig)
     {
         case SIGTERM:
+            printf("stop\n");
             CEvent* eventInstance = CSingleInstance<CEvent>::getInstance();
             //停止主事件循环
             eventInstance->stopLoop();
@@ -69,6 +70,7 @@ void FileMonitor::run() {
     bool result;
     int thread_number;
     int pipe[2];
+    FileMonitorWorker* socket_worker;
 
 #ifdef __linux__
     if(prctl(PR_SET_PDEATHSIG, SIGTERM) != 0)
@@ -147,7 +149,7 @@ void FileMonitor::run() {
             continue;
         }
 
-        FileMonitorWorker* socket_worker = new FileMonitorWorker(mContent["server"],file_node.pipe_collect[thread_number][0]);
+        socket_worker = new FileMonitorWorker(mContent["server"],file_node.pipe_collect[thread_number][0]);
 
         socket_worker->filePath = monitorPath;
 
@@ -159,6 +161,7 @@ void FileMonitor::run() {
         socket_worker->Start();
         eventInstance->eventAdd(file_node.pipe_collect[thread_number][1],EPOLLET|EPOLLIN);
     }
+
     struct stat buf;
     res = fstat(file_node.file_fd, &buf);
     if (res == -1) {
@@ -309,4 +312,9 @@ bool FileMonitor::onPipeWrite(struct pollfd eventData,void* ptr)
     }
 
     file_node.begin_length = file_buffer.st_size;
+}
+
+FileMonitor::~FileMonitor()
+{
+
 }
