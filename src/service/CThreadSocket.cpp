@@ -24,7 +24,12 @@ void CThreadSocket::Execute()
         return;
     }
 
-    threadSocketEvent->createEvent(2);
+    res = threadSocketEvent->createEvent(2);
+    if(!res)
+    {
+        LOG_TRACE(LOG_ERROR,false,"CThreadSocket::Execute","Create Event Error");
+        return;
+    }
 
     this->onCreate();
 

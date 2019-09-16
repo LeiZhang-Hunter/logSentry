@@ -3,7 +3,6 @@
 //
 
 #include "include/MainService.h"
-#ifdef _SYS_EPOLL_H
 using namespace service;
 
 CEpoll::CEpoll() {
@@ -28,11 +27,8 @@ bool CEpoll::createEvent(int size) {
     }
 
     eventSize = size;
-    //创建一个事件集
-    eventCollect = (struct epoll_event*)calloc(2,sizeof(struct epoll_event));
-    bzero(eventCollect,sizeof(struct epoll_event)*2);
-
-    return  true;
+    bzero(eventCollect,sizeof(struct epoll_event));
+    return true;
 }
 
 bool CEpoll::hookAdd(int flag,eventHandle handle)
@@ -157,4 +153,3 @@ CEpoll::~CEpoll()
     if(eventCollect)
         free(eventCollect);
 }
-#endif

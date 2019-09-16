@@ -46,7 +46,7 @@ namespace service {
         short mainLoop;
         int nfds;
         int pollSize;
-        struct epoll_event*eventCollect;
+        struct epoll_event eventCollect[1024];
     };
 }
 #endif

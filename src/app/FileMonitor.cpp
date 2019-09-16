@@ -315,5 +315,8 @@ bool FileMonitor::onPipeWrite(struct pollfd eventData,void* ptr)
 
 FileMonitor::~FileMonitor()
 {
-
+    if(eventInstance)
+    {
+        free (eventInstance);
+    }
 }
