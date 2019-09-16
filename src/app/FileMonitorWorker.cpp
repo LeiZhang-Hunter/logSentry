@@ -67,7 +67,7 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
 
         if (size == 0) {
 
-            monitor->reconnect(fd,EPOLLIN|EPOLLET|EPOLLERR);
+            monitor->reconnect();
 
         } else if (size < 0) {
             if (errno == EINTR) {//被信号中断
