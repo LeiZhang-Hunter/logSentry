@@ -26,7 +26,7 @@ namespace service{
         ssize_t sendData(int fd,void* vptr,size_t n);
         //重连
 #ifdef _SYS_EPOLL_H
-        bool reconnect(int fd,uint32_t flags);
+        bool reconnect();
 #else
         bool reconnect(int fd,short flags);
 #endif

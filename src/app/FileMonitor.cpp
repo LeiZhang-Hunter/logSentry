@@ -14,7 +14,6 @@ void FileMonitor::onStop(int sig)
     switch(sig)
     {
         case SIGTERM:
-            printf("stop\n");
             CEvent* eventInstance = CSingleInstance<CEvent>::getInstance();
             //停止主事件循环
             eventInstance->stopLoop();

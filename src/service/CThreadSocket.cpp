@@ -7,6 +7,7 @@ CThreadSocket::CThreadSocket()
 {
     //创建一个socket的句柄
     socketHandle = new CSocket();
+
     //创建事件集合
     threadSocketEvent = new CEvent();
 }
@@ -47,17 +48,17 @@ void CThreadSocket::Execute()
 
 
 #ifdef _SYS_EPOLL_H
-bool CThreadSocket::reconnect(int fd,uint32_t flags)
+bool CThreadSocket::reconnect()
 #else
 bool CThreadSocket::reconnect(int fd,short flags)
 #endif
 {
     //删除事件
-    threadSocketEvent->eventDelete(fd);
+    onClose();
     //断线进行重新链接
     socketHandle->reconnect();
-    //加入事件循环
-    threadSocketEvent->eventAdd(socketHandle->getSocket(),flags);
+    onCreate();//创建
+    onConnect();//重连
 }
 
 ssize_t CThreadSocket::sendData(int fd,void* vptr,size_t n)
@@ -71,7 +72,7 @@ ssize_t CThreadSocket::sendData(int fd,void* vptr,size_t n)
         if(errno == EPIPE and errno == EBADF)
         {
             LOG_TRACE(LOG_ERROR,false,"CThreadSocket::sendData","send msg failed,write error.socket close");
-            this->reconnect(fd,EPOLLIN);
+            reconnect();
             goto  send;
         }
 

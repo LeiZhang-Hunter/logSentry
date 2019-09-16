@@ -62,13 +62,12 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
     fd = event.fd;
 #endif
     char buf[BUFSIZ];
-
-    if (fd == monitor->client_fd) {
+    if (fd != monitor->pipe) {
         size = read(fd, buf, sizeof(buf));
 
         if (size == 0) {
 
-            monitor->reconnect(fd,EPOLLIN);
+            monitor->reconnect(fd,EPOLLIN|EPOLLET|EPOLLERR);
 
         } else if (size < 0) {
             if (errno == EINTR) {//被信号中断
@@ -82,7 +81,9 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
         }
     } else {
         size = read(fd, &buf, sizeof(buf));
-        monitor->onPipe(fd, buf, (size_t)size);
+        if(size>0) {
+            monitor->onPipe(fd, buf, (size_t) size);
+        }
     }
 #ifdef _SYS_EPOLL_H
 }
@@ -134,7 +135,8 @@ void FileMonitorWorker::onPipe(int fd, char *buf2,size_t len) {
 }
 
 bool FileMonitorWorker::onClose() {
-
+    threadSocketEvent->eventDelete(client_fd);
+    threadSocketEvent->eventDelete(pipe);
 }
 
 FileMonitorWorker::~FileMonitorWorker(){

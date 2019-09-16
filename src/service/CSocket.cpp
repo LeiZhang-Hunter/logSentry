@@ -29,7 +29,7 @@ bool CSocket::connect(int nsec) {
 
     socklen_t len;
     int res;
-    int flags,n,error;
+    int flags,error;
     fd_set rset,wset;
     //暂时只支持ipv4
     struct sockaddr_in client_address;
@@ -45,7 +45,6 @@ bool CSocket::connect(int nsec) {
 
     fcntl(socket_fd,F_SETFL,flags|O_NONBLOCK);
 
-    error = 0;
 
     client_address.sin_family = AF_INET;
     client_address.sin_port = htons(socketPort);
@@ -53,6 +52,7 @@ bool CSocket::connect(int nsec) {
     len = sizeof(client_address);
 
     res = ::connect(socket_fd,(struct sockaddr*)&client_address,len);
+    fcntl(socket_fd,F_SETFL,flags);
 
     if(res<0)
     {
@@ -76,10 +76,10 @@ bool CSocket::connect(int nsec) {
     tval.tv_sec = nsec;
     tval.tv_usec = 0;
 
-    if((n=select(socket_fd+1,&rset,&wset, nullptr,nsec ? &tval : nullptr)) == 0)
+    if((select(socket_fd+1,&rset,&wset, nullptr,nsec ? &tval : nullptr)) == 0)
     {
-        errno = ETIMEDOUT;
-        return  false;
+            errno = ETIMEDOUT;
+            return false;
     }
 
     if(FD_ISSET(socket_fd,&rset) || FD_ISSET(socket_fd,&wset))
@@ -90,21 +90,22 @@ bool CSocket::connect(int nsec) {
         {
             return  false;
         }
+
     }else{
         LOG_TRACE(LOG_ERROR,false,"CSocket::connect","socket fd not set");
         return  false;
     }
 
-    fcntl(socket_fd,F_SETFL,flags);
 
     if(error)
     {
-        close(socket_fd);
         errno = error;
+
         return  false;
     }
 
-    return  true;
+    //最后一步进行连接测试是否可以连接到套接字
+    return true;
 }
 
 //重新连接
@@ -112,10 +113,17 @@ bool CSocket::reconnect()
 {
     int res;
     //释放掉socketfd
+
     while(connectFlag) {
         //防止cpu刷的过高
         sleep(2);
         res = ::close(socket_fd);
+        if(res < 0)
+        {
+            LOG_TRACE(LOG_ERROR, false, "CSocket::reconnect", "close socket failed");
+            continue;
+        }
+
 
         socket_fd = socket(AF_INET, SOCK_STREAM, 0);
         if (socket_fd < 0) {
@@ -123,7 +131,8 @@ bool CSocket::reconnect()
             continue;
         }
 
-        res = this->connect(2000);
+        res = connect(2000);
+
         if(res == 0)
         {
             continue;
