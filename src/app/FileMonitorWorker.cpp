@@ -8,6 +8,8 @@ FileMonitorWorker::FileMonitorWorker(map<string,string> socketConfig,int pipe_fd
 {
     netConfig=socketConfig;
     pipe = pipe_fd;
+    int flags=fcntl(pipe,F_GETFL,0);
+    fcntl(pipe,F_SETFL,flags|O_NONBLOCK);
 }
 
 bool FileMonitorWorker::onCreate() {
@@ -33,12 +35,13 @@ bool FileMonitorWorker::onCreate() {
     client_handle->setConfig(netConfig["ip"].c_str(),netConfig["port"].c_str());
 
     threadSocketEvent->hookAdd(CEVENT_READ,onReceive);
+    threadSocketEvent->hookAdd(CEVENT_WRITE,onSend);
 }
 
 bool FileMonitorWorker::onConnect() {
     //加套接字加入事件循环
     threadSocketEvent->eventAdd(pipe,EPOLLIN|EPOLLET);
-    threadSocketEvent->eventAdd(getSocketHandle()->getSocket(),EPOLLIN|EPOLLET);
+    threadSocketEvent->eventAdd(getSocketHandle()->getSocket(),EPOLLET|EPOLLIN);
 }
 
 bool FileMonitorWorker::onClientRead(int fd,char* buf)
@@ -51,7 +54,6 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
     bool FileMonitorWorker::onReceive(struct pollfd event,void* ptr)
 #endif
 {
-
     int fd;
     ssize_t size;
     auto monitor = (FileMonitorWorker *) ptr;
@@ -61,8 +63,9 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
 #else
     fd = event.fd;
 #endif
-    char buf[BUFSIZ];
+
     if (fd != monitor->pipe) {
+        char buf[BUFSIZ];
         size = read(fd, buf, sizeof(buf));
 
         if (size == 0) {
@@ -80,26 +83,35 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
             monitor->onClientRead(fd,buf);
         }
     } else {
-        size = read(fd, &buf, sizeof(buf));
-        if(size>0) {
-            monitor->onPipe(fd, buf, (size_t) size);
-        }
-    }
-#ifdef _SYS_EPOLL_H
-}
+        file_read data;
 
-#else
+        do {
+            size = read(fd, &data, sizeof(data));
+            if (size > 0) {
+                monitor->onPipe(fd, (char*)&data, sizeof(data));
+            } else {
+                if(errno == EINTR)
+                {
+                    continue;
+                }
+
+                if(errno != EAGAIN)
+                {
+                    LOG_TRACE(LOG_ERROR,false,"[FileMonitorWorker::onReceive]","read pipe error");
+                }
+                break;
+            }
+        }while(size);
+    }
 }
-#endif
 
 //这个是pipe的处理逻辑
-void FileMonitorWorker::onPipe(int fd, char *buf2,size_t len) {
+void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
     file_read* data;
     ssize_t n;
     char read_buf[BUFSIZ];
     bzero(&read_buf, sizeof(read_buf));
-    ssize_t result;
-    data = (file_read*)buf2;
+    data = (file_read*)buf;
 
     ssize_t offset;
 
@@ -118,12 +130,15 @@ void FileMonitorWorker::onPipe(int fd, char *buf2,size_t len) {
 
         if(n>0)
         {
-            result = sendData(client_fd,&read_buf,strlen(read_buf));
+            sendBuffer.append(read_buf);
+            threadSocketEvent->eventUpdate(client_fd,EPOLLET|EPOLLOUT);
 
-            if(result < 0 )
-            {
-                LOG_TRACE(LOG_ERROR,false,"FileMonitor::onModify","send msg failed");
-            }
+//            result = sendData(client_fd,&read_buf,strlen(read_buf));
+//
+//            if(result < 0 )
+//            {
+//                LOG_TRACE(LOG_ERROR,false,"FileMonitor::onModify","send msg failed");
+//            }
         }else if(n<0)
         {
             LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","pread fd error");
@@ -132,6 +147,21 @@ void FileMonitorWorker::onPipe(int fd, char *buf2,size_t len) {
         data->offset -= n;
     }while(data->offset > 0);
 
+}
+
+bool FileMonitorWorker::onSend(struct epoll_event event, void *ptr) {
+    int fd;
+    ssize_t result;
+    fd = event.data.fd;
+    auto monitor = (FileMonitorWorker *) ptr;
+    char sendBuff[BUFSIZ];
+    strcpy(sendBuff,monitor->sendBuffer.c_str());
+    result = monitor->sendData(fd,sendBuff,strlen(sendBuff));
+    monitor->sendBuffer.clear();
+    if(result < 0 )
+    {
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::onModify","send msg failed");
+    }
 }
 
 bool FileMonitorWorker::onClose() {

@@ -10,7 +10,7 @@
 typedef struct _protoHeader
 {
 
-};
+}protoHeader;
 
 class ProtoBuf{
     //压缩消息头
