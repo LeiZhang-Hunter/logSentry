@@ -8,8 +8,8 @@ FileMonitorWorker::FileMonitorWorker(map<string,string> socketConfig,int pipe_fd
 {
     netConfig=socketConfig;
     pipe = pipe_fd;
-    int flags=fcntl(pipe,F_GETFL,0);
-    fcntl(pipe,F_SETFL,flags|O_NONBLOCK);
+//    int flags=fcntl(pipe,F_GETFL,0);
+//    fcntl(pipe,F_SETFL,flags|O_NONBLOCK);
 }
 
 bool FileMonitorWorker::onCreate() {
@@ -63,15 +63,12 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
 #else
     fd = event.fd;
 #endif
-
+    char buf[BUFSIZ];
     if (fd != monitor->pipe) {
-        char buf[BUFSIZ];
         size = read(fd, buf, sizeof(buf));
 
         if (size == 0) {
-
             monitor->reconnect();
-
         } else if (size < 0) {
             if (errno == EINTR) {//被信号中断
                 return false;
@@ -83,16 +80,20 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
             monitor->onClientRead(fd,buf);
         }
     } else {
-        file_read data;
-
-        do {
-            size = read(fd, &data, sizeof(data));
+        while((size = read(fd, buf, sizeof(buf))))
+        {
             if (size > 0) {
-                monitor->onPipe(fd, (char*)&data, sizeof(data));
+                monitor->onPipe(fd, buf, size);
             } else {
+
                 if(errno == EINTR)
                 {
                     continue;
+                }
+
+                if(errno == EAGAIN)
+                {
+                    break;
                 }
 
                 if(errno != EAGAIN)
@@ -101,7 +102,8 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
                 }
                 break;
             }
-        }while(size);
+        }
+
     }
 }
 
@@ -110,6 +112,7 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
     file_read* data;
     ssize_t n;
     char read_buf[BUFSIZ];
+    ssize_t result;
     bzero(&read_buf, sizeof(read_buf));
     data = (file_read*)buf;
 
@@ -130,15 +133,12 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
 
         if(n>0)
         {
-            sendBuffer.append(read_buf);
-            threadSocketEvent->eventUpdate(client_fd,EPOLLET|EPOLLOUT);
+            result = sendData(client_fd,&read_buf,strlen(read_buf));
 
-//            result = sendData(client_fd,&read_buf,strlen(read_buf));
-//
-//            if(result < 0 )
-//            {
-//                LOG_TRACE(LOG_ERROR,false,"FileMonitor::onModify","send msg failed");
-//            }
+            if(result < 0 )
+            {
+                LOG_TRACE(LOG_ERROR,false,"FileMonitor::onModify","send msg failed");
+            }
         }else if(n<0)
         {
             LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","pread fd error");
@@ -150,6 +150,7 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
 }
 
 bool FileMonitorWorker::onSend(struct epoll_event event, void *ptr) {
+    printf("send\n");
     int fd;
     ssize_t result;
     fd = event.data.fd;
@@ -162,6 +163,7 @@ bool FileMonitorWorker::onSend(struct epoll_event event, void *ptr) {
     {
         LOG_TRACE(LOG_ERROR,false,"FileMonitor::onModify","send msg failed");
     }
+    monitor->threadSocketEvent->eventUpdate(fd,EPOLLIN|EPOLLET);
 }
 
 bool FileMonitorWorker::onClose() {

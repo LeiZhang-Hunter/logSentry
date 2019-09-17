@@ -278,7 +278,7 @@ bool FileMonitor::onPipeWrite(struct pollfd eventData,void* ptr)
     ssize_t readLen;
     int res;
     struct stat file_buffer;
-
+    auto monitor = (FileMonitor*)ptr;
     //读取变化之后的文件大小
     fd = eventData.data.fd;
     res = fstat(file_node.file_fd, &file_buffer);
@@ -312,5 +312,6 @@ bool FileMonitor::onPipeWrite(struct pollfd eventData,void* ptr)
     }
 
     file_node.begin_length = file_buffer.st_size;
+    monitor->eventInstance->eventUpdate(fd,EPOLLIN|EPOLLET);
 }
 

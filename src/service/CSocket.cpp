@@ -163,7 +163,7 @@ ssize_t CSocket::send(int fd,void* vptr,size_t n)
                 continue;
             }else{
                 LOG_TRACE(LOG_ERROR,false,"CSocket::send","write failed");
-                return  false;
+                return  -1;
             }
         }
     }

@@ -71,17 +71,16 @@ ssize_t CThreadSocket::sendData(int fd,void* vptr,size_t n)
     ssize_t res;
     send:
     res = socketHandle->send(fd,vptr,n);
-
-    if(!res)
+    if(res == -1)
     {
-        if(errno == EPIPE and errno == EBADF)
+        if(errno == EPIPE || errno == EBADF)
         {
             LOG_TRACE(LOG_ERROR,false,"CThreadSocket::sendData","send msg failed,write error.socket close");
             reconnect();
             goto  send;
         }
 
-        return  false;
+        return  -1;
     }else{
         return res;
     }
