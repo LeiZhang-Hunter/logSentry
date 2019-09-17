@@ -117,10 +117,6 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
     data = (file_read*)buf;
 
     ssize_t offset;
-
-
-
-    //读取的buffer 很可能超过最大的buffer 长度如果说超过了需要分次去读
     do{
         if(data->offset > BUFSIZ)
         {
@@ -150,20 +146,20 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
 }
 
 bool FileMonitorWorker::onSend(struct epoll_event event, void *ptr) {
-    printf("send\n");
-    int fd;
-    ssize_t result;
-    fd = event.data.fd;
-    auto monitor = (FileMonitorWorker *) ptr;
-    char sendBuff[BUFSIZ];
-    strcpy(sendBuff,monitor->sendBuffer.c_str());
-    result = monitor->sendData(fd,sendBuff,strlen(sendBuff));
-    monitor->sendBuffer.clear();
-    if(result < 0 )
-    {
-        LOG_TRACE(LOG_ERROR,false,"FileMonitor::onModify","send msg failed");
-    }
-    monitor->threadSocketEvent->eventUpdate(fd,EPOLLIN|EPOLLET);
+//    printf("send\n");
+//    int fd;
+//    ssize_t result;
+//    fd = event.data.fd;
+//    auto monitor = (FileMonitorWorker *) ptr;
+//    char sendBuff[BUFSIZ];
+//    strcpy(sendBuff,monitor->sendBuffer.c_str());
+//    result = monitor->sendData(fd,sendBuff,strlen(sendBuff));
+//    monitor->sendBuffer.clear();
+//    if(result < 0 )
+//    {
+//        LOG_TRACE(LOG_ERROR,false,"FileMonitor::onModify","send msg failed");
+//    }
+//    monitor->threadSocketEvent->eventUpdate(fd,EPOLLIN|EPOLLET);
 }
 
 bool FileMonitorWorker::onClose() {

@@ -132,6 +132,7 @@ void CEpoll::eventLoop(void* ptr) {
                         eventFunctionHandle[CEVENT_WRITE](eventCollect[i],ptr);
                     }
                 }
+                usleep(20);
             }
         }else if(nfds == 0){
             //描述符并不存在就绪
