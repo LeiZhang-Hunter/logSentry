@@ -21,6 +21,11 @@ using namespace service;
 #ifndef LOGSENTRY_MAINCENTER_H
 #include "MainCenter.h"
 #endif
+
+#ifndef LOGSENTRY_PROTOBUF_H
+#include "ProtoBuf.h"
+#endif
+
 #ifndef LOGSENTRY_FILEMONITORWORKER_H
 #include "FileMonitorWorker.h"
 #endif

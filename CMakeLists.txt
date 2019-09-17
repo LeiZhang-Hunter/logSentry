@@ -30,6 +30,7 @@ set(SOURCE_FILES
         src/service/CThreadSocket.cpp
         src/app/FileMonitorWorker.cpp
         src/service/CPoll.cpp
+        src/app/ProtoBuf.cpp
         )
 add_executable(logSentry ${SOURCE_FILES})
 #CFLAGS='-g -O0'
