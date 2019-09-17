@@ -84,7 +84,8 @@ void* service::CThread::ThreadProc(void* arg)
         selfThread->Execute();
         usleep(10000);
     }
-
-    return (void*)0;
+    int retval;
+    retval= 0;
+    pthread_exit(&retval);
 }
 

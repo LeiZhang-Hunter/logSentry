@@ -13,8 +13,8 @@ bool FileMonitorManager::start() {
     for(it=monitorConfig.begin();it!=monitorConfig.end();it++)
     {
         auto monitor = new FileMonitor();
-        monitor->setFileName(it->first);
-        monitor->setNotifyPath(it->second);
+        monitor->setFileName(it->first.c_str());
+        monitor->setNotifyPath(it->second.c_str());
         monitor->setWorkerNumber(atoi(mContent["server"]["work_thread_number"].c_str()));
         monitor->start();
         processPool[monitor->getPid()] =monitor;
@@ -38,8 +38,8 @@ void FileMonitorManager::onMonitor(pid_t stop_pid,int status)
     {
         //重新拉起
         auto monitor = new FileMonitor();
-        monitor->setFileName(processPool[stop_pid]->getFileName());
-        monitor->setNotifyPath(processPool[stop_pid]->getNotifyPath());
+        monitor->setFileName(processPool[stop_pid]->getFileName().c_str());
+        monitor->setNotifyPath(processPool[stop_pid]->getNotifyPath().c_str());
         monitor->setWorkerNumber(processPool[stop_pid]->getWorkerNumber());
         monitor->start();
         processPool[stop_pid] =monitor;
@@ -52,11 +52,12 @@ bool FileMonitorManager::stopMonitor()
 {
     //循环进程池 删除掉每一个文件监控者
     map<pid_t, FileMonitor *>::iterator it;
-    for(it=processPool.begin();it!=processPool.end();it++)
+    for(it=processPool.begin();it!=processPool.end();)
     {
-        if(it->second != nullptr) {
-            delete it->second;
-        }
+        int i = it->first;
+        delete(it->second);
+        it++;
+        processPool.erase(i);
     }
 }
 

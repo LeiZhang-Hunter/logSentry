@@ -12,9 +12,9 @@ namespace app {
     class FileMonitor : public CProcess {
     public:
         FileMonitor();
-        ~FileMonitor();
-        bool setNotifyPath(string path);
-        bool setFileName(string file_name);
+//        ~FileMonitor();
+        bool setNotifyPath(const char* path);
+        bool setFileName(const char* file_name);
         string getFileName();
         string getNotifyPath();
 

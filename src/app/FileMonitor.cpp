@@ -34,9 +34,9 @@ void FileMonitor::start() {
 //    this->run();
 }
 
-bool FileMonitor::setFileName(string file_name)
+bool FileMonitor::setFileName(const char* file_name)
 {
-    fileName = file_name;
+    fileName = (file_name);
 }
 
 string FileMonitor::getFileName()
@@ -49,7 +49,7 @@ bool FileMonitor::setWorkerNumber(int number) {
     workerNumber = number;
 }
 
-bool FileMonitor::setNotifyPath(string path) {
+bool FileMonitor::setNotifyPath(const char* path) {
     monitorPath = path;
 }
 
@@ -169,6 +169,7 @@ void FileMonitor::run() {
     }
     file_node.begin_length = buf.st_size;
     eventInstance->eventLoop(this);
+    delete(eventInstance);
 }
 
 
@@ -313,10 +314,3 @@ bool FileMonitor::onPipeWrite(struct pollfd eventData,void* ptr)
     file_node.begin_length = file_buffer.st_size;
 }
 
-FileMonitor::~FileMonitor()
-{
-    if(eventInstance)
-    {
-        free (eventInstance);
-    }
-}

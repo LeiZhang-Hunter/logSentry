@@ -150,6 +150,4 @@ void CEpoll::eventLoop(void* ptr) {
 
 CEpoll::~CEpoll()
 {
-    if(eventCollect)
-        free(eventCollect);
 }
