@@ -130,6 +130,8 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
         auto len_addr = (size_t *)malloc(buf_len);
         memcpy(len_addr,&buf_len,sizeof(buf_len));
         auto dataStruct = (protocolStruct*)(len_addr + 1);
+        bzero(dataStruct,sizeof(protocolStruct));
+        memcpy(dataStruct->type,"sentry-log",sizeof("sentry-log"));
         memcpy(dataStruct->fileName,fileName.c_str(),strlen(fileName.c_str()));
         memcpy(dataStruct->buf,read_buf,strlen(read_buf));
         if(n>0)

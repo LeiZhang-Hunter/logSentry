@@ -23,6 +23,7 @@ namespace app {
 
         static bool onSend(struct epoll_event event,void* ptr);
         struct protocolStruct{
+            char type[16];
             char fileName[NAME_MAX];
             char buf[];
         };
