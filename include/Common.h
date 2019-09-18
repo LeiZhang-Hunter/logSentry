@@ -12,6 +12,8 @@
 #include <sys/stat.h>
 #include <limits.h>
 #include <sys/prctl.h>
+#include <malloc.h>
+
 using namespace std;
 using namespace service;
 #ifndef SOCKETSENTRY_CONFIG_H

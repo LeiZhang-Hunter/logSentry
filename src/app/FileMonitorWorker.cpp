@@ -2,18 +2,17 @@
 // Created by zhanglei on 19-8-30.
 //
 #include "../../include/Common.h"
-
 //构造函数
 FileMonitorWorker::FileMonitorWorker(map<string,string> socketConfig,int pipe_fd)
 {
     netConfig=socketConfig;
     pipe = pipe_fd;
-//    int flags=fcntl(pipe,F_GETFL,0);
-//    fcntl(pipe,F_SETFL,flags|O_NONBLOCK);
+    int flags=fcntl(pipe,F_GETFL,0);
+    fcntl(pipe,F_SETFL,flags|O_NONBLOCK);
 }
 
 bool FileMonitorWorker::onCreate() {
-
+    mallopt(M_ARENA_MAX, 1);
     CSocket* client_handle = this->getSocketHandle();
 
     if(!client_handle)
@@ -115,6 +114,7 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
     ssize_t result;
     bzero(&read_buf, sizeof(read_buf));
     data = (file_read*)buf;
+    size_t  buf_len;
 
     ssize_t offset;
     do{
@@ -127,9 +127,17 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
         n = pread(file_node.file_fd, read_buf,  (size_t)offset, data->begin-offset);
         read_buf[n] = '\0';
 
+//        strcpy(dataStruct.buf,read_buf);
+        buf_len = sizeof(struct protocolHeader)+sizeof(struct protocolStruct)+strlen(read_buf);
+        auto dataStructHeader = (protocolHeader*)malloc(buf_len);
+        dataStructHeader->length = buf_len;
+        auto dataStruct = (protocolStruct*)(dataStructHeader + sizeof(protocolHeader));
+        memcpy(dataStruct->buf,read_buf,strlen(read_buf));
+        strcpy(dataStruct->fileName,fileName.c_str());
+
         if(n>0)
         {
-            result = sendData(client_fd,&read_buf,strlen(read_buf));
+            result = sendData(client_fd,dataStructHeader,buf_len);
 
             if(result < 0 )
             {
@@ -140,9 +148,9 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
             LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","pread fd error");
         }
 
+        free(dataStructHeader);
         data->offset -= n;
     }while(data->offset > 0);
-
 }
 
 bool FileMonitorWorker::onSend(struct epoll_event event, void *ptr) {
@@ -168,5 +176,4 @@ bool FileMonitorWorker::onClose() {
 }
 
 FileMonitorWorker::~FileMonitorWorker(){
-
 }

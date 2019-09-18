@@ -23,9 +23,12 @@ namespace app {
 
         static bool onSend(struct epoll_event event,void* ptr);
         struct protocolStruct{
-            char path[PATH_MAX];
-            char buf[BUFSIZ];
-            char logName[NAME_MAX];
+            char fileName[NAME_MAX];
+            char buf[];
+        };
+
+        struct protocolHeader{
+            size_t length;
         };
         string filePath;
         string fileName;
