@@ -126,18 +126,18 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
         }
         n = pread(file_node.file_fd, read_buf,  (size_t)offset, data->begin-offset);
         read_buf[n] = '\0';
-
-//        strcpy(dataStruct.buf,read_buf);
-        buf_len = sizeof(struct protocolHeader)+sizeof(struct protocolStruct)+strlen(read_buf);
-        auto dataStructHeader = (protocolHeader*)malloc(buf_len);
-        dataStructHeader->length = buf_len;
-        auto dataStruct = (protocolStruct*)(dataStructHeader + sizeof(protocolHeader));
+        buf_len = sizeof(size_t)+sizeof(struct protocolStruct)+strlen(read_buf);
+        auto len_addr = (size_t *)malloc(buf_len);
+        memcpy(len_addr,&buf_len,sizeof(buf_len));
+        auto dataStruct = (protocolStruct*)(len_addr + 1);
+        memcpy(dataStruct->fileName,fileName.c_str(),strlen(fileName.c_str()));
         memcpy(dataStruct->buf,read_buf,strlen(read_buf));
-        strcpy(dataStruct->fileName,fileName.c_str());
-
         if(n>0)
         {
-            result = sendData(client_fd,dataStructHeader,buf_len);
+            printf("%ld\n",buf_len);
+            printf("%ld\n",strlen(read_buf));
+            printf("%s\n",dataStruct->buf);
+            result = sendData(client_fd,len_addr,buf_len);
 
             if(result < 0 )
             {
@@ -147,8 +147,7 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
         {
             LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","pread fd error");
         }
-
-        free(dataStructHeader);
+        free(len_addr);
         data->offset -= n;
     }while(data->offset > 0);
 }
