@@ -36,6 +36,10 @@ using namespace service;
 #include "FileMonitor.h"
 #endif
 
+#ifndef LOGSENTRY_DIRMONITOR_H
+#include "DirMonitor.h"
+#endif
+
 
 #ifndef LOGSENTRY_NODESENTRY_H
 #include "NodeSentry.h"
@@ -46,38 +50,7 @@ using namespace service;
 #endif
 
 
-
-
-typedef struct file_data{
-    size_t begin;
-    ssize_t offset;
-}file_read;
-
-//监控节点
-typedef struct _monitor_node{
-    //路径名字
-    char path[PATH_MAX];
-    //监控的文件名字
-    int inotify_fd;
-    //文件的偏移量
-    ssize_t file_offset;
-    //描述符的fd
-    int file_fd;
-    //管道地址
-    int(*pipe_collect)[2];
-    //起始长度
-    ssize_t begin_length;
-    //工作的线程数目
-    int workerNumberCount;
-    //发送次数
-    int send_number;
-}monitor_node;
-
-extern monitor_node file_node;
-
-
-//监控文件的集合
-//map<string,monitor_node>monitorCollect;
+//一些全局的实例
 extern app::Config* config_instance;
 extern app::NodeSentryManager* manager;
 extern CSignal* sig_handle;

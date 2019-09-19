@@ -9,28 +9,38 @@ bool NodeSentryManager::start() {
     map<string,string>::iterator it;
     map<string,map<string,string>>mContent = config_instance->getConfig();
 
-    //监控文件和目录的
-    for(it=monitorConfig.begin();it!=monitorConfig.end();it++)
+    //监控文件
+    for(it=monitorConfig["sentry_log_file"].begin();it!=monitorConfig["sentry_log_file"].end();it++)
     {
         auto sentry = new NodeSentry();
-        if(os->is_file(it->second.c_str())) {
-            //设置哨兵的模式
-            sentry->setMode(LOG_SENTRY);
-            //设置工作的线程数目
-            sentry->setWorkerCount(atoi(mContent["server"]["work_thread_number"].c_str()));
-            //启动哨兵
-            sentry->start<map<string,string>::iterator>(it);
-        }
+        //设置哨兵的模式
+        sentry->setMode(LOG_SENTRY);
+        //设置工作的线程数目
+        sentry->setWorkerCount(atoi(mContent["sentry"]["file_sentry_thread_number"].c_str()));
+        //启动哨兵
+        sentry->start<map<string,string>::iterator>(it);
         processPool[sentry->getPid()] =sentry;
     }
 
+    //监控目录
+    for(it=monitorConfig["sentry_log_dir"].begin();it!=monitorConfig["sentry_log_dir"].end();it++)
+    {
+        auto sentry = new NodeSentry();
+        //设置哨兵的模式
+        sentry->setMode(DIR_SENTRY);
+        //设置工作的线程数目
+        sentry->setWorkerCount(atoi(mContent["sentry"]["dir_sentry_thread_number"].c_str()));
+        //启动哨兵
+        sentry->start<map<string,string>::iterator>(it);
+        processPool[sentry->getPid()] =sentry;
+    }
 
     this->startMonitor(-1,0);
 
     this->stopMonitor();
 }
 
-bool NodeSentryManager::setConfig(map<string,string>config) {
+bool NodeSentryManager::setConfig(map<string,map<string,string>>config) {
     monitorConfig=config;
 }
 

@@ -13,7 +13,7 @@ namespace app {
     public:
         bool start();
 
-        bool setConfig(map<string, string> config);
+        bool setConfig(map<string, map<string,string>> config);
 
         void onMonitor(pid_t, int);
 
@@ -21,7 +21,7 @@ namespace app {
         map<pid_t, NodeSentry *> processPool;
 
     private:
-        map<string, string> monitorConfig;
+        map<string, map<string,string>> monitorConfig;
 
     };
 }

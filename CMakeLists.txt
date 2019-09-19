@@ -32,6 +32,7 @@ set(SOURCE_FILES
         src/service/CPoll.cpp
         src/app/ProtoBuf.cpp
         src/app/NodeSentry.cpp
+        src/app/DirMonitor.cpp
         )
 add_executable(logSentry ${SOURCE_FILES})
 #CFLAGS='-g -O0'

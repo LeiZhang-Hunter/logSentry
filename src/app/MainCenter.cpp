@@ -77,7 +77,7 @@ void MainCenter::start() {
     if(!mContent["sentry_log_file"].empty())
     {
         //设置配置文件
-        manager->setConfig(mContent["sentry_log_file"]);
+        manager->setConfig(mContent);
         manager->setPidFile(mContent["sentry"]["pid_file"].c_str());
         //启动管理者进程
         manager->start();
