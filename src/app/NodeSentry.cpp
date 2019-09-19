@@ -5,7 +5,8 @@
 #include "../../include/Common.h"
 bool NodeSentry::setMode(int mode)
 {
-
+    sentryMode = mode;
+    return true;
 }
 
 bool NodeSentry::setWorkerCount(int count)
