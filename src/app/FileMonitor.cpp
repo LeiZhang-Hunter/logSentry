@@ -106,7 +106,9 @@ void FileMonitor::run() {
     }
 
     //监控文件内容修改以及元数据变动
-    wd = inotify_add_watch(file_node.inotify_fd,file_node.path,IN_MODIFY|IN_ATTRIB|IN_MOVE_SELF);
+//    wd = inotify_add_watch(file_node.inotify_fd,file_node.path,IN_MODIFY|IN_ATTRIB|IN_MOVE_SELF);
+    printf("%s\n",file_node.path);
+    wd = inotify_add_watch(file_node.inotify_fd,file_node.path,IN_ALL_EVENTS);
     if(wd == -1)
     {
         LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","create inotify_add_watch error");
@@ -216,7 +218,7 @@ bool FileMonitor::onModify(struct pollfd eventData,void* ptr)
 
 
             bzero(&file_buffer, sizeof(file_buffer));
-//            LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","mask:"<<event->mask);
+            cout<<"mask:"<<event->mask<<";name:"<<event->name<<"\n";
             //如果说文件发生了修改事件
             if(event->mask & IN_MODIFY) {
                 //选中一个管道的序号

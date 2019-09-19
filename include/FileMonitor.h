@@ -17,6 +17,7 @@ namespace app {
         bool setFileName(const char* file_name);
         string getFileName();
         string getNotifyPath();
+        int wd;
 
         void start();
         void run() final;

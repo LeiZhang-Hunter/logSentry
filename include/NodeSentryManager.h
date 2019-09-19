@@ -9,7 +9,7 @@
 
 
 namespace app {
-    class FileMonitorManager : public CProcessFactory {
+    class NodeSentryManager : public CProcessFactory {
     public:
         bool start();
 
@@ -18,7 +18,7 @@ namespace app {
         void onMonitor(pid_t, int);
 
         bool stopMonitor();
-        map<pid_t, FileMonitor *> processPool;
+        map<pid_t, NodeSentry *> processPool;
 
     private:
         map<string, string> monitorConfig;

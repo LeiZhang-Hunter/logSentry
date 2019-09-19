@@ -37,12 +37,14 @@ using namespace service;
 #endif
 
 
-
-#ifndef LOGSENTRY_FILEMONITORMANAGER_H
-#include "FileMonitorManager.h"
+#ifndef LOGSENTRY_NODESENTRY_H
+#include "NodeSentry.h"
 #endif
 
-#define READBUF 1024
+#ifndef LOGSENTRY_FILEMONITORMANAGER_H
+#include "NodeSentryManager.h"
+#endif
+
 
 
 
@@ -77,6 +79,7 @@ extern monitor_node file_node;
 //监控文件的集合
 //map<string,monitor_node>monitorCollect;
 extern app::Config* config_instance;
-extern app::FileMonitorManager* manager;
+extern app::NodeSentryManager* manager;
 extern CSignal* sig_handle;
+extern CUnixOs* os;
 using namespace app;

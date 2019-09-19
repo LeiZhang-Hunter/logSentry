@@ -12,6 +12,10 @@ namespace service{
     {
     public:
         bool getRlimit(int resource,struct rlimit *rlim);
+
+        bool is_file(const char* dir);
+
+        bool is_dir(const char* dir);
     };
 }
 

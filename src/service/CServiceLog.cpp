@@ -35,6 +35,7 @@ bool CServiceLog::addLog(const char* name,const char* log,const char* file,int f
     char buf[BUFSIZ];
     bzero(buf,sizeof(buf));
     snprintf(buf,sizeof(buf),"[%s]:%s;errno:%d;errormsg:%s;file:%s;line:%d\n",name,log,errno,strerror(errno),file,file_number);
+    cout<<buf;
     res = write(logFd,buf, strlen(buf));
     if(res == -1)
     {

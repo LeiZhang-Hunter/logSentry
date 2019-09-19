@@ -24,3 +24,38 @@ bool CUnixOs::getRlimit(int resource,struct rlimit *rlim) {
 }
 
 
+bool CUnixOs::is_file(const char *dir)
+{
+    struct stat inode_stat;
+    int res = stat(dir,&inode_stat);
+    if(res == 0)
+    {
+        if(S_ISREG(inode_stat.st_mode))
+        {
+            return true;
+        }else{
+            return  false;
+        }
+
+    }else{
+        return  -1;
+    }
+}
+
+bool CUnixOs::is_dir(const char *dir)
+{
+    struct stat inode_stat;
+    int res = stat(dir,&inode_stat);
+    if(res == 0)
+    {
+        if(S_ISDIR(inode_stat.st_mode))
+        {
+            return true;
+        }else{
+            return  false;
+        }
+
+    }else{
+        return  -1;
+    }
+}

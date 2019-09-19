@@ -77,9 +77,9 @@ int CProcess::createProcess()
 
     if(pid<0)
     {
+        LOG_TRACE(LOG_ERROR,false,"CProcess::createProcess","fork error");
         return  -1;
     }
-
     if(pid == 0)
     {
         this->run();

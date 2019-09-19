@@ -22,7 +22,7 @@ set(SOURCE_FILES
         src/service/CSignal.cpp
         src/app/MainCenter.cpp
         src/app/FileMonitor.cpp
-        src/app/FileMonitorManager.cpp
+        src/app/NodeSentryManager.cpp
         src/app/FileMonitor.cpp
         src/service/CEpoll.cpp
         src/service/factory/CProcessFactory.cpp
@@ -31,6 +31,7 @@ set(SOURCE_FILES
         src/app/FileMonitorWorker.cpp
         src/service/CPoll.cpp
         src/app/ProtoBuf.cpp
+        src/app/NodeSentry.cpp
         )
 add_executable(logSentry ${SOURCE_FILES})
 #CFLAGS='-g -O0'

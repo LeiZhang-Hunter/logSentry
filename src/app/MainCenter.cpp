@@ -7,7 +7,8 @@ using app::MainCenter;
 DECLARE_LOG
 Config* config_instance;
 CSignal* sig_handle;
-FileMonitorManager* manager;
+NodeSentryManager* manager;
+CUnixOs* os;
 
 void MainCenter::sigHandle(int sig)
 {
@@ -15,7 +16,7 @@ void MainCenter::sigHandle(int sig)
     {
         case SIGTERM:
             //进程管理者的实例
-            map<pid_t,FileMonitor*>::iterator it;
+            map<pid_t,NodeSentry*>::iterator it;
             //进程管理者的实例
             if(manager) {
                 int i = 0;
@@ -54,7 +55,9 @@ bool MainCenter::init(string path)
     //加入信号处理函数
     sig_handle= CSingleInstance<CSignal>::getInstance();
     //进程管理者的实例
-    manager = CSingleInstance<FileMonitorManager>::getInstance();
+    manager = CSingleInstance<NodeSentryManager>::getInstance();
+
+    os = CSingleInstance<CUnixOs>::getInstance();
 }
 
 //执行逻辑
