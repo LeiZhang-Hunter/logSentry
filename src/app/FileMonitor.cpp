@@ -106,8 +106,8 @@ void FileMonitor::run() {
     }
 
     //监控文件内容修改以及元数据变动
-//    wd = inotify_add_watch(file_node.inotify_fd,file_node.path,IN_MODIFY|IN_ATTRIB|IN_MOVE_SELF);
-    wd = inotify_add_watch(file_node.inotify_fd,file_node.path,IN_ALL_EVENTS);
+    wd = inotify_add_watch(file_node.inotify_fd,file_node.path,IN_MODIFY|IN_ATTRIB|IN_MOVE_SELF);
+//    wd = inotify_add_watch(file_node.inotify_fd,file_node.path,IN_ALL_EVENTS);
     if(wd == -1)
     {
         LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","create inotify_add_watch error");
