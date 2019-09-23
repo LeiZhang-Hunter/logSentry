@@ -24,14 +24,29 @@ namespace app {
         //启动程序载入配置文件
         template <typename T> void start(T config){
             switch(sentryMode) {
-                case LOG_SENTRY:
-                    auto monitor = new FileMonitor();
-                    monitor->setFileName(config->first.c_str());
-                    monitor->setNotifyPath(config->second.c_str());
-                    monitor->setWorkerNumber(worker_count);
-                    monitor->start();
-                    pid = monitor->getPid();
-                    instance = monitor;
+                case LOG_SENTRY: {
+                    auto file_monitor = new FileMonitor();
+                    file_monitor->setFileName(config->first.c_str());
+                    file_monitor->setNotifyPath(config->second.c_str());
+                    file_monitor->setWorkerNumber(worker_count);
+                    file_monitor->start();
+                    pid = file_monitor->getPid();
+                    instance = file_monitor;
+                }
+                    break;
+                case DIR_SENTRY: {
+                    auto dir_monitor = new DirMonitor();
+                    dir_monitor->setFileName(config->first.c_str());
+                    dir_monitor->setNotifyPath(config->second.c_str());
+                    dir_monitor->setWorkerNumber(worker_count);
+                    dir_monitor->start();
+                    pid = dir_monitor->getPid();
+                    instance = dir_monitor;
+                }
+                    break;
+                case FLOW_SENTRY:{
+
+                }
                     break;
             }
         };

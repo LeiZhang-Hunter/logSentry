@@ -8,6 +8,7 @@
 void DirMonitor::start() {
     //创建worker
     int res = this->createProcess();
+
     if(res != 0)
     {
         LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","create process error");
@@ -51,14 +52,12 @@ void DirMonitor::run()
 {
 
     //创建一个wd
-
     inotify_fd = inotify_init();
     if(inotify_fd<= 0)
     {
         LOG_TRACE(LOG_ERROR,false,"DirMonitor::run","inotify init failed");
         return;
     }
-
     inotify_wd = inotify_add_watch(inotify_fd,monitorPath.c_str(),IN_ALL_EVENTS);
     if(inotify_wd <= 0)
     {
@@ -68,5 +67,14 @@ void DirMonitor::run()
 
     eventInstance = new CEvent();
 
+    eventInstance->createEvent(2);
+
+    eventInstance->hookAdd(CEVENT_READ,onChange);
+
     eventInstance->eventAdd(inotify_fd,EPOLLET|EPOLLIN);
+}
+
+bool DirMonitor::onChange(struct epoll_event,void* ptr)
+{
+    printf("1111\n");
 }

@@ -74,7 +74,7 @@ void MainCenter::start() {
     sig_handle->setSignalHandle(SIGPIPE,SIG_IGN);
 
 
-    if(!mContent["sentry_log_file"].empty())
+    if(!mContent["sentry_log_file"].empty() || !mContent["sentry_log_dir"].empty())
     {
         //设置配置文件
         manager->setConfig(mContent);

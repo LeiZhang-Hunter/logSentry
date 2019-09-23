@@ -16,6 +16,7 @@ public:
     string getNotifyPath();
     bool setWorkerNumber(int number);
     int getWorkerNumber();
+    static bool onChange(struct epoll_event,void* ptr);
 
     //开始
     void start();
