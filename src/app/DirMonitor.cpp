@@ -67,11 +67,13 @@ void DirMonitor::run()
 
     eventInstance = new CEvent();
 
-    eventInstance->createEvent(2);
+    eventInstance->createEvent(10);
 
     eventInstance->hookAdd(CEVENT_READ,onChange);
 
     eventInstance->eventAdd(inotify_fd,EPOLLET|EPOLLIN);
+
+    eventInstance->eventLoop(this);
 }
 
 bool DirMonitor::onChange(struct epoll_event,void* ptr)
