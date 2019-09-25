@@ -91,7 +91,7 @@
 #define DECLARE_LOG CServiceLog* logInstance;
 
 
-extern CServiceLog* logInstance;
+extern service::CServiceLog* logInstance;
 
 #define LOG_TRACE(logLevel,isSucess,name,msg) logInstance->addLog(name,msg,__FILE__,__LINE__);
 

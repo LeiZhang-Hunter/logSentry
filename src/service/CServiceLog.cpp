@@ -2,7 +2,7 @@
 // Created by zhanglei on 19-8-14.
 //
 #include "include/MainService.h"
-
+using namespace service;
 CServiceLog::CServiceLog(const char* dir)
 {
     logLock = new CMutexLock();
