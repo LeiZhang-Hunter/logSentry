@@ -58,7 +58,7 @@ void DirMonitor::run()
         LOG_TRACE(LOG_ERROR,false,"DirMonitor::run","inotify init failed");
         return;
     }
-    inotify_wd = inotify_add_watch(inotify_fd,monitorPath.c_str(),IN_ALL_EVENTS);
+    inotify_wd = inotify_add_watch(inotify_fd,monitorPath.c_str(),IN_CREATE|IN_DELETE_SELF|IN_DELETE|IN_MODIFY|IN_ATTRIB);
     if(inotify_wd <= 0)
     {
         LOG_TRACE(LOG_ERROR,false,"DirMonitor::run","inotify add watch error");
@@ -76,7 +76,42 @@ void DirMonitor::run()
     eventInstance->eventLoop(this);
 }
 
-bool DirMonitor::onChange(struct epoll_event,void* ptr)
+bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
 {
-    printf("1111\n");
+    char buf[BUFSIZ];
+    ssize_t read_size;
+    int fd;
+    int i = 0;
+    struct inotify_event* event;
+    auto dir_monitor = (DirMonitor*)ptr;
+
+#ifdef _SYS_EPOLL_H
+    fd = eventData.data.fd;
+#else
+    fd = eventData.fd;
+#endif
+
+    read_size = read(fd,buf,BUFSIZ);
+
+    if(read_size > 0)
+    {
+        while(i<read_size){
+            event = (struct inotify_event*)&buf[i];
+            //文件发生变动
+            if(event->mask & IN_MODIFY)
+            {
+
+            }else if(event->mask & IN_ATTRIB)
+            {//文件属性发生变动
+
+            }else if(event->mask & IN_DELETE || event->mask & IN_DELETE_SELF)
+            {//文件发生删除操作
+
+            }else if(event->mask & IN_CREATE)
+            {//文件发生创建操作
+
+            }
+            i+=(sizeof(struct inotify_event)+event->len);
+        }
+    }
 }
