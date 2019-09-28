@@ -2,7 +2,7 @@
 // Created by zhanglei on 19-9-19.
 //
 
-#include "../../include/Common.h"
+#include "Common.h"
 bool NodeSentry::setMode(int mode)
 {
     sentryMode = mode;

@@ -1,7 +1,7 @@
 //
 // Created by zhanglei on 19-8-21.
 //
-#include "../../include/Common.h"
+#include "Common.h"
 
 monitor_node file_node;
 

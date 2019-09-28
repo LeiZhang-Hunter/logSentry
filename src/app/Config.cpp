@@ -1,7 +1,7 @@
 //
 // Created by zhanglei on 19-8-12.
 //
-#include "../../include/Common.h"
+#include "Common.h"
 
 //设置配置文件加载的路径
 using std::string;

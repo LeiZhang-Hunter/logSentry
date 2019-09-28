@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <signal.h>
 #include <sys/wait.h>
+#include <vector>
 #ifdef linux
 #include <sys/epoll.h>
 #else

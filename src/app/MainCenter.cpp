@@ -1,7 +1,7 @@
 //
 // Created by zhanglei on 19-8-16.
 //
-#include "../../include/Common.h"
+#include "Common.h"
 using app::MainCenter;
 //声明全局变量
 DECLARE_LOG
