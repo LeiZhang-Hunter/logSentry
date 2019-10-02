@@ -32,6 +32,10 @@ using namespace service;
 #include "FileMonitorWorker.h"
 #endif
 
+#ifndef LOGSENTRY_DIRMONITORWORKER_H
+#include "DirMonitorWorker.h"
+#endif
+
 #ifndef LOGSENTRY_FILEMONITOR_H
 #include "FileMonitor.h"
 #endif

@@ -33,7 +33,7 @@ set(SOURCE_FILES
         src/app/ProtoBuf.cpp
         src/app/NodeSentry.cpp
         src/app/DirMonitor.cpp
-        )
+        include/DirMonitorWorker.h src/app/DirMonitorWorker.cpp src/service/include/CStringBuffer.h src/service/CStringBuffer.cpp)
 add_executable(logSentry ${SOURCE_FILES})
 #CFLAGS='-g -O0'
 add_custom_target(makefile COMMAND  make clean && make)

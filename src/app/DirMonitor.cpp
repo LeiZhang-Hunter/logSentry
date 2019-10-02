@@ -4,16 +4,22 @@
 
 #include "Common.h"
 
+DirMonitor::DirMonitor()
+{
+
+}
+
 
 void DirMonitor::start() {
     //创建worker
-    int res = this->createProcess();
-
-    if(res != 0)
-    {
-        LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","create process error");
-        return;
-    }
+//    int res = this->createProcess();
+//
+//    if(res != 0)
+//    {
+//        LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","create process error");
+//        return;
+//    }
+    run();
 }
 
 bool DirMonitor::setFileName(const char* file_name)
@@ -63,6 +69,38 @@ void DirMonitor::run()
     {
         LOG_TRACE(LOG_ERROR,false,"DirMonitor::run","inotify add watch error");
         return;
+    }
+
+    //初始化目录下的所有文件，并且加入到描述符池中，进行记录
+    dirHandle = opendir(monitorPath.c_str());
+    if(!dirHandle)
+    {
+        LOG_TRACE(LOG_ERROR,false,"DirMonitor::run","get opendir failed");
+        return;
+    }
+
+    string buffer;
+    char file[PATH_MAX];
+    int monitorFileFd;
+
+    //遍历加入文件池中
+    while((dirEntry = readdir(dirHandle)))
+    {
+        if(dirEntry->d_type == DT_REG)
+        {
+            bzero(&file,sizeof(file));
+            snprintf(file,sizeof(file),"%s/%s",monitorPath.c_str(),dirEntry->d_name);
+            buffer = file;
+
+            monitorFileFd = open(file,O_CREAT|O_RDWR,S_IRWXU);
+            if(monitorFileFd <= 0)
+            {
+                LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","open file error");
+                continue;
+            }
+            fileDirPool[dirEntry->d_name] = monitorFileFd;
+            buffer.clear();
+        }
     }
 
     eventInstance = new CEvent();

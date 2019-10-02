@@ -3,6 +3,7 @@
 //
 #include "MainService.h"
 
+using namespace service;
 
 bool CSignal::setSignalHandle(int signo, __sighandler_t sighandler_fun)
 {
