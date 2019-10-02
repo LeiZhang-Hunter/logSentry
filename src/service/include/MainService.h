@@ -31,6 +31,10 @@
 #include <limits.h>
 #include <sys/stat.h>
 
+#ifndef LOGSENTRY_CSTRINGBUFFER_H
+#include "CStringBuffer.h"
+#endif
+
 //自己的组件库
 #ifndef LOGSENTRY_CSINGLEINSTANCE_H
 #include "CSingleInstance.h"
@@ -94,7 +98,10 @@
 
 extern service::CServiceLog* logInstance;
 
-#define LOG_TRACE(logLevel,isSucess,name,msg) logInstance->addLog(name,msg,__FILE__,__LINE__);
+#define LOG_TRACE(logLevel,isSucess,name,msg) \
+    CStringBuffer strBuffer("");\
+    strBuffer<<msg;\
+logInstance->addLog(name,strBuffer.getBuffer().c_str(),__FILE__,__LINE__);
 
 #ifndef LOGSENTRY_CUNIXOS_H
 #include "CUnixOs.h"
