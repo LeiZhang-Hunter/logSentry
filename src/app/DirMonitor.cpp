@@ -111,6 +111,7 @@ void DirMonitor::run()
                 LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","open file error");
                 continue;
             }
+            LOG_TRACE(LOG_DEBUG,false,"FileMonitor::run",dirEntry->d_off);
             fileDirPool[dirEntry->d_name] = monitorFileFd;
             buffer.clear();
         }
@@ -165,14 +166,13 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
                 //随机获取一个管道发送
                 pipe_number = dir_monitor->send_number%dir_monitor->getWorkerNumber();
 
-                pipeFd = *(file_node.pipe_collect[pipe_number]+1);
+                pipeFd = *(dir_monitor->pipe_collect[pipe_number]+1);
 
                 //把事件设置为可写事件
                 dir_monitor->eventInstance->eventUpdate(pipeFd,EPOLLOUT|EPOLLET);
 
                 dir_monitor->send_number++;
 
-                cout<<dir_monitor->send_number<<endl;
 
             }else if(event->mask & IN_ATTRIB)
             {//文件属性发生变动
@@ -190,7 +190,22 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
 }
 
 //数据应该发送的时候
-bool DirMonitor::onSend(struct epoll_event, void *ptr)
+bool DirMonitor::onSend(struct epoll_event eventData, void *ptr)
 {
-
+    int change_fd;
+    int event_fd;
+    int res;
+    auto dir_monitor = (DirMonitor*)ptr;
+    while((change_fd = dir_monitor->eventPool.back()))
+    {
+        //观察文件的变化尺寸
+        dir_monitor->eventPool.pop_back();
+        struct stat file_buffer;
+        event_fd = eventData.data.fd;
+        res = fstat(change_fd, &file_buffer);
+        if (res == -1) {
+            LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","fstat fd error");
+            return false;
+        }
+    }
 }

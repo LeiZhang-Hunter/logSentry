@@ -12,6 +12,11 @@
 
 static map<string,int>fileDirPool;
 
+typedef struct _file_dir_data{
+    size_t begin;
+    ssize_t offset;
+}file_dir_data;
+
 namespace app {
     class DirMonitor : public CProcess {
     public:

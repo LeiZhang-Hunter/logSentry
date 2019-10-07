@@ -12,6 +12,5 @@ CStringBuffer::CStringBuffer(const char *string) {
 
 std::string CStringBuffer::getBuffer()
 {
-    std::cout<<"ourString2:"<<ourString<<std::endl;
     return ourString;
 }
