@@ -82,12 +82,25 @@ void DirMonitor::run()
     string buffer;
     char file[PATH_MAX];
     int monitorFileFd;
+    int pipe[2];
+    int num = 0;
+    int res;
+
+    //在站上申请一个内存池
+    pipe_collect=(int(*)[2])calloc((size_t)workerNumber,sizeof(pipe));
 
     //遍历加入文件池中
     while((dirEntry = readdir(dirHandle)))
     {
         if(dirEntry->d_type == DT_REG)
         {
+            res = socketpair(AF_UNIX,SOCK_DGRAM,0,pipe_collect[num]);
+            if(res == -1)
+            {
+                LOG_TRACE(LOG_ERROR,false,"DirMonitor::run","socketpair  failed");
+                continue;
+            }
+            num++;
             bzero(&file,sizeof(file));
             snprintf(file,sizeof(file),"%s/%s",monitorPath.c_str(),dirEntry->d_name);
             buffer = file;
@@ -109,6 +122,9 @@ void DirMonitor::run()
 
     eventInstance->hookAdd(CEVENT_READ,onChange);
 
+    eventInstance->hookAdd(CEVENT_WRITE,onSend);
+
+
     eventInstance->eventAdd(inotify_fd,EPOLLET|EPOLLIN);
 
     eventInstance->eventLoop(this);
@@ -122,6 +138,9 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
     int i = 0;
     struct inotify_event* event;
     auto dir_monitor = (DirMonitor*)ptr;
+    int change_fd;
+    int pipe_number;
+    int pipeFd;
 
 #ifdef _SYS_EPOLL_H
     fd = eventData.data.fd;
@@ -139,6 +158,20 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
             if(event->mask & IN_MODIFY)
             {
 
+                change_fd = fileDirPool[event->name];
+                //将这个变化事件加入队列池
+                dir_monitor->eventPool.push_front(change_fd);
+
+                //随机获取一个管道发送
+                pipe_number = dir_monitor->send_number%dir_monitor->getWorkerNumber();
+
+                pipeFd = *(file_node.pipe_collect[pipe_number]+1);
+
+                //把事件设置为可写事件
+                dir_monitor->eventInstance->eventUpdate(pipeFd,EPOLLOUT|EPOLLET);
+
+                dir_monitor->send_number++;
+
             }else if(event->mask & IN_ATTRIB)
             {//文件属性发生变动
 
@@ -152,4 +185,10 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
             i+=(sizeof(struct inotify_event)+event->len);
         }
     }
+}
+
+//数据应该发送的时候
+bool onSend(struct epoll_event, void *ptr)
+{
+
 }
