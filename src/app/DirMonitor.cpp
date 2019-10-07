@@ -172,6 +172,8 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
 
                 dir_monitor->send_number++;
 
+                cout<<dir_monitor->send_number<<endl;
+
             }else if(event->mask & IN_ATTRIB)
             {//文件属性发生变动
 
@@ -188,7 +190,7 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
 }
 
 //数据应该发送的时候
-bool onSend(struct epoll_event, void *ptr)
+bool DirMonitor::onSend(struct epoll_event, void *ptr)
 {
 
 }
