@@ -15,7 +15,16 @@ namespace service {
         CStringBuffer& operator<<(const char* string)
         {
             ourString = ourString.append(string);
-            std::cout<<"ourString:"<<ourString<<std::endl;
+            return *this;
+        }
+        CStringBuffer& operator<<(int data)
+        {
+            ourString = ourString.append(std::to_string(data));
+            return *this;
+        }
+        CStringBuffer& operator<<(long data)
+        {
+            ourString = ourString.append(std::to_string(data));
             return *this;
         }
         std::string ourString;

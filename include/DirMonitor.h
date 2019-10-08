@@ -8,8 +8,14 @@
 #endif //LOGSENTRY_DIRMONITOR_H
 
 #include <dirent.h>
+#include <list>
 
 static map<string,int>fileDirPool;
+
+typedef struct _file_dir_data{
+    size_t begin;
+    ssize_t offset;
+}file_dir_data;
 
 namespace app {
     class DirMonitor : public CProcess {
@@ -30,6 +36,8 @@ namespace app {
 
         static bool onChange(struct epoll_event, void *ptr);
 
+        static bool onSend(struct epoll_event, void *ptr);
+
         //开始
         void start();
 
@@ -45,5 +53,8 @@ namespace app {
         int inotify_wd;
         DIR* dirHandle;
         struct dirent *dirEntry;
+        int (*pipe_collect)[2];
+        list<int> eventPool;
+        int send_number=0;
     };
 }

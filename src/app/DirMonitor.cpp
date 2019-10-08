@@ -81,13 +81,26 @@ void DirMonitor::run()
 
     string buffer;
     char file[PATH_MAX];
-    int monitorFileFd;1
+    int monitorFileFd;
+    int pipe[2];
+    int num = 0;
+    int res;
+
+    //在站上申请一个内存池
+    pipe_collect=(int(*)[2])calloc((size_t)workerNumber,sizeof(pipe));
 
     //遍历加入文件池中
     while((dirEntry = readdir(dirHandle)))
     {
         if(dirEntry->d_type == DT_REG)
         {
+            res = socketpair(AF_UNIX,SOCK_DGRAM,0,pipe_collect[num]);
+            if(res == -1)
+            {
+                LOG_TRACE(LOG_ERROR,false,"DirMonitor::run","socketpair  failed");
+                continue;
+            }
+            num++;
             bzero(&file,sizeof(file));
             snprintf(file,sizeof(file),"%s/%s",monitorPath.c_str(),dirEntry->d_name);
             buffer = file;
@@ -98,6 +111,7 @@ void DirMonitor::run()
                 LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","open file error");
                 continue;
             }
+            LOG_TRACE(LOG_DEBUG,false,"FileMonitor::run",dirEntry->d_off);
             fileDirPool[dirEntry->d_name] = monitorFileFd;
             buffer.clear();
         }
@@ -108,6 +122,9 @@ void DirMonitor::run()
     eventInstance->createEvent(10);
 
     eventInstance->hookAdd(CEVENT_READ,onChange);
+
+    eventInstance->hookAdd(CEVENT_WRITE,onSend);
+
 
     eventInstance->eventAdd(inotify_fd,EPOLLET|EPOLLIN);
 
@@ -122,6 +139,9 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
     int i = 0;
     struct inotify_event* event;
     auto dir_monitor = (DirMonitor*)ptr;
+    int change_fd;
+    int pipe_number;
+    int pipeFd;
 
 #ifdef _SYS_EPOLL_H
     fd = eventData.data.fd;
@@ -139,6 +159,21 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
             if(event->mask & IN_MODIFY)
             {
 
+                change_fd = fileDirPool[event->name];
+                //将这个变化事件加入队列池
+                dir_monitor->eventPool.push_front(change_fd);
+
+                //随机获取一个管道发送
+                pipe_number = dir_monitor->send_number%dir_monitor->getWorkerNumber();
+
+                pipeFd = *(dir_monitor->pipe_collect[pipe_number]+1);
+
+                //把事件设置为可写事件
+                dir_monitor->eventInstance->eventUpdate(pipeFd,EPOLLOUT|EPOLLET);
+
+                dir_monitor->send_number++;
+
+
             }else if(event->mask & IN_ATTRIB)
             {//文件属性发生变动
 
@@ -150,6 +185,27 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
 
             }
             i+=(sizeof(struct inotify_event)+event->len);
+        }
+    }
+}
+
+//数据应该发送的时候
+bool DirMonitor::onSend(struct epoll_event eventData, void *ptr)
+{
+    int change_fd;
+    int event_fd;
+    int res;
+    auto dir_monitor = (DirMonitor*)ptr;
+    while((change_fd = dir_monitor->eventPool.back()))
+    {
+        //观察文件的变化尺寸
+        dir_monitor->eventPool.pop_back();
+        struct stat file_buffer;
+        event_fd = eventData.data.fd;
+        res = fstat(change_fd, &file_buffer);
+        if (res == -1) {
+            LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","fstat fd error");
+            return false;
         }
     }
 }
