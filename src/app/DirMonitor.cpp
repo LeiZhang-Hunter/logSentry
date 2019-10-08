@@ -81,7 +81,7 @@ void DirMonitor::run()
 
     string buffer;
     char file[PATH_MAX];
-    int monitorFileFd;
+    int monitorFileFd;1
 
     //遍历加入文件池中
     while((dirEntry = readdir(dirHandle)))
