@@ -13,7 +13,8 @@
 static map<string,int>fileDirPool;
 
 typedef struct _file_dir_data{
-    size_t begin;
+    int file_fd;
+    ssize_t begin;
     ssize_t offset;
 }file_dir_data;
 
@@ -56,5 +57,6 @@ namespace app {
         int (*pipe_collect)[2];
         list<int> eventPool;
         int send_number=0;
+        map<int,file_dir_data>fileDataPool;
     };
 }

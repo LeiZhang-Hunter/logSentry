@@ -79,6 +79,17 @@ void DirMonitor::run()
         return;
     }
 
+    eventInstance = new CEvent();
+
+    eventInstance->createEvent(10);
+
+    eventInstance->hookAdd(CEVENT_READ,onChange);
+
+    eventInstance->hookAdd(CEVENT_WRITE,onSend);
+
+
+    eventInstance->eventAdd(inotify_fd,EPOLLET|EPOLLIN);
+
     string buffer;
     char file[PATH_MAX];
     int monitorFileFd;
@@ -89,6 +100,8 @@ void DirMonitor::run()
     //在站上申请一个内存池
     pipe_collect=(int(*)[2])calloc((size_t)workerNumber,sizeof(pipe));
 
+//    file_dir_data* dataUnit;
+    file_dir_data dataUnit;
     //遍历加入文件池中
     while((dirEntry = readdir(dirHandle)))
     {
@@ -100,6 +113,7 @@ void DirMonitor::run()
                 LOG_TRACE(LOG_ERROR,false,"DirMonitor::run","socketpair  failed");
                 continue;
             }
+            eventInstance->eventAdd(pipe_collect[num][1],EPOLLET|EPOLLIN);
             num++;
             bzero(&file,sizeof(file));
             snprintf(file,sizeof(file),"%s/%s",monitorPath.c_str(),dirEntry->d_name);
@@ -113,20 +127,20 @@ void DirMonitor::run()
             }
             LOG_TRACE(LOG_DEBUG,false,"FileMonitor::run",dirEntry->d_off);
             fileDirPool[dirEntry->d_name] = monitorFileFd;
+
+//            dataUnit = (file_dir_data*)calloc(sizeof(file_dir_data),1);
+
+            bzero(&dataUnit, sizeof(dataUnit));
+
+            dataUnit.file_fd = monitorFileFd;
+
+            //加入到我的池子中
+            fileDataPool[monitorFileFd] = dataUnit;
             buffer.clear();
         }
     }
 
-    eventInstance = new CEvent();
 
-    eventInstance->createEvent(10);
-
-    eventInstance->hookAdd(CEVENT_READ,onChange);
-
-    eventInstance->hookAdd(CEVENT_WRITE,onSend);
-
-
-    eventInstance->eventAdd(inotify_fd,EPOLLET|EPOLLIN);
 
     eventInstance->eventLoop(this);
 }
@@ -158,7 +172,6 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
             //文件发生变动
             if(event->mask & IN_MODIFY)
             {
-
                 change_fd = fileDirPool[event->name];
                 //将这个变化事件加入队列池
                 dir_monitor->eventPool.push_front(change_fd);
@@ -173,6 +186,7 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
 
                 dir_monitor->send_number++;
 
+                printf("pipeFd:%d;pipe_number:%d;number:%d\n",pipeFd,pipe_number,dir_monitor->send_number);
 
             }else if(event->mask & IN_ATTRIB)
             {//文件属性发生变动
@@ -196,6 +210,7 @@ bool DirMonitor::onSend(struct epoll_event eventData, void *ptr)
     int event_fd;
     int res;
     auto dir_monitor = (DirMonitor*)ptr;
+    printf("data\n");
     while((change_fd = dir_monitor->eventPool.back()))
     {
         //观察文件的变化尺寸
@@ -207,5 +222,11 @@ bool DirMonitor::onSend(struct epoll_event eventData, void *ptr)
             LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","fstat fd error");
             return false;
         }
+
+        auto file_node = dir_monitor->fileDataPool[change_fd];
+
+        //给要读的偏移量赋值
+        file_node.begin = file_buffer.st_size;
+
     }
 }
