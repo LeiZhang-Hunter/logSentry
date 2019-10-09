@@ -209,7 +209,9 @@ bool DirMonitor::onSend(struct epoll_event eventData, void *ptr)
     int change_fd;
     int event_fd;
     int res;
+    ssize_t  write_size;
     auto dir_monitor = (DirMonitor*)ptr;
+    ssize_t readLen;
     printf("data\n");
     while((change_fd = dir_monitor->eventPool.back()))
     {
@@ -223,10 +225,20 @@ bool DirMonitor::onSend(struct epoll_event eventData, void *ptr)
             return false;
         }
 
-        auto file_node = dir_monitor->fileDataPool[change_fd];
+        auto dir_file_node = dir_monitor->fileDataPool[change_fd];
+
+        readLen = file_buffer.st_size-dir_file_node.begin;
 
         //给要读的偏移量赋值
-        file_node.begin = file_buffer.st_size;
+        dir_file_node.begin = file_buffer.st_size;
 
+        dir_file_node.offset = readLen;
+
+        write_size = write(event_fd,&dir_file_node,sizeof(file_dir_data));
+        if(write_size<=0)
+        {
+
+            LOG_TRACE(LOG_ERROR, false, "DirMonitor::onSend","Write Pipe Fd Error");
+        }
     }
 }

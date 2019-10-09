@@ -304,7 +304,7 @@ bool FileMonitor::onPipeWrite(struct pollfd eventData,void* ptr)
             if(write_size<=0)
             {
 
-                LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","Write Pipe Fd Error");
+                LOG_TRACE(LOG_ERROR, false, "FileMonitor::onPipeWrite","Write Pipe Fd Error");
             }else{
 
                 file_node.send_number++;
