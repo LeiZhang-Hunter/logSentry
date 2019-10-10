@@ -13,6 +13,7 @@
 #include <limits.h>
 #include <sys/prctl.h>
 #include <malloc.h>
+#include "jsoncpp/json/json.h"
 
 using namespace std;
 using namespace service;
@@ -31,6 +32,13 @@ using namespace service;
 #ifndef LOGSENTRY_FILEMONITORWORKER_H
 #include "FileMonitorWorker.h"
 #endif
+
+typedef struct _file_dir_data{
+    int file_fd;
+    char name[NAME_MAX];
+    ssize_t begin;
+    ssize_t offset;
+}file_dir_data;
 
 #ifndef LOGSENTRY_DIRMONITORWORKER_H
 #include "DirMonitorWorker.h"

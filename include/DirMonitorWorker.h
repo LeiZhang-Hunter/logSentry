@@ -16,6 +16,13 @@ namespace app {
         bool onConnect() override;
         bool onClose() override;
         static bool onReceive(struct epoll_event event,void* ptr);
-        ~DirMonitorWorker();
+        void onPipe(int fd, file_dir_data *buf,size_t len);
+        ~DirMonitorWorker() override;
+
+        int pipe;
+        int client_fd;
+    private:
+        map<string,string>netConfig;
+
     };
 }

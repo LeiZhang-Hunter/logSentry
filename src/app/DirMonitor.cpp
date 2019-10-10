@@ -94,27 +94,40 @@ void DirMonitor::run()
     char file[PATH_MAX];
     int monitorFileFd;
     int pipe[2];
-    int num = 0;
     int res;
+    int workerNum;
+    DirMonitorWorker* worker_object;
 
     //在站上申请一个内存池
     pipe_collect=(int(*)[2])calloc((size_t)workerNumber,sizeof(pipe));
 
-//    file_dir_data* dataUnit;
+    map<string,map<string,string>>mContent = config_instance->getConfig();
+
+    //创建指定数目的管道
+    for(workerNum = 0;workerNum<workerNumber;workerNum++)
+    {
+        res = socketpair(AF_UNIX,SOCK_DGRAM,0,pipe_collect[workerNum]);
+        if(res == -1)
+        {
+            LOG_TRACE(LOG_ERROR,false,"DirMonitor::run","socketpair  failed");
+            continue;
+        }
+        //加入可写事件的监控
+        eventInstance->eventAdd(pipe_collect[workerNum][1],EPOLLET|EPOLLIN);
+
+        //创建工作线程用来处理变化
+        worker_object = new DirMonitorWorker(mContent["server"],pipe_collect[workerNum][0]);
+        worker_object->SetDaemonize();
+        worker_object->Start();
+    }
+
+
     file_dir_data dataUnit;
     //遍历加入文件池中
     while((dirEntry = readdir(dirHandle)))
     {
         if(dirEntry->d_type == DT_REG)
         {
-            res = socketpair(AF_UNIX,SOCK_DGRAM,0,pipe_collect[num]);
-            if(res == -1)
-            {
-                LOG_TRACE(LOG_ERROR,false,"DirMonitor::run","socketpair  failed");
-                continue;
-            }
-            eventInstance->eventAdd(pipe_collect[num][1],EPOLLET|EPOLLIN);
-            num++;
             bzero(&file,sizeof(file));
             snprintf(file,sizeof(file),"%s/%s",monitorPath.c_str(),dirEntry->d_name);
             buffer = file;
@@ -128,11 +141,11 @@ void DirMonitor::run()
             LOG_TRACE(LOG_DEBUG,false,"FileMonitor::run",dirEntry->d_off);
             fileDirPool[dirEntry->d_name] = monitorFileFd;
 
-//            dataUnit = (file_dir_data*)calloc(sizeof(file_dir_data),1);
-
             bzero(&dataUnit, sizeof(dataUnit));
 
             dataUnit.file_fd = monitorFileFd;
+
+            strcpy(dataUnit.name,dirEntry->d_name);
 
             //加入到我的池子中
             fileDataPool[monitorFileFd] = dataUnit;
@@ -237,7 +250,6 @@ bool DirMonitor::onSend(struct epoll_event eventData, void *ptr)
         write_size = write(event_fd,&dir_file_node,sizeof(file_dir_data));
         if(write_size<=0)
         {
-
             LOG_TRACE(LOG_ERROR, false, "DirMonitor::onSend","Write Pipe Fd Error");
         }
     }

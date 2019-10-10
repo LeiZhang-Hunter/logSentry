@@ -11,7 +11,7 @@ namespace app {
     public:
         FileMonitorWorker(map<string,string> socketConfig,int pipe_fd);
         ~FileMonitorWorker();
-        bool onCreate();
+        bool onCreate() override;
         bool onConnect() override;
         bool onClose() override;
 #ifdef _SYS_EPOLL_H
