@@ -136,9 +136,6 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
         memcpy(dataStruct->buf,read_buf,strlen(read_buf));
         if(n>0)
         {
-            printf("%ld\n",buf_len);
-            printf("%ld\n",strlen(read_buf));
-            printf("%s\n",dataStruct->buf);
             result = sendData(client_fd,len_addr,buf_len);
 
             if(result < 0 )

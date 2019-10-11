@@ -96,7 +96,38 @@ bool DirMonitorWorker::onReceive(struct epoll_event event,void* ptr)
 }
 
 void DirMonitorWorker::onPipe(int fd, file_dir_data *node,size_t len) {
+    ssize_t n;
+    char read_buf[BUFSIZ];
+    ssize_t result;
+    bzero(&read_buf, sizeof(read_buf));
+    size_t  buf_len;
 
+    ssize_t offset;
+    do{
+        if(node->offset > BUFSIZ)
+        {
+            offset = BUFSIZ;
+        }else{
+            offset = node->offset;
+        }
+        n = pread(node->file_fd, read_buf,  (size_t)offset, node->begin-offset);
+
+        if(n>0)
+        {
+
+            result = sendData(client_fd,len_addr,buf_len);
+
+            if(result < 0 )
+            {
+                LOG_TRACE(LOG_ERROR,false,"FileMonitor::onModify","send msg failed");
+            }
+        }else if(n<0)
+        {
+            LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","pread fd error");
+        }
+        free(len_addr);
+        data->offset -= n;
+    }while(data->offset > 0);
 }
 
 DirMonitorWorker::~DirMonitorWorker()
