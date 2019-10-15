@@ -100,8 +100,6 @@ void DirMonitorWorker::onPipe(int fd, file_dir_data *node,size_t len) {
     char read_buf[BUFSIZ];
     ssize_t result;
     bzero(&read_buf, sizeof(read_buf));
-    size_t  buf_len;
-
     ssize_t offset;
     do{
         if(node->offset > BUFSIZ)
@@ -111,11 +109,10 @@ void DirMonitorWorker::onPipe(int fd, file_dir_data *node,size_t len) {
             offset = node->offset;
         }
         n = pread(node->file_fd, read_buf,  (size_t)offset, node->begin-offset);
-
         if(n>0)
         {
 
-            result = sendData(client_fd,len_addr,buf_len);
+            result = sendData(client_fd,read_buf,sizeof(read_buf));
 
             if(result < 0 )
             {
@@ -125,9 +122,8 @@ void DirMonitorWorker::onPipe(int fd, file_dir_data *node,size_t len) {
         {
             LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","pread fd error");
         }
-        free(len_addr);
-        data->offset -= n;
-    }while(data->offset > 0);
+        node->offset -= n;
+    }while(node->offset > 0);
 }
 
 DirMonitorWorker::~DirMonitorWorker()
