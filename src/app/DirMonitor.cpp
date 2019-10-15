@@ -225,7 +225,6 @@ bool DirMonitor::onSend(struct epoll_event eventData, void *ptr)
     ssize_t  write_size;
     auto dir_monitor = (DirMonitor*)ptr;
     ssize_t readLen;
-    printf("data\n");
     while((change_fd = dir_monitor->eventPool.back()))
     {
         //观察文件的变化尺寸

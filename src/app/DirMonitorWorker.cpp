@@ -109,6 +109,10 @@ void DirMonitorWorker::onPipe(int fd, file_dir_data *node,size_t len) {
             offset = node->offset;
         }
         n = pread(node->file_fd, read_buf,  (size_t)offset, node->begin-offset);
+
+        printf("%s\n",read_buf);
+        printf("begin:%ld\n",node->begin);
+        printf("offset                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               :%ld\n",node->offset);
         if(n>0)
         {
 
