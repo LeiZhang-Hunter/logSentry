@@ -9,7 +9,7 @@ IF(CMAKE_COMPILER_IS_GNUCC)
 ENDIF(CMAKE_COMPILER_IS_GNUCC)
 
 #引入php需要的扩展源码，这里也是根据自己需要的来更改
-INCLUDE_DIRECTORIES(BEFORE ./include ./src/service/include )
+INCLUDE_DIRECTORIES(BEFORE ./include ./src/service/include ./src/vendor/proto/json/include ./src/vendor/proto/json/src/lib_json)
 set(SOURCE_FILES
         src/service/CServiceLog.cpp
         main.cpp
@@ -33,7 +33,11 @@ set(SOURCE_FILES
         src/app/ProtoBuf.cpp
         src/app/NodeSentry.cpp
         src/app/DirMonitor.cpp
-        include/DirMonitorWorker.h src/app/DirMonitorWorker.cpp src/service/include/CStringBuffer.h src/service/CStringBuffer.cpp)
+        include/DirMonitorWorker.h src/app/DirMonitorWorker.cpp src/service/include/CStringBuffer.h src/service/CStringBuffer.cpp
+        src/vendor/proto/json/src/lib_json/json_reader.cpp
+        src/vendor/proto/json/src/lib_json/json_value.cpp
+        src/vendor/proto/json/src/lib_json/json_writer.cpp
+        )
 add_executable(logSentry ${SOURCE_FILES})
 #CFLAGS='-g -O0'
 add_custom_target(makefile COMMAND  make clean && make)

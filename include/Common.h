@@ -13,10 +13,13 @@
 #include <limits.h>
 #include <sys/prctl.h>
 #include <malloc.h>
-#include "jsoncpp/json/json.h"
+#include "json/json.h"
 
 using namespace std;
 using namespace service;
+
+#define SENTRY_VERSION 1
+
 #ifndef SOCKETSENTRY_CONFIG_H
 #include "Config.h"
 #endif
