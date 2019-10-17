@@ -10,7 +10,6 @@
 #include <dirent.h>
 #include <list>
 
-static map<string,int>fileDirPool;
 
 
 
@@ -41,6 +40,10 @@ namespace app {
         //运行
         void run() final;
 
+        bool createMonitorByName(const char* name);
+
+        bool deleteMonitorByName(const char* name);
+
     private:
         string monitorPath;
         int workerNumber;
@@ -54,5 +57,6 @@ namespace app {
         list<int> eventPool;
         int send_number=0;
         map<int,file_dir_data>fileDataPool;
+        map<string,int>fileDirPool;
     };
 }

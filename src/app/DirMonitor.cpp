@@ -198,7 +198,7 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
             //文件发生变动
             if(event->mask & IN_MODIFY)
             {
-                change_fd = fileDirPool[event->name];
+                change_fd = dir_monitor->fileDirPool[event->name];
                 //将这个变化事件加入队列池
                 dir_monitor->eventPool.push_front(change_fd);
 
@@ -220,13 +220,39 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
             }else if(event->mask & IN_DELETE || event->mask & IN_DELETE_SELF)
             {//文件发生删除操作
 
+                dir_monitor->deleteMonitorByName(event->name);
+
             }else if(event->mask & IN_CREATE)
             {//文件发生创建操作
-
+                dir_monitor->createMonitorByName(event->name);
             }
             i+=(sizeof(struct inotify_event)+event->len);
         }
     }
+}
+
+//添加文件节点到哨兵
+bool DirMonitor::createMonitorByName(const char* name)
+{
+
+}
+
+//从哨兵处删除节点
+bool DirMonitor::deleteMonitorByName(const char* name)
+{
+    if(!name)
+    {
+        return false;
+    }
+
+    //从池子里删除掉这个文件
+    int delete_fd = fileDirPool[name];
+    //清除掉
+    fileDataPool.erase(delete_fd);
+    //清除掉内容
+    fileDirPool.erase(name);
+
+    return true;
 }
 
 //数据应该发送的时候
