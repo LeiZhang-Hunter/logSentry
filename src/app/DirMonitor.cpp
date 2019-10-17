@@ -123,6 +123,9 @@ void DirMonitor::run()
 
 
     file_dir_data dataUnit;
+
+    struct stat file_state;
+
     //遍历加入文件池中
     while((dirEntry = readdir(dirHandle)))
     {
@@ -135,16 +138,26 @@ void DirMonitor::run()
             monitorFileFd = open(file,O_CREAT|O_RDWR,S_IRWXU);
             if(monitorFileFd <= 0)
             {
-                LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","open file error");
+                LOG_TRACE(LOG_ERROR,false,"DirMonitor::run","open file error");
                 continue;
             }
-            LOG_TRACE(LOG_DEBUG,false,"FileMonitor::run",dirEntry->d_off);
+
+            res = fstat(monitorFileFd,&file_state);
+            if(res == -1)
+            {
+                LOG_TRACE(LOG_ERROR,false,"DirMonitor::run","fstat file error");
+                continue;
+            }
+
             fileDirPool[dirEntry->d_name] = monitorFileFd;
 
             bzero(&dataUnit, sizeof(dataUnit));
 
+            dataUnit.begin = file_state.st_size;
+
             dataUnit.file_fd = monitorFileFd;
 
+            //查看文件这个时候的大小来记录begin值，当发生变化的时候可以进行变动更新
             strcpy(dataUnit.name,dirEntry->d_name);
 
             //加入到我的池子中
@@ -233,13 +246,16 @@ bool DirMonitor::onSend(struct epoll_event eventData, void *ptr)
         event_fd = eventData.data.fd;
         res = fstat(change_fd, &file_buffer);
         if (res == -1) {
-            LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","fstat fd error");
+            LOG_TRACE(LOG_ERROR, false, "DirMonitor::onModify","fstat fd error");
             return false;
         }
 
         auto dir_file_node = dir_monitor->fileDataPool[change_fd];
 
+        //申请一个新的结构体
         readLen = file_buffer.st_size-dir_file_node.begin;
+
+        dir_monitor->fileDataPool[change_fd].begin = file_buffer.st_size;
 
         //给要读的偏移量赋值
         dir_file_node.begin = file_buffer.st_size;

@@ -88,7 +88,9 @@ bool DirMonitorWorker::onReceive(struct epoll_event event,void* ptr)
         {
 
         }else{
-            LOG_TRACE(LOG_ERROR,false,"DirMonitorWorker::onReceive","read size failed;read size:"<<read_size);
+            if(errno != EAGAIN) {
+                LOG_TRACE(LOG_ERROR, false, "DirMonitorWorker::onReceive", "read size failed;read size:" << read_size);
+            }
         }
     }else{
 
@@ -110,9 +112,6 @@ void DirMonitorWorker::onPipe(int fd, file_dir_data *node,size_t len) {
         }
         n = pread(node->file_fd, read_buf,  (size_t)offset, node->begin-offset);
 
-        printf("%s\n",read_buf);
-        printf("begin:%ld\n",node->begin);
-        printf("offset                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               :%ld\n",node->offset);
         if(n>0)
         {
 
