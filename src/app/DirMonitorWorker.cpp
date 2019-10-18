@@ -93,6 +93,21 @@ bool DirMonitorWorker::onReceive(struct epoll_event event,void* ptr)
             }
         }
     }else{
+        char buf[BUFSIZ];
+        //返回的是客户端套接字
+        client_read:
+        read_size = read(fd, buf, sizeof(buf));
+        if(read_size == 0)
+        {
+            dir_monitor->reconnect();
+        }else if(read_size < 0)
+        {
+            if (errno == EINTR) {//被信号中断
+                goto client_read;
+            } else {
+                LOG_TRACE(LOG_ERROR,false,"FileMonitorWorker::onReceive","recv failed");
+            }
+        }
 
     }
 }

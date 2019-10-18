@@ -64,15 +64,19 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
 #endif
     char buf[BUFSIZ];
     if (fd != monitor->pipe) {
+
+        client_read:
+
         size = read(fd, buf, sizeof(buf));
 
         if (size == 0) {
             monitor->reconnect();
         } else if (size < 0) {
             if (errno == EINTR) {//被信号中断
-                return false;
+                goto client_read;
             } else {
                 LOG_TRACE(LOG_ERROR,false,"FileMonitorWorker::onReceive","recv failed");
+                return  false;
             }
 
         } else {
