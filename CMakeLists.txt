@@ -10,34 +10,18 @@ ENDIF(CMAKE_COMPILER_IS_GNUCC)
 
 #引入php需要的扩展源码，这里也是根据自己需要的来更改
 INCLUDE_DIRECTORIES(BEFORE ./include ./src/service/include ./src/vendor/proto/json/include ./src/vendor/proto/json/src/lib_json)
-set(SOURCE_FILES
-        src/service/CServiceLog.cpp
-        main.cpp
-        src/service/CThread.cpp
-        src/app/Config.cpp
-        src/service/CLock.cpp
-        src/service/CSocket.cpp
-        src/service/CIniFileConfig.cpp
-        src/service/CProcess.cpp
-        src/service/CSignal.cpp
-        src/app/MainCenter.cpp
-        src/app/FileMonitor.cpp
-        src/app/NodeSentryManager.cpp
-        src/app/FileMonitor.cpp
-        src/service/CEpoll.cpp
-        src/service/factory/CProcessFactory.cpp
-        src/service/CUnixOs.cpp
-        src/service/CThreadSocket.cpp
-        src/app/FileMonitorWorker.cpp
-        src/service/CPoll.cpp
-        src/app/ProtoBuf.cpp
-        src/app/NodeSentry.cpp
-        src/app/DirMonitor.cpp
-        include/DirMonitorWorker.h src/app/DirMonitorWorker.cpp src/service/include/CStringBuffer.h src/service/CStringBuffer.cpp
-        src/vendor/proto/json/src/lib_json/json_reader.cpp
-        src/vendor/proto/json/src/lib_json/json_value.cpp
-        src/vendor/proto/json/src/lib_json/json_writer.cpp
-        )
+
+file(GLOB_RECURSE VENDOR_LIB src/vendor/proto/json/src/lib_json/*.cpp)
+add_library(vendor SHARED ${VENDOR_LIB})
+
+file(GLOB_RECURSE SERVICE_LIB src/service/factory/*.cpp src/service/*.cpp)
+add_library(service SHARED ${SERVICE_LIB})
+
+file(GLOB_RECURSE APP_LIB src/app/*.cpp)
+add_library(app SHARED ${APP_LIB})
+
+set(SOURCE_FILES main.cpp)
 add_executable(logSentry ${SOURCE_FILES})
 #CFLAGS='-g -O0'
-add_custom_target(makefile COMMAND  make clean && make)
+TARGET_LINK_LIBRARIES(logSentry app vendor service)
+
