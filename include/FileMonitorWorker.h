@@ -24,6 +24,7 @@ namespace app {
         static bool onSend(struct epoll_event event,void* ptr);
         struct protocolStruct{
             int version;
+            char proto_tyoe;
             char buf[];
         };
 

@@ -7,18 +7,23 @@
 
 #endif //LOGSENTRY_COMMON_H
 
-#include "../src/service/include/MainService.h"
+#include "MainService.h"
 #include <sys/inotify.h>
 #include <sys/stat.h>
 #include <limits.h>
 #include <sys/prctl.h>
 #include <malloc.h>
-#include "json/json.h"
 
 using namespace std;
 using namespace service;
 
 #define SENTRY_VERSION 1
+
+enum {
+    JSON_PROTO,
+    PROTOBUF_PROTO,
+    XML_PROTO
+};
 
 #ifndef SOCKETSENTRY_CONFIG_H
 #include "Config.h"

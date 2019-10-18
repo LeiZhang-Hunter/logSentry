@@ -217,7 +217,6 @@ bool FileMonitor::onModify(struct pollfd eventData,void* ptr)
 
 
             bzero(&file_buffer, sizeof(file_buffer));
-            cout<<"mask:"<<event->mask<<";name:"<<event->name<<"\n";
             //如果说文件发生了修改事件
             if(event->mask & IN_MODIFY) {
                 //选中一个管道的序号

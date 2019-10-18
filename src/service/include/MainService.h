@@ -93,6 +93,10 @@
 #include "CSignal.h"
 #endif
 
+#ifndef LOGSENTRY_CJSON_H
+#include "CJson.h"
+#endif
+
 #define DECLARE_LOG CServiceLog* logInstance;
 
 

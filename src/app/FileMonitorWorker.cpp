@@ -133,37 +133,27 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
         proto_builder["type"] = "sentry-log";
         proto_builder["file_name"] = fileName.c_str();
         proto_builder["buf_body"] = read_buf;
-
+        string send_buffer = proto_builder.toStyledString();
         //一个unique_ptr"拥有“他所指向的对象。与shared_ptr不同，某个时刻只能有一个unique_ptr指向一个给定的对象
         std::unique_ptr<Json::StreamWriter> writer(proto_writer.newStreamWriter());
-
         ostringstream stream;
-
         stream.str("");
-
         writer->write(proto_builder,&stream);
-
         string json_buffer = stream.str();
-
         buf_len = sizeof(size_t)+sizeof(struct protocolStruct)+strlen(json_buffer.c_str());
-
-        cout<<json_buffer.c_str()<<endl;
-        printf("111\n");
-
 
         auto len_addr = (size_t *)malloc(buf_len);
         memcpy(len_addr,&buf_len,sizeof(buf_len));
         auto dataStruct = (protocolStruct*)(len_addr + 1);
         bzero(dataStruct,sizeof(protocolStruct));
         dataStruct->version = SENTRY_VERSION;
-
+        dataStruct->proto_tyoe = JSON_PROTO;
         //封装协议
         memcpy(dataStruct->buf,json_buffer.c_str(),strlen(json_buffer.c_str()));
 
         if(n>0)
         {
             result = sendData(client_fd,len_addr,buf_len);
-            printf("res:%ld\n",result);
             if(result < 0 )
             {
                 LOG_TRACE(LOG_ERROR,false,"FileMonitor::onModify","send msg failed");
