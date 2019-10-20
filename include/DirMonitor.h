@@ -7,7 +7,6 @@
 
 #endif //LOGSENTRY_DIRMONITOR_H
 
-#include <dirent.h>
 #include <list>
 
 
@@ -40,20 +39,12 @@ namespace app {
         //运行
         void run() final;
 
-        bool createMonitorByName(const char* name);
-
-        bool deleteMonitorByName(const char* name);
 
     private:
         string monitorPath;
         int workerNumber;
         string fileName;
         CEvent *eventInstance;
-        int inotify_fd;
-        int inotify_wd;
-        DIR* dirHandle;
-        struct dirent *dirEntry;
-        int (*pipe_collect)[2];
         list<int> eventPool;
         int send_number=0;
         map<int,file_dir_data>fileDataPool;

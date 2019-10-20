@@ -112,7 +112,7 @@ bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
 }
 
 //这个是pipe的处理逻辑
-void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
+void FileMonitorWorker::onPipe(int fd, char *buf,ssize_t len) {
     file_read* data;
     ssize_t n;
     char read_buf[BUFSIZ];
@@ -121,6 +121,16 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
     data = (file_read*)buf;
     size_t  buf_len;
     ssize_t offset;
+    int res;
+
+    //检查是否发过来的描述符有效如果无效就干脆不要进行读取了
+    res = fcntl(data->fild_fd,F_GETFL);
+    if(res == -1)
+    {
+        //这个全局的值不会有写入，所以可以直接读取
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::onPipe","fcntl fd error;path:"<<monitorFileNode.monitor_node.path);
+        return;
+    }
 
     do{
         if(data->offset > BUFSIZ)
@@ -161,12 +171,12 @@ void FileMonitorWorker::onPipe(int fd, char *buf,size_t len) {
             result = sendData(client_fd,len_addr,buf_len);
             if(result < 0 )
             {
-                LOG_TRACE(LOG_ERROR,false,"FileMonitor::onModify","send msg failed");
+                LOG_TRACE(LOG_ERROR,false,"FileMonitor::onPipe","send msg failed");
             }
             free(len_addr);
         }else if(n<0)
         {
-            LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","pread fd error");
+            LOG_TRACE(LOG_ERROR, false, "FileMonitor::onPipe","pread fd error");
         }
         data->offset -= n;
     }while(data->offset > 0);

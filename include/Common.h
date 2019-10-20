@@ -13,6 +13,8 @@
 #include <limits.h>
 #include <sys/prctl.h>
 #include <malloc.h>
+#include <dirent.h>
+
 
 using namespace std;
 using namespace service;
@@ -37,23 +39,20 @@ enum {
 #include "ProtoBuf.h"
 #endif
 
+#ifndef LOGSENTRY_DIRNODE_H
+#include "DirNode.h"
+#endif
+
 #ifndef LOGSENTRY_FILEMONITORWORKER_H
 #include "FileMonitorWorker.h"
 #endif
 
-#ifndef LOGSENTRY_FILENODE_H
-#include "FileNode.h"
-#endif
-
-typedef struct _file_dir_data{
-    int file_fd;
-    char name[NAME_MAX];
-    ssize_t begin;
-    ssize_t offset;
-}file_dir_data;
-
 #ifndef LOGSENTRY_DIRMONITORWORKER_H
 #include "DirMonitorWorker.h"
+#endif
+
+#ifndef LOGSENTRY_FILENODE_H
+#include "FileNode.h"
 #endif
 
 #ifndef LOGSENTRY_FILEMONITOR_H

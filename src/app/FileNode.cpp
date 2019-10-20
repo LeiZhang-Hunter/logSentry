@@ -10,9 +10,16 @@ bool FileNode::initNode(int pipeNumber,const char* path) {
     int pipe_count;//循环的数字
     int res;//返回结果
     int inotify_fd;
+
     if(!path)
     {
         return  false;
+    }
+
+    if(!os->is_file(path))
+    {
+        LOG_TRACE(LOG_ERROR,false,"FileNode::initNode","monitor object must be file;path"<<path);
+        return false;
     }
 
     strcpy(monitor_node.path,path);
@@ -22,17 +29,17 @@ bool FileNode::initNode(int pipeNumber,const char* path) {
 
     if(inotify_fd < 0)
     {
-        LOG_TRACE(LOG_ERROR,false,"FileNode::initNode","create process error");
+        LOG_TRACE(LOG_ERROR,false,"FileNode::initNode","inotify_init "<<path<<" error");
         return false;
     }
 
     monitor_node.inotify_fd = inotify_fd;
 
-    monitor_node.file_fd = open(path,fileFlags,filePriFlags);
+    //如果说是文件
+    monitor_node.file_fd = open(path, fileFlags, filePriFlags);
 
-    if(monitor_node.file_fd == -1)
-    {
-        LOG_TRACE(LOG_ERROR,false,"FileNode::initNode","open path:"<<path<<" fd error");
+    if (monitor_node.file_fd == -1) {
+        LOG_TRACE(LOG_ERROR, false, "FileNode::initNode", "open path:" << path << " fd error");
         return false;
     }
 
@@ -76,11 +83,16 @@ bool FileNode::deleteMonitor()
 {
     //关闭没有用的描述符
     //从监视中删除
+    int res;
     if(monitor_node.wd > 0) {
-        inotify_rm_watch(monitor_node.inotify_fd, monitor_node.wd);
-        monitor_node.wd = -1;
+        res = inotify_rm_watch(monitor_node.inotify_fd, monitor_node.wd);
+        if(res == -1)
+        {
+            LOG_TRACE(LOG_ERROR,false,"FileNode::deleteMonitor","create inotify_rm_watch error;error path:"<<monitor_node.path);
+            return false;
+        }
     }
-
+    return true;
 }
 
 bool FileNode::addMonitor()

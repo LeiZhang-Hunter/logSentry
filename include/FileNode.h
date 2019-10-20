@@ -57,6 +57,7 @@ namespace app {
         int filePriFlags = S_IRWXU;
 
         uint32_t monitorFlags = IN_MODIFY|IN_DELETE_SELF|IN_DELETE|IN_MOVE_SELF|IN_IGNORED|IN_ATTRIB;
-//        uint32_t monitorFlags = IN_ALL_EVENTS;
+        //        uint32_t monitorFlags = IN_ALL_EVENTS;
+
     };
 }

@@ -32,7 +32,7 @@ bool service::CIniFileConfig::readConfig(string &filename) {
         {
             config_buffer = buf;
             //#号开头代表注释
-            if(config_buffer[0] != '#') {
+            if(config_buffer[0] != '#' && config_buffer[0] != ';') {
                 if (config_buffer.find('[') == 0 && config_buffer.find(']') == len - 1) {
                     //解析出他的值
                     section = config_buffer.substr(1, len - 2);

@@ -36,7 +36,7 @@ namespace app {
         string sendBuffer;
 
     private:
-        void onPipe(int fd,char* buf,size_t len);
+        void onPipe(int fd,char* buf,ssize_t len);
         map<string,string>netConfig;
         int pipe;
         int fileFd;

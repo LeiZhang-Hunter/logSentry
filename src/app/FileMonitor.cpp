@@ -65,7 +65,7 @@ int FileMonitor::getWorkerNumber()
 
 //在这里编写逻辑
 void FileMonitor::run() {
-    int wd;
+    bool init_result;
     bool result;
     int thread_number;
     FileMonitorWorker* socket_worker;
@@ -88,7 +88,11 @@ void FileMonitor::run() {
     }
 
     //初始化节点工具
-    monitorFileNode.initNode(workerNumber,monitorPath.c_str());
+    init_result = monitorFileNode.initNode(workerNumber,monitorPath.c_str());
+    if(!init_result)
+    {
+        return;
+    }
 
     result = eventInstance->createEvent(1+workerNumber);
     if(!result)
@@ -168,7 +172,6 @@ bool FileMonitor::onModify(struct pollfd eventData,void* ptr)
             bzero(&file_buffer, sizeof(file_buffer));
             //如果说文件发生了修改事件
             if(event->mask & IN_MODIFY) {
-                printf("modify\n");
                 //选中一个管道的序号
                 pipe_number = monitorFileNode.monitor_node.send_number%monitor->workerNumber;
 
@@ -184,7 +187,6 @@ bool FileMonitor::onModify(struct pollfd eventData,void* ptr)
 
             }else if((event->mask & IN_DELETE) || (event->mask & IN_DELETE_SELF))
             {
-                printf("delete\n");
                 //删除文件监视
                 monitorFileNode.deleteMonitor();
             }else if(event->mask & IN_ATTRIB){
@@ -252,7 +254,6 @@ bool FileMonitor::onPipeWrite(struct pollfd eventData,void* ptr)
         LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","fstat fd error");
         return false;
     }
-    printf("st_size:%ld;begin:%ld\n",file_buffer.st_size,monitorFileNode.monitor_node.begin_length);
     if((file_buffer.st_size>monitorFileNode.monitor_node.begin_length))
     {
         readLen = file_buffer.st_size - monitorFileNode.monitor_node.begin_length;
