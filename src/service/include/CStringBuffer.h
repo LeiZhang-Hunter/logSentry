@@ -17,12 +17,22 @@ namespace service {
             ourString = ourString.append(string);
             return *this;
         }
+        CStringBuffer& operator<<(std::string buffer)
+        {
+            ourString = ourString.append(buffer);
+            return *this;
+        }
         CStringBuffer& operator<<(int data)
         {
             ourString = ourString.append(std::to_string(data));
             return *this;
         }
         CStringBuffer& operator<<(long data)
+        {
+            ourString = ourString.append(std::to_string(data));
+            return *this;
+        }
+        CStringBuffer& operator<<(uint32_t data)
         {
             ourString = ourString.append(std::to_string(data));
             return *this;

@@ -41,6 +41,10 @@ enum {
 #include "FileMonitorWorker.h"
 #endif
 
+#ifndef LOGSENTRY_FILENODE_H
+#include "FileNode.h"
+#endif
+
 typedef struct _file_dir_data{
     int file_fd;
     char name[NAME_MAX];

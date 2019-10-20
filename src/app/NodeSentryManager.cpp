@@ -3,7 +3,6 @@
 //
 #include "Common.h"
 
-monitor_node file_node;
 
 bool NodeSentryManager::start() {
     map<string,string>::iterator it;
