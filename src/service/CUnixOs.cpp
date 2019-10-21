@@ -38,7 +38,7 @@ bool CUnixOs::is_file(const char *dir)
         }
 
     }else{
-        return  -1;
+        return  false;
     }
 }
 
@@ -56,6 +56,6 @@ bool CUnixOs::is_dir(const char *dir)
         }
 
     }else{
-        return  -1;
+        return  false;
     }
 }

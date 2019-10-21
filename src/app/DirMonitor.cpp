@@ -110,6 +110,7 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
     int change_fd;
     int pipe_number;
     int pipeFd;
+    string event_name;
 
 #ifdef _SYS_EPOLL_H
     fd = eventData.data.fd;
@@ -123,6 +124,19 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
     {
         while(i<read_size){
             event = (struct inotify_event*)&buf[i];
+            i+=(sizeof(struct inotify_event)+event->len);
+
+            //如果说不是文件的话跳过处理
+            printf("%s;mask:%x\n",event_name.c_str(),event->mask);
+
+            if(strlen(event->name))
+            {
+                event_name = dir_monitor->monitorPath+"/"+event->name;
+                if(!os->is_file(event_name.c_str())) {
+                    continue;
+                }
+            }
+
             //文件发生变动
             if(event->mask & IN_MODIFY)
             {
@@ -162,7 +176,7 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
             {//事件被移除掉会到这里进行通知
                 printf("IN_IGNORED;path:%s\n",event->name);
             }
-            i+=(sizeof(struct inotify_event)+event->len);
+
         }
     }
 }
