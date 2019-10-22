@@ -16,6 +16,10 @@ namespace service{
         bool is_file(const char* dir);
 
         bool is_dir(const char* dir);
+
+        uint64_t htonll(uint64_t number);
+
+        uint64_t ntohll(uint64_t number);
     };
 }
 

@@ -20,6 +20,7 @@ using namespace std;
 using namespace service;
 
 #define SENTRY_VERSION 1
+#define MAGIC 103
 
 enum {
     JSON_PROTO,
@@ -36,7 +37,7 @@ enum {
 #endif
 
 #ifndef LOGSENTRY_PROTOBUF_H
-#include "ProtoBuf.h"
+#include "ProtoBufMsg.h"
 #endif
 
 #ifndef LOGSENTRY_DIRNODE_H

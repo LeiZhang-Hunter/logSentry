@@ -118,10 +118,13 @@ void FileMonitorWorker::onPipe(int fd, char *buf,ssize_t len) {
     char read_buf[BUFSIZ];
     ssize_t result;
     bzero(&read_buf, sizeof(read_buf));
-    data = (file_read*)buf;
-    size_t  buf_len;
-    ssize_t offset;
-    int res;
+    data = (file_read*)buf;//数据
+    size_t  buf_len;//buf的长度
+    ssize_t offset;//偏移量
+    int res;//结果集
+    string json_string;//存储json的缓冲
+    size_t* protoBuf;//协议buffer存储地址
+    const char* json_buffer;
 
     //检查是否发过来的描述符有效如果无效就干脆不要进行读取了
     res = fcntl(data->fild_fd,F_GETFL);
@@ -146,34 +149,26 @@ void FileMonitorWorker::onPipe(int fd, char *buf,ssize_t len) {
         if(n>0)
         {
             //进行协议封装
+            CJson jsonTool;
+            ProtoBufMsg protoTool;
             Json::Value proto_builder;
-            Json::StreamWriterBuilder proto_writer;
             proto_builder["type"] = "sentry-log";
             proto_builder["file_name"] = fileName.c_str();
             proto_builder["buf_body"] = read_buf;
-            string send_buffer = proto_builder.toStyledString();
-            //一个unique_ptr"拥有“他所指向的对象。与shared_ptr不同，某个时刻只能有一个unique_ptr指向一个给定的对象
-            std::unique_ptr<Json::StreamWriter> writer(proto_writer.newStreamWriter());
-            ostringstream stream;
-            stream.str("");
-            writer->write(proto_builder,&stream);
-            string json_buffer = stream.str();
-            buf_len = sizeof(size_t)+sizeof(struct protocolStruct)+strlen(json_buffer.c_str());
 
-            auto len_addr = (size_t *)malloc(buf_len);
-            memcpy(len_addr,&buf_len,sizeof(buf_len));
-            auto dataStruct = (protocolStruct*)(len_addr + 1);
-            bzero(dataStruct,sizeof(protocolStruct));
-            dataStruct->version = SENTRY_VERSION;
-            dataStruct->proto_tyoe = JSON_PROTO;
-            //封装协议
-            memcpy(dataStruct->buf,json_buffer.c_str(),strlen(json_buffer.c_str()));
-            result = sendData(client_fd,len_addr,buf_len);
+            //进行json压缩,这个是消息体
+            json_string = jsonTool.jsonEncode(proto_builder);
+            json_buffer = json_string.c_str();
+            protoBuf = protoTool.encodeProtoStruct(json_buffer);
+            buf_len = protoTool.getProtoLen();
+
+            //封装协议,拼装包头和包体
+            result = sendData(client_fd,protoBuf,buf_len);
+            free((void*)protoBuf);
             if(result < 0 )
             {
                 LOG_TRACE(LOG_ERROR,false,"FileMonitor::onPipe","send msg failed");
             }
-            free(len_addr);
         }else if(n<0)
         {
             LOG_TRACE(LOG_ERROR, false, "FileMonitor::onPipe","pread fd error");
