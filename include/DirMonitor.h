@@ -45,7 +45,7 @@ namespace app {
         int workerNumber;
         string fileName;
         CEvent *eventInstance;
-        list<int> eventPool;
+        list<const char*> eventPool;
         int send_number=0;
         map<int,file_dir_data>fileDataPool;
         map<string,int>fileDirPool;

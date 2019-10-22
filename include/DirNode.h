@@ -34,8 +34,6 @@ namespace app {
             int wd;
             //管道地址
             int(*pipe_collect)[2];
-            //发送次数
-            int send_number;
         } monitor_node;
 
         bool initNode(int pipeNumber, const char *path);
@@ -44,9 +42,10 @@ namespace app {
 
         bool deleteFileToPool(const char* name);
         bool addFileToPool(const char* name);
+        file_dir_data getFileToPool(const char* name);
     private:
         //目录的文件池
-        map<const char*,file_dir_data>fileDirPool;
+        map<string,file_dir_data>fileDirPool;
         uint32_t monitorFlags = IN_MODIFY|IN_DELETE_SELF|IN_DELETE|IN_MOVE_SELF|IN_IGNORED|IN_ATTRIB|IN_CREATE;
 
     };

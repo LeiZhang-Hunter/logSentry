@@ -63,6 +63,7 @@ bool DirMonitorWorker::onReceive(struct epoll_event event,void* ptr)
         while((read_size = read(fd,&data_node,sizeof(data_node))))
         {
             if (read_size > 0) {
+
                 //收到管道的数据
                 dir_monitor->onPipe(fd, &data_node, sizeof(data_node));
             } else {
@@ -118,6 +119,8 @@ void DirMonitorWorker::onPipe(int fd, file_dir_data *node,size_t len) {
     ssize_t result;
     bzero(&read_buf, sizeof(read_buf));
     ssize_t offset;
+    string json_string;//存储json的string
+    size_t buf_len;
     do{
         if(node->offset > BUFSIZ)
         {
@@ -129,16 +132,27 @@ void DirMonitorWorker::onPipe(int fd, file_dir_data *node,size_t len) {
 
         if(n>0)
         {
-
-            result = sendData(client_fd,read_buf,sizeof(read_buf));
+            //进行协议封装
+            Json::Value proto_builder;
+            proto_builder["type"] = "sentry-log";
+            proto_builder["file_name"] = node->name;
+            proto_builder["buf_body"] = read_buf;
+            json_string = jsonTool.jsonEncode(proto_builder);
+            auto protoBuf = protoTool.encodeProtoStruct(json_string.c_str());
+            buf_len = protoTool.getProtoLen();
+            result = sendData(client_fd,protoBuf,buf_len);
+            free(protoBuf);
 
             if(result < 0 )
             {
                 LOG_TRACE(LOG_ERROR,false,"FileMonitor::onModify","send msg failed");
+                break;
             }
         }else if(n<0)
         {
+
             LOG_TRACE(LOG_ERROR, false, "FileMonitor::onModify","pread fd error");
+            break;
         }
         node->offset -= n;
     }while(node->offset > 0);

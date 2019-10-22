@@ -34,6 +34,9 @@ namespace app {
         string filePath;
         string fileName;
         string sendBuffer;
+        CJson jsonTool;//json压缩工具
+        ProtoBufMsg protoTool;//协议压缩工具
+
 
     private:
         void onPipe(int fd,char* buf,ssize_t len);

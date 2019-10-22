@@ -53,7 +53,6 @@ bool DirNode::initNode(int pipeNumber,const char* path)
 
     monitor_node.pipe_collect = (int(*)[2])calloc((size_t)pipeNumber,sizeof(pipe));
 
-    monitor_node.send_number = 0;
 
     for(pipe_count=0;pipe_count<pipeNumber;pipe_count++)
     {
@@ -64,6 +63,8 @@ bool DirNode::initNode(int pipeNumber,const char* path)
             continue;
         }
     }
+
+    return  true;
 }
 
 //从inodify中删除掉描述符
@@ -94,6 +95,16 @@ bool DirNode::deleteFileToPool(const char* name)
     }
 
     return  false;
+}
+
+file_dir_data DirNode::getFileToPool(const char* name)
+{
+    printf("begin\n");
+    map<string ,file_dir_data>::iterator it;
+    for(it=fileDirPool.begin();it!=fileDirPool.end();it++){
+        std::cout<<it->first<<endl;
+    }
+    return fileDirPool[name];
 }
 
 bool DirNode::addFileToPool(const char* name)

@@ -67,6 +67,8 @@ void DirMonitor::run()
         LOG_TRACE(LOG_ERROR,false,"DirMonitor::run","DirNode->initNode failed;path:");
         return;
     }
+
+
     eventInstance = new CEvent();
 
     eventInstance->createEvent(10);
@@ -143,7 +145,7 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
                 printf("IN_MODIFY;path:%s\n",event->name);
                 change_fd = dir_monitor->fileDirPool[event->name];
                 //将这个变化事件加入队列池
-                dir_monitor->eventPool.push_front(change_fd);
+                dir_monitor->eventPool.push_front(event->name);
 
                 //随机获取一个管道发送
                 pipe_number = dir_monitor->send_number%dir_monitor->getWorkerNumber();
@@ -154,8 +156,6 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
                 dir_monitor->eventInstance->eventUpdate(pipeFd,EPOLLOUT|EPOLLET);
 
                 dir_monitor->send_number++;
-
-                printf("pipeFd:%d;pipe_number:%d;number:%d\n",pipeFd,pipe_number,dir_monitor->send_number);
 
             }else if(event->mask & IN_ATTRIB)
             {
@@ -185,34 +185,34 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
 //数据应该发送的时候
 bool DirMonitor::onSend(struct epoll_event eventData, void *ptr)
 {
-    int change_fd;
+    const char* event_file_name;
     int event_fd;
     int res;
     ssize_t  write_size;
     auto dir_monitor = (DirMonitor*)ptr;
     ssize_t readLen;
-    while((change_fd = dir_monitor->eventPool.back()))
+
+    event_fd = eventData.data.fd;
+    while((event_file_name = dir_monitor->eventPool.back()))
     {
         //观察文件的变化尺寸
         dir_monitor->eventPool.pop_back();
+        auto dir_file_node = MonitorDirNode.getFileToPool(event_file_name);
         struct stat file_buffer;
-        event_fd = eventData.data.fd;
-        res = fstat(change_fd, &file_buffer);
+        res = fstat(dir_file_node.file_fd, &file_buffer);
         if (res == -1) {
             LOG_TRACE(LOG_ERROR, false, "DirMonitor::onModify","fstat fd error");
             return false;
         }
 
-        auto dir_file_node = dir_monitor->fileDataPool[change_fd];
-
         //申请一个新的结构体
         readLen = file_buffer.st_size-dir_file_node.begin;
 
-        dir_monitor->fileDataPool[change_fd].begin = file_buffer.st_size;
 
         //给要读的偏移量赋值
         dir_file_node.begin = file_buffer.st_size;
 
+        //计算出偏移了量
         dir_file_node.offset = readLen;
 
         write_size = write(event_fd,&dir_file_node,sizeof(file_dir_data));
