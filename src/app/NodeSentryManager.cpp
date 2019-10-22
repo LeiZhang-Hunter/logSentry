@@ -7,31 +7,45 @@
 bool NodeSentryManager::start() {
     map<string,string>::iterator it;
     map<string,map<string,string>>mContent = config_instance->getConfig();
+    int fileWorkerNumber;
+    int dirWorkerNumber;
+
+    fileWorkerNumber = atoi(mContent["sentry"]["file_sentry_thread_number"].c_str());
 
     //监控文件
-    for(it=monitorConfig["sentry_log_file"].begin();it!=monitorConfig["sentry_log_file"].end();it++)
-    {
-        auto sentry = new NodeSentry();
-        //设置哨兵的模式
-        sentry->setMode(LOG_SENTRY);
-        //设置工作的线程数目
-        sentry->setWorkerCount(atoi(mContent["sentry"]["file_sentry_thread_number"].c_str()));
-        //启动哨兵
-        sentry->start<map<string,string>::iterator>(it);
-        processPool[sentry->getPid()] =sentry;
+    if(fileWorkerNumber > 0) {
+        for (it = monitorConfig["sentry_log_file"].begin(); it != monitorConfig["sentry_log_file"].end(); it++) {
+            printf("111\n");
+            auto sentry = new NodeSentry();
+            //设置哨兵的模式
+            sentry->setMode(LOG_SENTRY);
+            //设置工作的线程数目
+            sentry->setWorkerCount(fileWorkerNumber);
+            //启动哨兵
+            sentry->start<map<string, string>::iterator>(it);
+            processPool[sentry->getPid()] = sentry;
+        }
     }
 
     //监控目录
-    for(it=monitorConfig["sentry_log_dir"].begin();it!=monitorConfig["sentry_log_dir"].end();it++)
+    dirWorkerNumber = atoi(mContent["sentry"]["dir_sentry_thread_number"].c_str());
+    if(dirWorkerNumber>0) {
+        for (it = monitorConfig["sentry_log_dir"].begin(); it != monitorConfig["sentry_log_dir"].end(); it++) {
+            auto sentry = new NodeSentry();
+            //设置哨兵的模式
+            sentry->setMode(DIR_SENTRY);
+            //设置工作的线程数目
+            sentry->setWorkerCount(dirWorkerNumber);
+            //启动哨兵
+            sentry->start<map<string, string>::iterator>(it);
+            processPool[sentry->getPid()] = sentry;
+        }
+    }
+
+    //如果说都没有设置
+    if(!fileWorkerNumber && !dirWorkerNumber)
     {
-        auto sentry = new NodeSentry();
-        //设置哨兵的模式
-        sentry->setMode(DIR_SENTRY);
-        //设置工作的线程数目
-        sentry->setWorkerCount(atoi(mContent["sentry"]["dir_sentry_thread_number"].c_str()));
-        //启动哨兵
-        sentry->start<map<string,string>::iterator>(it);
-        processPool[sentry->getPid()] =sentry;
+        LOG_TRACE(LOG_ERROR,false,"NodeSentryManager::start","worker number set error");
     }
 
     this->startMonitor(-1,0);

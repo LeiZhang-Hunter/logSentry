@@ -34,7 +34,6 @@ bool DirMonitorWorker::onCreate()
     client_handle->setConfig(netConfig["ip"].c_str(),netConfig["port"].c_str());
 
     threadSocketEvent->hookAdd(CEVENT_READ,onReceive);
-//    threadSocketEvent->hookAdd(CEVENT_WRITE,onSend);
 }
 
 bool DirMonitorWorker::onConnect()
@@ -135,8 +134,11 @@ void DirMonitorWorker::onPipe(int fd, file_dir_data *node,size_t len) {
             //进行协议封装
             Json::Value proto_builder;
             proto_builder["type"] = "sentry-log";
+            proto_builder["monitor_type"] = "dir";
+            proto_builder["dir_name"] = dirMonitorName;
             proto_builder["file_name"] = node->name;
             proto_builder["buf_body"] = read_buf;
+            proto_builder["time"] = os->getUnixTime();
             json_string = jsonTool.jsonEncode(proto_builder);
             auto protoBuf = protoTool.encodeProtoStruct(json_string.c_str());
             buf_len = protoTool.getProtoLen();

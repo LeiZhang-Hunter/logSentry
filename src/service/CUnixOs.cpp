@@ -90,3 +90,10 @@ uint64_t CUnixOs::ntohll(uint64_t number)
     h = (h<<8)|c[7];
     return h;
 }
+
+time_t CUnixOs::getUnixTime()
+{
+    time_t now;
+    now = time(nullptr);
+    return now;
+}

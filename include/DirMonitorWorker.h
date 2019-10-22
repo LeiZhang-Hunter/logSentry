@@ -18,11 +18,13 @@ namespace app {
         static bool onReceive(struct epoll_event event,void* ptr);
         void onPipe(int fd, file_dir_data *buf,size_t len);
         ~DirMonitorWorker() override;
+
+
         CJson jsonTool;//json压缩工具
         ProtoBufMsg protoTool;//协议压缩工具
-
         int pipe;
         int client_fd;
+        string dirMonitorName;
     private:
         map<string,string>netConfig;
 

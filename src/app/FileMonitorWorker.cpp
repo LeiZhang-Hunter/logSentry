@@ -153,6 +153,8 @@ void FileMonitorWorker::onPipe(int fd, char *buf,ssize_t len) {
             proto_builder["type"] = "sentry-log";
             proto_builder["file_name"] = fileName.c_str();
             proto_builder["buf_body"] = read_buf;
+            proto_builder["monitor_type"] = "file";
+            proto_builder["time"] = os->getUnixTime();
 
             //进行json压缩,这个是消息体
             json_string = jsonTool.jsonEncode(proto_builder);

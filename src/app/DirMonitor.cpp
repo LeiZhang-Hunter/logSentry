@@ -13,14 +13,14 @@ DirMonitor::DirMonitor()
 
 void DirMonitor::start() {
     //创建worker
-//    int res = this->createProcess();
-//
-//    if(res != 0)
-//    {
-//        LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","create process error");
-//        return;
-//    }
-    run();
+    int res = this->createProcess();
+
+    if(res != 0)
+    {
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::start","create process error");
+        return;
+    }
+//    run();
 }
 
 bool DirMonitor::setFileName(const char* file_name)
@@ -95,6 +95,7 @@ void DirMonitor::run()
         //创建工作线程用来处理变化
         worker_object = new DirMonitorWorker(mContent["server"],MonitorDirNode.monitor_node.pipe_collect[workerNum][0]);
         worker_object->SetDaemonize();
+        worker_object->dirMonitorName = getNotifyPath();
         worker_object->Start();
     }
 
@@ -109,7 +110,6 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
     int i = 0;
     struct inotify_event* event;
     auto dir_monitor = (DirMonitor*)ptr;
-    int change_fd;
     int pipe_number;
     int pipeFd;
     string event_name;
@@ -143,7 +143,6 @@ bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)
             if(event->mask & IN_MODIFY)
             {
                 printf("IN_MODIFY;path:%s\n",event->name);
-                change_fd = dir_monitor->fileDirPool[event->name];
                 //将这个变化事件加入队列池
                 dir_monitor->eventPool.push_front(event->name);
 
