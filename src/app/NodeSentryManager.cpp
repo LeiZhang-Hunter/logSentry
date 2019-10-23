@@ -15,14 +15,13 @@ bool NodeSentryManager::start() {
     //监控文件
     if(fileWorkerNumber > 0) {
         for (it = monitorConfig["sentry_log_file"].begin(); it != monitorConfig["sentry_log_file"].end(); it++) {
-            printf("111\n");
             auto sentry = new NodeSentry();
             //设置哨兵的模式
             sentry->setMode(LOG_SENTRY);
             //设置工作的线程数目
             sentry->setWorkerCount(fileWorkerNumber);
             //启动哨兵
-            sentry->start<map<string, string>::iterator>(it);
+            sentry->start(it);
             processPool[sentry->getPid()] = sentry;
         }
     }
@@ -37,7 +36,7 @@ bool NodeSentryManager::start() {
             //设置工作的线程数目
             sentry->setWorkerCount(dirWorkerNumber);
             //启动哨兵
-            sentry->start<map<string, string>::iterator>(it);
+            sentry->start(it);
             processPool[sentry->getPid()] = sentry;
         }
     }
@@ -59,18 +58,27 @@ bool NodeSentryManager::setConfig(map<string,map<string,string>>config) {
 
 void NodeSentryManager::onMonitor(pid_t stop_pid,int status)
 {
-    //如果说存在这个实例
+    //如果说存在这个进程在进程池里面
     if(processPool[stop_pid])
     {
         //重新拉起
-//        auto monitor = new FileMonitor();
-//        monitor->setFileName(processPool[stop_pid]->g->getFileName().c_str());
-//        monitor->setNotifyPath(processPool[stop_pid]->getNotifyPath().c_str());
-//        monitor->setWorkerNumber(processPool[stop_pid]->getWorkerNumber());
-//        monitor->start();
-//        delete processPool[stop_pid];
-//        processPool.erase(stop_pid);
-//        processPool[stop_pid] =monitor;
+        NodeSentry* sentry;
+        int mode = processPool[stop_pid]->getMode();
+        int workerNumber = processPool[stop_pid]->getWorkerCount();
+        switch (mode)
+        {
+            case LOG_SENTRY:
+            case DIR_SENTRY:
+                sentry = new NodeSentry();
+                sentry->setMode(mode);
+                sentry->setWorkerCount(workerNumber);
+                sentry->start(processPool[stop_pid]->getConfig());
+                //放入到进程池子里面
+                processPool[sentry->getPid()] = sentry;
+                break;
+        }
+        delete processPool[stop_pid];
+        processPool.erase(stop_pid);
     }
 }
 

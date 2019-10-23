@@ -18,11 +18,13 @@ namespace app {
     public:
         int sentryMode;
         bool setMode(int mode);
+        int getMode();
         bool setWorkerCount(int count);
-        int getWorkerCount(int count);
+        int getWorkerCount();
+        map<string, string>::iterator getConfig();
 
         //启动程序载入配置文件
-        template <typename T> void start(T config){
+        void start(map<string, string>::iterator config){
             switch(sentryMode) {
                 case LOG_SENTRY: {
                     auto file_monitor = new FileMonitor();
@@ -49,6 +51,8 @@ namespace app {
                 }
                     break;
             }
+
+            sentryConfig = config;
         };
 
         //关闭程序
@@ -63,6 +67,7 @@ namespace app {
         int worker_count;
         pid_t pid;
         void* instance;
+        map<string, string>::iterator sentryConfig;
     };
 
 

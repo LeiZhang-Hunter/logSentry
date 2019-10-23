@@ -9,18 +9,26 @@ bool NodeSentry::setMode(int mode)
     return true;
 }
 
+int NodeSentry::getMode() {
+    return sentryMode;
+}
+
 bool NodeSentry::setWorkerCount(int count)
 {
     worker_count = count;
 }
 
-int NodeSentry::getWorkerCount(int count)
+int NodeSentry::getWorkerCount()
 {
     return worker_count;
 }
 
 pid_t NodeSentry::getPid(){
     return pid;
+}
+
+map<string, string>::iterator NodeSentry::getConfig(){
+    return sentryConfig;
 }
 
 
