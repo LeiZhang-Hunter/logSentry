@@ -11,7 +11,6 @@
 
 //压缩协议
 size_t* ProtoBufMsg::encodeProtoStruct(const char* json_buffer) {
-    protoHeader header;
     size_t header_len;//包头的长度
     size_t body_len;//包体的长度
 
@@ -20,6 +19,7 @@ size_t* ProtoBufMsg::encodeProtoStruct(const char* json_buffer) {
     //计算消息体的长度
     body_len = strlen(json_buffer)+1;
     protoLen = sizeof(size_t)+header_len+body_len;
+    printf("ptoto len:%ld\n",protoLen);
 
     //申请内存地址
     auto proto_addr = (size_t *)malloc(protoLen);
@@ -32,6 +32,7 @@ size_t* ProtoBufMsg::encodeProtoStruct(const char* json_buffer) {
     *proto_addr = os->htonll(protoLen);
     proto_addr++;
 
+    printf("body len:%ld\n",body_len);
 
     auto dataStruct = (protoHeader*)proto_addr;
     dataStruct->version = SENTRY_VERSION;

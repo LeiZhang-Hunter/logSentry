@@ -70,8 +70,8 @@ uint64_t CUnixOs::htonll(uint64_t number)
     c[2] = (number>>40)&0xff;
     c[3] = (number>>32)&0xff;
     c[4] = (number>>24)&0xff;
-    c[5] = (number>>18)&0xff;
-    c[6] = (number>>16)&0xff;
+    c[5] = (number>>16)&0xff;
+    c[6] = (number>>8)&0xff;
     c[7] = (number)&0xff;
     return n;
 }
