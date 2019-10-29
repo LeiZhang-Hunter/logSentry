@@ -57,6 +57,12 @@ int DirMonitor::getWorkerNumber()
 //执行程序的入口
 void DirMonitor::run()
 {
+#ifdef __linux__
+    if(prctl(PR_SET_PDEATHSIG, SIGTERM) != 0)
+    {
+        LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","prctl set error");
+    }
+#endif
     bool init_result;
     int workerNum;
 
