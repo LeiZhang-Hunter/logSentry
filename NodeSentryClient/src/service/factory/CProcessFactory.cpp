@@ -1,7 +1,7 @@
 //
 // Created by zhanglei on 19-8-16.
 //
-#include "../include/MainService.h"
+#include "MainService.h"
 using namespace service;
 
 int CProcessFactory::startMonitor(pid_t monitor_process_id,int options){

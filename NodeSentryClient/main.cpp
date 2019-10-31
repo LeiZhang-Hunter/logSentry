@@ -2,7 +2,7 @@
 // Created by zhanglei on 19-8-9.
 //
 //#include "include/CThread.h"
-#include "include/Common.h"
+#include "Common.h"
 using namespace app;
 
 int main(int argc,char** argv)

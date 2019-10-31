@@ -9,7 +9,7 @@ IF(CMAKE_COMPILER_IS_GNUCC)
 ENDIF(CMAKE_COMPILER_IS_GNUCC)
 
 #引入头文件
-INCLUDE_DIRECTORIES(BEFORE ./include ./src/service/include ./src/vendor/proto/json/include ./src/vendor/proto/json/src/lib_json)
+INCLUDE_DIRECTORIES(BEFORE include src/service/include src/vendor/proto/json/include src/vendor/proto/json/src/lib_json)
 
 file(GLOB_RECURSE VENDOR_LIB src/vendor/proto/json/src/lib_json/*.cpp)
 #生成vendor库
