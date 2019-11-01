@@ -7,7 +7,7 @@ using namespace std;
 bool service::CIniFileConfig::readConfig(string &filename) {
 
     if (access(filename.c_str(), R_OK) == -1) {
-        cout<<"log file is not exist;file:"<<__FILE__<<";line:"<<__LINE__;
+        cout<<"log file"<<filename.c_str()<<" is not exist;file:"<<__FILE__<<";line:"<<__LINE__;
         exit(-1);
     }
 

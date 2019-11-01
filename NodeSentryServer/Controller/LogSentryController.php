@@ -13,16 +13,21 @@ use Structural\System\LogDbStruct;
 use Structural\System\LogProtocol;
 use Structural\System\LogSentryStruct;
 use Vendor\DB;
+use Vendor\ES;
 
 class LogSentryController{
 
     //协议处理函数
     private $protocolHandle;
 
-    //数据库实例
+    /**数据库实例
+     * @var DB
+     */
     private $db;
 
-    //elasticsearch实例
+    /**ElasticSearch实例
+     * @var ES
+     */
     private $es;
 
     /**
@@ -85,16 +90,27 @@ class LogSentryController{
                     {
                         $logUnit = [];
                         //压缩
-                        $logUnit[LogDbStruct::Msg] = addslashes($dataUnit);
-                        $logUnit[LogDbStruct::File_name] = $monitor_file;
+                        $logUnit[LogDbStruct::Body] = addslashes($dataUnit);
+//                        $logUnit[LogDbStruct::File_name] = $monitor_file;
                         $logUnit[LogDbStruct::Happen_time] = date("Y-m-d H:i",$tick_time);
-                        $logUnit[LogDbStruct::C_time] = time();
+                        $logUnit[LogDbStruct::Created_time] = time();
                         $logUnit[LogDbStruct::Project_id] = 0;
                         $logUnit[LogDbStruct::State] = 1;
                         $logUnit[LogDbStruct::Type] = 1;
                         $logUnit[LogDbStruct::Php_error_level] = $error_key;
                         $logUnit[LogDbStruct::Level] = 0;
-                        var_dump($logUnit);
+                        if(($res = $this->db->insert("sys_syslog",$logUnit))){
+                            //获取最后插入的id 然后放入es 中这里是原子操作不需要担心安全问题
+                            $insertId = $this->db->getLastInsertId();
+                            $data["sys_id"] = (int)$insertId;
+                            //存入es
+                            if(!$this->es->client->index($data,$insertId))
+                            {
+                            }
+
+                        }
+
+
                         break;
                     }
 

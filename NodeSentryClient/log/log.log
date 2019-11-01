@@ -1,0 +1,4 @@
+[CThreadSocket::Execute]:socketHandle->connect error;errno:111;errormsg:Connection refused;file:/home/zhanglei/ourc/logSentry/NodeSentryClient/src/service/CThreadSocket.cpp;line:41
+[CThreadSocket::Execute]:socketHandle->connect error;errno:111;errormsg:Connection refused;file:/home/zhanglei/ourc/logSentry/NodeSentryClient/src/service/CThreadSocket.cpp;line:41
+[CThreadSocket::Execute]:socketHandle->connect error;errno:111;errormsg:Connection refused;file:/home/zhanglei/ourc/logSentry/NodeSentryClient/src/service/CThreadSocket.cpp;line:41
+[CThreadSocket::Execute]:socketHandle->connect error;errno:111;errormsg:Connection refused;file:/home/zhanglei/ourc/logSentry/NodeSentryClient/src/service/CThreadSocket.cpp;line:41

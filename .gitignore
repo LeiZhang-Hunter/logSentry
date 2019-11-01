@@ -1,2 +1,5 @@
 /.idea
 /cmake-build-debug
+/NodeSentryClient/.idea
+/NodeSentryServer/.idea
+/NodeSentryServer/php_errors.log

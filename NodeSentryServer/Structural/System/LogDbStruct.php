@@ -8,7 +8,8 @@
 namespace Structural\System;
 
 class LogDbStruct{
-    const Msg = "msg";
+    const Body = "body";
+    const Created_time="created_time";
     const File_name = "file_name";
     const Happen_time = "happen_time";
     const C_time = "ctime";

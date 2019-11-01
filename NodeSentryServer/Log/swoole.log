@@ -1,0 +1,1820 @@
+[2019-11-01 19:52:30 ^11135.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11135] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11137.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11137] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11138.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11138] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11139.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11139] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11140.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11140] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11141.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11141] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11142.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11142] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11143.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11143] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11144.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11144] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11145.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11145] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11146.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11146] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11147.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11147] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11148.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11148] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11149.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11149] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11150.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11150] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11151.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11151] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11152.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11152] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11153.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11153] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11154.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11154] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11155.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11155] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11156.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11156] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11157.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11157] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11158.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11158] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11159.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11159] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11160.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11160] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11161.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11161] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11162.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11162] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11163.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11163] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11164.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11164] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11165.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11165] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11166.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11166] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11167.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11167] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11168.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11168] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11169.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11169] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11170.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11170] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11171.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11171] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11172.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11172] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11173.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11173] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11174.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11174] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11175.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11175] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11176.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11176] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11177.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11177] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11178.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11178] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11179.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11179] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11180.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11180] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11181.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11181] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11182.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11182] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11183.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11183] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11184.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11184] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11185.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11185] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11186.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11186] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11187.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11187] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11188.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11188] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11189.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11189] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11190.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11190] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11191.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11191] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11192.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11192] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11193.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11193] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11194.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11194] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11195.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11195] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11196.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11196] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11197.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11197] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11198.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11198] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11199.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11199] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11200.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11200] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11201.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11201] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11202.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11202] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11203.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11203] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11204.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11204] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11205.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11205] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11206.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11206] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11207.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11207] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11208.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11208] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11209.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11209] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11210.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11210] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11211.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11211] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11212.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11212] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11213.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11213] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11214.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11214] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11215.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11215] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11216.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11216] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11217.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11217] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11218.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11218] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11219.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11219] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11220.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11220] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11221.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11221] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11222.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11222] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11223.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11223] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11224.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11224] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11225.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11225] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11226.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11226] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11227.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11227] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11228.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11228] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11229.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11229] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11230.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11230] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11231.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11231] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11232.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11232] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11233.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11233] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11234.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11234] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11235.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11235] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11236.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11236] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11237.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11237] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11238.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11238] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11239.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11239] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11240.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11240] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11241.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11241] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11242.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11242] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11243.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11243] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11244.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11244] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11245.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11245] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11246.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11246] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11247.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11247] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:30 ^11248.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:30 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11248] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11249.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11249] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11250.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11250] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11251.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11251] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11252.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11252] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11253.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11253] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11254.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11254] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11255.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11255] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11256.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11256] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11257.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11257] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11258.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11258] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11259.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11259] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11260.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11260] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11261.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11261] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11262.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11262] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11263.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11263] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11264.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11264] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11265.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11265] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11266.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11266] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11267.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11267] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11268.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11268] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11269.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11269] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11270.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11270] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11271.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11271] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11272.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11272] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11273.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11273] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11274.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11274] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11275.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11275] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11276.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11276] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11277.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11277] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11278.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11278] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11279.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11279] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11280.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11280] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11281.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11281] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11282.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11282] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11283.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11283] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11284.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11284] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11285.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11285] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11286.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11286] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11287.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11287] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11288.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11288] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11289.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11289] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11290.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11290] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11291.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11291] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11292.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11292] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11293.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11293] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11294.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11294] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11295.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11295] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11296.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11296] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11297.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11297] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11298.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11298] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11299.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11299] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11300.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11300] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11301.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11301] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11302.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11302] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11303.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11303] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11304.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11304] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11305.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11305] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11306.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11306] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11307.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11307] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11308.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11308] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11309.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11309] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11310.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11310] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11311.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11311] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11312.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11312] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11313.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11313] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11314.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11314] abnormal exit, status=255, signal=0
+[2019-11-01 19:52:31 ^11315.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Class 'Controller\ES' not found in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:44
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onWorkerStart(Object(Swoole\Server))
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(64): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindWorkerStart(Object(Swoole\Server), 1)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 44
+[2019-11-01 19:52:31 $11133.0]	WARNING	swManager_check_exit_status: worker#1[pid=11315] abnormal exit, status=255, signal=0
+[2019-11-01 20:49:25 ^14776.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Call to undefined method Vendor\ES::index() in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php:107
+Stack trace:
+#0 [internal function]: Controller\LogSentryController->onReceive(Array)
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(81): call_user_func_array(Array, Array)
+#2 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindTask(Object(Swoole\Server), 0, 0, Array)
+#3 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/SwooleSysSocket.php(118): Swoole\Server->start()
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/run.php(76): Pendant\SwooleSysSocket->run()
+#5 {main}
+  thrown in /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php on line 107
+[2019-11-01 20:49:25 $14774.0]	WARNING	swManager_check_exit_status: worker#1[pid=14776] abnormal exit, status=255, signal=0
+[2019-11-01 20:49:37 ^14789.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught ElasticSearch\Transport\HTTPException: Couldnt connect to host [10.10.28.127], ElasticSearch down? in /home/zhanglei/ourc/logSentry/NodeSentryServer/Vendor/ElasticSearch/Transport/HTTP.php:220
+Stack trace:
+#0 /home/zhanglei/ourc/logSentry/NodeSentryServer/Vendor/ElasticSearch/Transport/HTTP.php(51): ElasticSearch\Transport\HTTP->call('/syslog/syslog/...', 'PUT', Array)
+#1 /home/zhanglei/ourc/logSentry/NodeSentryServer/Vendor/ElasticSearch/Client.php(208): ElasticSearch\Transport\HTTP->index(Array, '377971', Array)
+#2 /home/zhanglei/ourc/logSentry/NodeSentryServer/Controller/LogSentryController.php(107): ElasticSearch\Client->index(Array, '377971')
+#3 [internal function]: Controller\LogSentryController->onReceive(Array)
+#4 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendant/Protocol/Tcp/TcpProtocol.php(81): call_user_func_array(Array, Array)
+#5 [internal function]: Pendant\Protocol\Tcp\TcpProtocol->bindTask(Object(Swoole\Server), 0, 0, Array)
+#6 /home/zhanglei/ourc/logSentry/NodeSentryServer/Pendan in /home/zhanglei/ourc/logSentry/NodeSentryServer/Vendor/ElasticSearch/Transport/HTTP.php on line 220
+[2019-11-01 20:49:37 $14787.0]	WARNING	swManager_check_exit_status: worker#1[pid=14789] abnormal exit, status=255, signal=0
