@@ -22,6 +22,8 @@ namespace service{
         uint64_t ntohll(uint64_t number);
 
         time_t getUnixTime();
+
+        void getTimeString(char* time_format);
     };
 }
 
