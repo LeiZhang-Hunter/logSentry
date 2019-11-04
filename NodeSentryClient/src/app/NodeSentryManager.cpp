@@ -48,7 +48,6 @@ bool NodeSentryManager::start() {
     }
 
     this->startMonitor(-1,0);
-
     this->stopMonitor();
 }
 
@@ -59,7 +58,7 @@ bool NodeSentryManager::setConfig(map<string,map<string,string>>config) {
 void NodeSentryManager::onMonitor(pid_t stop_pid,int status)
 {
     //如果说存在这个进程在进程池里面
-    if(processPool[stop_pid])
+    if(processPool[stop_pid] && status!=0)
     {
         //重新拉起
         NodeSentry* sentry;
@@ -84,11 +83,14 @@ void NodeSentryManager::onMonitor(pid_t stop_pid,int status)
 
 bool NodeSentryManager::stopMonitor()
 {
+    int status;
     //循环进程池 删除掉每一个文件监控者
     map<pid_t, NodeSentry *>::iterator it;
     for(it=processPool.begin();it!=processPool.end();)
     {
         int i = it->first;
+        //释放掉僵尸进程
+        waitpid(it->second->getPid(), &status, 1);
         delete(it->second);
         it++;
         processPool.erase(i);

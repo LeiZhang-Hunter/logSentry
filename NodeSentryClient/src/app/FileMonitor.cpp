@@ -15,7 +15,9 @@ void FileMonitor::onStop(int sig)
     switch(sig)
     {
         case SIGTERM:
+
             CEvent* eventInstance = CSingleInstance<CEvent>::getInstance();
+
             //停止主事件循环
             eventInstance->stopLoop();
             //停止主重连事件
@@ -109,6 +111,7 @@ void FileMonitor::run() {
 
     map<string,map<string,string>>mContent = config_instance->getConfig();
 
+
     //开始创建socket线程用来做读取后的数据收发
     for(thread_number=0;thread_number<workerNumber;thread_number++)
     {
@@ -119,12 +122,29 @@ void FileMonitor::run() {
         socket_worker->fileName = fileName;
 
         //设置线程为守护线程
-        socket_worker->SetDaemonize();
+//        socket_worker->SetDaemonize();
         //启动线程
         socket_worker->Start();
+        //加入到线程池中
+        temp_pool[thread_number] = socket_worker;
         eventInstance->eventAdd(monitorFileNode.monitor_node.pipe_collect[thread_number][1],EPOLLET|EPOLLIN);
     }
+
     eventInstance->eventLoop(this);
+
+    //释放掉之前启动的线程
+    for(thread_number=0;thread_number<workerNumber;thread_number++)
+    {
+        //关闭线程标志位
+        temp_pool[thread_number]->stopWorker();
+        //释放线程
+        temp_pool[thread_number]->ReleaseThread(nullptr);
+        //释放掉内存
+        delete (temp_pool[thread_number]);
+        temp_pool.erase(thread_number);
+    }
+
+    //释放事件
     delete(eventInstance);
 }
 

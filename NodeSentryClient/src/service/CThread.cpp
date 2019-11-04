@@ -48,6 +48,12 @@ bool service::CThread::Status() {
 
 void service::CThread::Stop() {
     mTerminated = true;
+    //加入这里是为了中断线程的阻塞运行
+    int res = pthread_kill(mThreadID,SIGTERM);
+    if(res != 0)
+    {
+        LOG_TRACE(LOG_WARING,false,"CThread::Stop","CThread->Stop pthread_kill Error");
+    }
 }
 
 void service::CThread::Resume() {
@@ -89,3 +95,14 @@ void* service::CThread::ThreadProc(void* arg)
     pthread_exit(&retval);
 }
 
+
+//释放掉这个线程
+bool service::CThread::ReleaseThread(void* status)
+{
+    if(pthread_join(mThreadID,&status)<0)
+    {
+        LOG_TRACE(LOG_ERROR,false,"CThread::ReleaseThread","CThread->ReleaseThread Join Error");
+        return false;
+    }
+    return true;
+}

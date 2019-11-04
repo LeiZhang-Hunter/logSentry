@@ -17,6 +17,7 @@ namespace app {
         bool onClose() override;
         static bool onReceive(struct epoll_event event,void* ptr);
         void onPipe(int fd, file_dir_data *buf,size_t len);
+        bool stopWorker();
         ~DirMonitorWorker() override;
 
 

@@ -14,9 +14,8 @@ CThreadSocket::CThreadSocket()
 
 void CThreadSocket::Execute()
 {
-
-
     bool res;
+    uint8_t connectFlag;
 
     if(run == 1)
     {
@@ -44,11 +43,15 @@ void CThreadSocket::Execute()
 
     run = 1;
 
-    //连接成功的时候触发的函数
-    this->onConnect();
+    connectFlag = socketHandle->getConnectFlag();
 
-    threadSocketEvent->eventLoop(this);
+    //如果说存在连接标志位，这是一个保护标志位置
+    if(connectFlag) {
+        //连接成功的时候触发的函数
+        this->onConnect();
 
+        threadSocketEvent->eventLoop(this);
+    }
 }
 
 
@@ -96,4 +99,8 @@ CThreadSocket::~CThreadSocket() {
     //释放掉socket句柄
     if(socketHandle)
         delete(socketHandle);
+
+    //释放掉事件
+    if(threadSocketEvent)
+        delete(threadSocketEvent);
 }

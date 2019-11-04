@@ -99,7 +99,6 @@ bool DirNode::deleteFileToPool(const char* name)
 
 file_dir_data DirNode::getFileToPool(const char* name)
 {
-    printf("begin\n");
     map<string ,file_dir_data>::iterator it;
     for(it=fileDirPool.begin();it!=fileDirPool.end();it++){
         std::cout<<it->first<<endl;

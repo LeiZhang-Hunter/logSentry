@@ -183,6 +183,11 @@ bool CSocket::setConnectFlag(uint8_t flag)
     connectFlag = flag;
 }
 
+uint8_t CSocket::getConnectFlag()
+{
+    return connectFlag;
+}
+
 
 int CSocket::getSocket()
 {

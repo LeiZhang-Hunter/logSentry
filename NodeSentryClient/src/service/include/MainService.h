@@ -44,6 +44,10 @@
 #include "CLock.h"
 #endif
 
+#ifndef LOGSENTRY_CSIGNAL_H
+#include "CSignal.h"
+#endif
+
 #ifndef LOGSENTRY_CSERVICELOG_H
 #include "CServiceLog.h"
 #endif
@@ -89,9 +93,7 @@
 #include "CProcessFactory.h"
 #endif
 
-#ifndef LOGSENTRY_CSIGNAL_H
-#include "CSignal.h"
-#endif
+
 
 #ifndef LOGSENTRY_CJSON_H
 #include "CJson.h"

@@ -39,6 +39,9 @@ namespace app {
         //运行
         void run() final;
 
+        //停止的时候处理的函数
+        static void onStop(int sig);
+
 
     private:
         string monitorPath;
@@ -49,5 +52,6 @@ namespace app {
         int send_number=0;
         map<int,file_dir_data>fileDataPool;
         map<string,int>fileDirPool;
+        map<int,DirMonitorWorker*>temp_pool;
     };
 }

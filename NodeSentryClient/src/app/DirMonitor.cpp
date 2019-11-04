@@ -10,6 +10,19 @@ DirMonitor::DirMonitor()
 
 }
 
+//停止处理函数
+void DirMonitor::onStop(int sig){
+    switch(sig)
+    {
+        case SIGTERM:
+            CEvent* eventInstance = CSingleInstance<CEvent>::getInstance();
+            //停止主事件循环
+            eventInstance->stopLoop();
+            //停止主重连事件
+            break;
+    }
+}
+
 
 void DirMonitor::start() {
     //创建worker
@@ -66,6 +79,10 @@ void DirMonitor::run()
     bool init_result;
     int workerNum;
 
+    //注册信号处理函数
+    eventInstance = CSingleInstance<CEvent>::getInstance();
+    sig_handle->setSignalHandle(SIGTERM,onStop);
+
     //初始化节点
     init_result = MonitorDirNode.initNode(workerNumber,monitorPath.c_str());
     if(!init_result)
@@ -74,10 +91,7 @@ void DirMonitor::run()
         return;
     }
 
-
-    eventInstance = new CEvent();
-
-    eventInstance->createEvent(10);
+    eventInstance->createEvent(1+workerNumber);
 
     eventInstance->hookAdd(CEVENT_READ,onChange);
 
@@ -86,11 +100,11 @@ void DirMonitor::run()
 
     eventInstance->eventAdd(MonitorDirNode.monitor_node.inotify_fd,EPOLLET|EPOLLIN);
 
-    string buffer;
     DirMonitorWorker* worker_object;
 
     //在站上申请一个内存池
     map<string,map<string,string>>mContent = config_instance->getConfig();
+
 
     //创建目录监控处理进程
     for(workerNum = 0;workerNum<workerNumber;workerNum++)
@@ -100,12 +114,32 @@ void DirMonitor::run()
 
         //创建工作线程用来处理变化
         worker_object = new DirMonitorWorker(mContent["server"],MonitorDirNode.monitor_node.pipe_collect[workerNum][0]);
-        worker_object->SetDaemonize();
+//        worker_object->SetDaemonize();
         worker_object->dirMonitorName = getNotifyPath();
         worker_object->Start();
+        temp_pool[workerNum] = worker_object;
     }
 
     eventInstance->eventLoop(this);
+
+    //释放掉之前启动的线程
+    for(workerNum=0;workerNum<workerNumber;workerNum++)
+    {
+        if(temp_pool[workerNum])
+        {
+            //关闭线程标志位
+            temp_pool[workerNum]->stopWorker();
+            //关闭事件循环
+            temp_pool[workerNum]->threadSocketEvent->stopLoop();
+            //释放线程
+            temp_pool[workerNum]->ReleaseThread(nullptr);
+            temp_pool.erase(workerNum);
+            //释放掉内存
+            delete(temp_pool[workerNum]);
+        }
+    }
+    //释放事件
+    delete(eventInstance);
 }
 
 bool DirMonitor::onChange(struct epoll_event eventData,void* ptr)

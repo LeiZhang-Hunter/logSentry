@@ -20,7 +20,7 @@ int CProcessFactory::startMonitor(pid_t monitor_process_id,int options){
             {
                 continue;
             }else{
-
+//                LOG_TRACE(LOG_WARING,false,"CProcessFactory::startMonitor","CProcessFactory->startMonitor occur error");
             }
         }
     }

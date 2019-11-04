@@ -90,7 +90,10 @@ void CEpoll::stopLoop()
     mainLoop = EVENT_STOP;
 }
 
-
+uint8_t CEpoll::getCEventStatus()
+{
+    return mainLoop;
+}
 
 //时间循环
 void CEpoll::eventLoop(void* ptr) {

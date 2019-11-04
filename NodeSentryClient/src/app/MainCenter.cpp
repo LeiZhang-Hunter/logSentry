@@ -25,7 +25,6 @@ void MainCenter::sigHandle(int sig)
                 }
 
                 sleep(1);
-
                 manager->stopFactory();
             }
             break;

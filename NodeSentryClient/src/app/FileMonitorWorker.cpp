@@ -48,6 +48,17 @@ bool FileMonitorWorker::onClientRead(int fd,char* buf)
 {
 
 }
+
+bool FileMonitorWorker::stopWorker()
+{
+    //关闭重连
+    getSocketHandle()->setConnectFlag(0);
+    //停止事件循环
+    threadSocketEvent->stopLoop();
+    //关闭执行线程
+    Stop();
+}
+
 #ifdef _SYS_EPOLL_H
 bool FileMonitorWorker::onReceive(struct epoll_event event,void* ptr)
 #else

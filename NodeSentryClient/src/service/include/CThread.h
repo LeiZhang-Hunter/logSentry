@@ -29,7 +29,11 @@ class CThread{
         //线程的运行状态
         bool Status();
 
+        //设置守护线程
         bool SetDaemonize();
+
+        //释放线程
+        bool ReleaseThread(void* status);
 
     protected:
         virtual void Execute();
@@ -54,5 +58,6 @@ class CThread{
 
         pthread_attr_t attr;
 
+        CSignal mSigHandler;
 };
 }

@@ -34,6 +34,7 @@ namespace service{
 
         bool reconnect();
 
+        uint8_t getConnectFlag();
     private:
         int socket_fd;
         char socketIp[INET_ADDRSTRLEN];

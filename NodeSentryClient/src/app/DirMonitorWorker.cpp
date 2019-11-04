@@ -112,6 +112,16 @@ bool DirMonitorWorker::onReceive(struct epoll_event event,void* ptr)
     }
 }
 
+bool DirMonitorWorker::stopWorker()
+{
+    //关闭重连
+    getSocketHandle()->setConnectFlag(0);
+    //停止事件循环
+    threadSocketEvent->stopLoop();
+    //关闭执行线程
+    Stop();
+}
+
 void DirMonitorWorker::onPipe(int fd, file_dir_data *node,size_t len) {
     ssize_t n;
     char read_buf[BUFSIZ];

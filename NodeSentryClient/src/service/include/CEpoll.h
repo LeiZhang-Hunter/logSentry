@@ -40,6 +40,7 @@ namespace service {
         eventHandle eventFunctionHandle[EPOLL_EVENTS_MAX];
         int eventSize;
         bool hookAdd(int flag,eventHandle handle);
+        uint8_t getCEventStatus();
 
     private:
         int epollFd;

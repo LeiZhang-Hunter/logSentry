@@ -51,6 +51,8 @@ namespace app {
         int workerNumber;
         string fileName;
         CEvent* eventInstance;
+        map<int,FileMonitorWorker*>temp_pool;
+
     };
 
 }

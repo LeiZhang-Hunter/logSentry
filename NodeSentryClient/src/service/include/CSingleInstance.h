@@ -35,7 +35,7 @@ namespace service {
     };
 
     template <class T>
-    T* CSingleInstance<T>::instance = 0;
+    T* CSingleInstance<T>::instance = nullptr;
     template <class T>
     CMutexLock CSingleInstance<T>::guard(0);/* NOLINT */
 }

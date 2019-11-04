@@ -22,6 +22,9 @@ namespace app {
         bool onClientRead(int fd,char* buf);
 
         static bool onSend(struct epoll_event event,void* ptr);
+
+        bool stopWorker();
+
         struct protocolStruct{
             int version;
             char proto_tyoe;
