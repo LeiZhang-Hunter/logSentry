@@ -215,24 +215,24 @@ bool FileMonitor::onModify(struct pollfd eventData,void* ptr)
 
             }else if(event->mask & IN_IGNORED)
             {
-                //再次将文件加入监控
-                while(!(monitorFileNode.addMonitor()))
-                {
-                    LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","monitorFileNode->addMonitor error,error path:"<<monitor->monitorPath<<";fd:"<<monitorFileNode.monitor_node.file_fd);
-                    sleep(1);
-                }
-
                 //关闭掉旧的文件描述符，防止描述符泄露
                 if(monitorFileNode.monitor_node.file_fd > 0) {
                     close(monitorFileNode.monitor_node.file_fd);
-                    //删除掉文件描述符
                 }
+
                 //用新的文件句柄,建造一个新的文件句柄
                 monitorFileNode.monitor_node.file_fd = open(monitorFileNode.monitor_node.path,O_RDWR|O_CREAT,S_IRWXU);
                 if(monitorFileNode.monitor_node.file_fd == -1)
                 {
                     LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","open fd error");
                     return false;
+                }
+
+                //再次将文件加入监控
+                while(!(monitorFileNode.addMonitor()))
+                {
+                    LOG_TRACE(LOG_ERROR,false,"FileMonitor::run","monitorFileNode->addMonitor error,error path:"<<monitor->monitorPath<<";fd:"<<monitorFileNode.monitor_node.file_fd);
+                    sleep(1);
                 }
 
                 //更新文件状态
