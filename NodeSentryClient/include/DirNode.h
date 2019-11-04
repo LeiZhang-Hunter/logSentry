@@ -42,7 +42,9 @@ namespace app {
 
         bool deleteFileToPool(const char* name);
         bool addFileToPool(const char* name);
+        //获取文件节点从池子里
         file_dir_data getFileToPool(const char* name);
+        bool setFileNodeLengthByPool(const char* name,size_t length);
     private:
         //目录的文件池
         map<string,file_dir_data>fileDirPool;

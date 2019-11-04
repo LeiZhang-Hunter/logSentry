@@ -99,11 +99,12 @@ bool DirNode::deleteFileToPool(const char* name)
 
 file_dir_data DirNode::getFileToPool(const char* name)
 {
-    map<string ,file_dir_data>::iterator it;
-    for(it=fileDirPool.begin();it!=fileDirPool.end();it++){
-        std::cout<<it->first<<endl;
-    }
     return fileDirPool[name];
+}
+
+bool DirNode::setFileNodeLengthByPool(const char* name,size_t length)
+{
+    return  fileDirPool[name].begin = length;
 }
 
 bool DirNode::addFileToPool(const char* name)

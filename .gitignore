@@ -4,3 +4,4 @@
 /NodeSentryServer/.idea
 /NodeSentryServer/php_errors.log
 /NodeSentryClient/log/*.log
+/NodeSentryWeb/.idea

@@ -247,9 +247,10 @@ bool DirMonitor::onSend(struct epoll_event eventData, void *ptr)
         //申请一个新的结构体
         readLen = file_buffer.st_size-dir_file_node.begin;
 
-
         //给要读的偏移量赋值
         dir_file_node.begin = file_buffer.st_size;
+
+        MonitorDirNode.setFileNodeLengthByPool(event_file_name,dir_file_node.begin);
 
         //计算出偏移了量
         dir_file_node.offset = readLen;
