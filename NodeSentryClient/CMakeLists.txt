@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5.1)
 project(logSentry)
 set(CMAKE_CXX_STANDARD 11)
-#定义php源码路径，这里根据自己的真实路径来更改
+
 # Add -O0 to remove optimizations when using gcc
 IF(CMAKE_COMPILER_IS_GNUCC)
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -pthread")
