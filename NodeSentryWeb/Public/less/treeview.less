@@ -1,0 +1,55 @@
+// treemenu.js
+.treemenu li { list-style: none; }
+.treemenu .toggler {
+  cursor: pointer;
+  display: block;
+  padding: 10px;
+  border-bottom: 1px solid #e7eaec;
+  &:hover{
+    background-color: rgba(0,0,0,0.03);
+  }
+}
+.treemenu .toggler:before {
+  display: inline-block;
+  margin-right: 2pt;
+}
+li.tree-empty > .toggler { color: #aaa; }
+li.tree-empty > .toggler:before { content: "\2212"; }
+li.tree-closed > .toggler:before { content: "+"; }
+li.tree-opened > .toggler:before { content: "\2212"; }
+
+.tree{
+  padding-left: 0;
+  color: @gray;
+  ul{
+    padding-left: 0;
+  }
+  li.menu, li.sub-menu, li.son-menu{
+    display: block;
+    position: relative;
+  }
+  li.sub-menu span{
+    text-indent: 10px;
+  }
+  li a {
+    color: @gray;
+  }
+  // 分类按钮
+  .operat-category, .state-category{
+    position: absolute;
+    right: 0;
+    top: 6px;
+    a{
+      line-height: 25px;
+      padding: 0 10px;
+      color: #fff;
+    }
+  }
+  // 分类状态
+  .state-category{
+    right: 565px;
+    a{
+      color: @brand-success;
+    }
+  }
+}
