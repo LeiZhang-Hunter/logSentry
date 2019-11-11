@@ -19,7 +19,7 @@
                     <h5 class="box-title"><?=$title?></h5>
                     <div class="box-tools">
                         <div class="has-feedback">
-                            <a href="<?=base_url("/Admin/Service/index")?>" class="btn btn-primary btn-sm"><i class="icon-return"></i> 返回</a>
+                            <a href="<?=base_url("/Admin/Client/getList")?>?server_id=<?=(int)$server_id?>" class="btn btn-primary btn-sm"><i class="icon-return"></i> 返回</a>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,6 @@
                                 <label class="col-xs-2 control-label">哨兵名字：</label>
                                 <div class="col-xs-10">
                                     <input  autocomplete="off" id="name" value="<?=isset($info["name"]) ? $info["name"] : ""?>" class="form-control" type="text" placeholder="哨兵名称">
-                                    <i class="icon-shutdown icon-sm form-control-feedback"></i>
                                 </div>
                             </div>
 
@@ -39,11 +38,8 @@
                                 <label class="col-xs-2 control-label">哨兵ip：</label>
                                 <div class="col-xs-10">
                                     <input  autocomplete="off" id="client_ip" value="<?=isset($info["sentry_ip"]) ? $info["sentry_ip"] : ""?>" class="form-control" type="text" placeholder="服务ip地址">
-                                    <i class="icon-shutdown icon-sm form-control-feedback"></i>
                                 </div>
                             </div>
-
-
 
                             <!-- /.box-header -->
                             <div class="form-group box-body no-padding">
@@ -153,10 +149,19 @@
         }
         data.config = json;
 
-        $.post("<?=base_url("/Admin/Service/dealServer")?>",data,function(response){
+        var url = '<?=base_url("/Admin/Client/dealClient")?>';
+
+        var server_id = $.getParam("server_id");
+
+        if(server_id)
+        {
+            url+=("?server_id="+server_id);
+        }
+
+        $.post(url,data,function(response){
             if(+response.code === 0)
             {
-                window.location.href = "<?=base_url("/Admin/Service/index")?>";
+                window.location.href = "<?=base_url("/Admin/Client/getList")?>?server_id="+server_id;
             }else{
                 $.waring(response.response);
                 return false;

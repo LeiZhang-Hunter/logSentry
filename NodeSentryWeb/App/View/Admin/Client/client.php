@@ -13,15 +13,15 @@
     <div class="content-wrapper scroll_bar">
         <div class="content">
             <ol class="breadcrumb">
-                <li><a href="javascript:;"><i class="icon-tools"></i> 服务器管理</a></li>
-                <li class="active">服务器列表</li>
+                <li><a href="javascript:;"><i class="icon-tools"></i> agent管理</a></li>
+                <li class="active">agent管理</li>
             </ol>
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h5 class="box-title">服务器列表(作为服务器验证的凭证)</h5>
+                    <h5 class="box-title">agent管理(agent管理)</h5>
                     <div class="box-tools">
                         <div class="has-feedback">
-                            <a href="<?=base_url("/Admin/Service/addServer")?>" class="btn btn-primary btn-sm"><i class="icon-circle"></i> 添加服务器</a>
+                            <a href="<?=base_url("/Admin/Client/addClient")?>?server_id=<?=isset($_GET["server_id"]) ? get_instance()->input->get("server_id") : 0?>" class="btn btn-primary btn-sm"><i class="icon-circle"></i> 添加哨兵</a>
                         </div>
                     </div>
                 </div>
@@ -49,22 +49,21 @@
                             </tr>
 
                             <?php foreach ($list as $key=>$value){ ?>
-                            <tr>
-                                <td><label> <?=$value["id"]?></label></td>
-                                <td><img width="200" height="100" data-original="img/tibet-1.jpg" src="<?=base_url("/Public/img/temp/server.jpg")?>" alt="图片1"></td>
-                                <td><a href="javascript:;" title="ip地址"><?=$value["name"]?></a> </td>
-                                <td><a href="javascript:;" title="ip地址"><?=$value["sentry_ip"]?></a> </td>
-                                <?php if($value["state"] == 1){ ?>
-                                    <td class="text-center"><a href="javascript:;"><i class="icon-sucess icon-sm font-green"></i></a></td>
-                                <?php }else{ ?>
-                                    <td class="text-center"><a href="javascript:;"><i class="icon-close icon-sm font-red"></i></a></td>
-                                <?php } ?>
-                                <td class="text-center">
-                                    <a class="btn btn-primary btn-sm" href="<?=base_url("/Admin/Client/getList?server_id=".$value["id"])?>" class="btn btn-success btn-sm"><i class="icon-circle"></i> 客户机集群</a>
-                                    <a href="<?=base_url("/Admin/Service/update?id=".$value["id"])?>" class="btn btn-success btn-sm"><i class="icon-tools"></i> 修改</a>
-                                    <a delete_id="<?=$value["id"]?>" href="javascript:;" role="button" class="btn-delete btn btn-danger btn-sm" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-trash"></i> 删除</a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td><label> <?=$value["id"]?></label></td>
+                                    <td><img width="100" height="100" data-original="img/tibet-1.jpg" src="<?=base_url("/Public/img/temp/client.jpg")?>" alt="图片1"></td>
+                                    <td><a href="javascript:;" title="ip地址"><?=$value["name"]?></a> </td>
+                                    <td><a href="javascript:;" title="ip地址"><?=$value["sentry_ip"]?></a> </td>
+                                    <?php if($value["state"] == 1){ ?>
+                                        <td class="text-center"><a href="javascript:;"><i class="icon-sucess icon-sm font-green"></i></a></td>
+                                    <?php }else{ ?>
+                                        <td class="text-center"><a href="javascript:;"><i class="icon-close icon-sm font-red"></i></a></td>
+                                    <?php } ?>
+                                    <td class="text-center">
+                                        <a href="<?=base_url("/Admin/Client/updateClient?id=".$value["id"])."&server_id=".$value["server_id"]?>" class="btn btn-success btn-sm"><i class="icon-tools"></i> 修改</a>
+                                        <a delete_id="<?=$value["id"]?>" href="javascript:;" role="button" class="btn-delete btn btn-danger btn-sm" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-trash"></i> 删除</a>
+                                    </td>
+                                </tr>
                             <?php } ?>
 
 
@@ -76,9 +75,9 @@
                 </div>
                 <div class="box-footer clearfix">
                     <!-- Check all button -->
-<!--                    <div class="btn-group" role="group">-->
-<!--                        <a href="javascript:;" class="btn btn-danger btn-sm">批量删除</a>-->
-<!--                    </div>-->
+                    <!--                    <div class="btn-group" role="group">-->
+                    <!--                        <a href="javascript:;" class="btn btn-danger btn-sm">批量删除</a>-->
+                    <!--                    </div>-->
                     <!--<ul class="pagination pagination-sm no-margin pull-right">-->
                     <!--<li class="disabled"><a href="javascript:;" aria-label="Previous"><span aria-hidden="true"><i class="icon-arrow-left"></i></span></a></li>-->
                     <!--<li class="active"><a href="javascript:;">1 <span class="sr-only">(current)</span></a></li>-->

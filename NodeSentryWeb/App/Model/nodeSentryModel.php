@@ -8,21 +8,51 @@
 class nodeSentryModel extends Model{
     public $table = "node_sentry";
 
-    const F_id="id",F_open_state="open_state";
+    const F_id="id",F_open_state="open_state",F_state = "state",F_type="type",F_server_id="server_id";
 
     const F_open=1,F_close=0;
 
+    const F_client = 0,F_server=1;
+
+    const F_type_arr = [
+        1=>"日志哨兵",
+    ];
+
     /**
      * 根据server_id获取哨兵的配置信息
-     * @param $server_id
+     * @param $sentry_id
      * @return array
      */
-    public function getSentryInfoBySentryId($server_id)
+    public function getSentryInfoBySentryId($sentry_id)
+    {
+        if(!$sentry_id)
+        {
+            return [];
+        }
+
+        try {
+            $res = $this->where(self::F_id, $sentry_id)->where(self::F_state,1)->getInfo();
+        }catch (\Exception $exception)
+        {
+            return [];
+        }
+        return $res ? $res : [];
+    }
+
+    public function getListByServerId($server_id)
     {
         if(!$server_id)
         {
             return [];
         }
+
+        try {
+            $res = $this->where(self::F_server_id, $server_id)->where(self::F_state,1)->search();
+        }catch (\Exception $exception)
+        {
+            return [];
+        }
+        return $res ? $res : [];
     }
 
     //改变哨兵的状态
@@ -63,5 +93,9 @@ class nodeSentryModel extends Model{
         return $result;
     }
 
-
+    //制作token
+    public function makeToken()
+    {
+        return md5(uniqid());
+    }
 }

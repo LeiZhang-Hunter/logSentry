@@ -97,7 +97,7 @@ class FactoryController extends Container {
         }
     }
 
-    public function changeData($model,$message)
+    public function changeData($model,$message,$save_data = [])
     {
         $data = $this->input->post();
         if(!$data)
@@ -122,8 +122,15 @@ class FactoryController extends Container {
             unset($data["id"]);
         }
 
-        $this->load->model($model);
+        if($save_data && is_array($save_data))
+        {
+            foreach ($save_data as $key=>$value)
+            {
+                $data[$key] = $value;
+            }
+        }
 
+        $this->load->model($model);
         if($id) {
             $result = $this->$model->where('id',$id)->modify($data);
         }else{
