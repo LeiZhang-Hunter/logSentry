@@ -8,7 +8,7 @@
 return [
     'user'=>'chelun',
     'pass'=>'chelun',
-    'host'=>'10.10.1.23',
+    'host'=>'127.0.0.1',
     'port'=>'3306',
     'dbname'=>'syslog',
     'charset'=>'utf8',

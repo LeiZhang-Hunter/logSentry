@@ -91,4 +91,25 @@ class Client extends BaseController {
             "type"=>nodeSentryModel::F_client
         ]);
     }
+
+    /**
+     * 监控列表
+     */
+    public function monitorList()
+    {
+        $server_id = $this->input->get("server_id");
+        $id = $this->input->get("id");
+        $info = $this->nodeSentryModel->getSentryInfoBySentryId($id);
+        $config = [];
+        if($info)
+        {
+            $config = $info["config"];
+            $config = json_decode($config,1) ?? [];
+        }
+        $this->loadView->display("Admin/Client/monitor",[
+            "server_id"=>$server_id,
+            "id"=>$id,
+            "config"=>$config
+        ]);
+    }
 }

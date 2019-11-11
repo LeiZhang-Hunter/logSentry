@@ -27,12 +27,12 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Main Header -->
 <div id="header">
-    <?php include __VIEW__ . "header.php"; ?>
+    <?php include __VIEW__ . "Admin/header.php"; ?>
 </div>
 <div class="wrapper">
     <!-- Left side column. contains the logo and sidebar -->
     <div id="left">
-        <?php include __VIEW__ . "left.php"; ?>
+        <?php include __VIEW__ . "Admin/left.php"; ?>
     </div>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper scroll_bar order-detail">

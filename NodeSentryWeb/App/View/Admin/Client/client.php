@@ -60,7 +60,15 @@
                                         <td class="text-center"><a href="javascript:;"><i class="icon-close icon-sm font-red"></i></a></td>
                                     <?php } ?>
                                     <td class="text-center">
+                                        <a href="<?=base_url("/Admin/Client/monitorList?id=".$value["id"])."&server_id=".$value["server_id"]?>" class="btn btn-primary btn-sm">
+                                            <i class="icon-circle"></i>
+                                            监控列表
+                                        </a>
                                         <a href="<?=base_url("/Admin/Client/updateClient?id=".$value["id"])."&server_id=".$value["server_id"]?>" class="btn btn-success btn-sm"><i class="icon-tools"></i> 修改</a>
+                                        <a href="<?=base_url("/Admin/Client/updateClient?id=".$value["id"])."&server_id=".$value["server_id"]?>" class="btn btn-primary btn-sm">
+                                            <i class="icon-circle"></i>
+                                            实时查看
+                                        </a>
                                         <a delete_id="<?=$value["id"]?>" href="javascript:;" role="button" class="btn-delete btn btn-danger btn-sm" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-trash"></i> 删除</a>
                                     </td>
                                 </tr>
