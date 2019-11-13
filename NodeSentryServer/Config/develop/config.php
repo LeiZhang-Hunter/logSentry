@@ -22,11 +22,15 @@ return [
     ConfigStruct::S_DAEMON=>false,
     //"pid_file"=>__ROOT__."/Proc/server.pid",
     ConfigStruct::S_LOG_FILE=>__ROOT__."/Log/swoole.log",
+    ConfigStruct::SEN_LOG_FILE=>__ROOT__."/Log/",
     ConfigStruct::S_FILE_PRO_OBJECT=>[
         \Structural\System\SwooleProtocol::TCP_PROTOCOL=>[
             "file"=>[
                 "php-fom.log"=>\Library\LogProtocol\PHPErrorLog::class
-            ]
+            ],
+            "dir"=>[
+                "/home/zhanglei/data/test2"=>\Library\LogProtocol\PHPErrorLog::class
+            ],
         ]
     ]
 ];

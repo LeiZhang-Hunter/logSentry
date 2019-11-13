@@ -15,23 +15,15 @@ $result = $es->createIndex("syslog","syslog",[
         "type" => "long",
         "store" => false,
     ],
-    "project_id"=>[
+    "sentry_type"=>[
         "type" => "integer",
         "store" => false
     ],
-    "facility"=>[
-        "type" => "integer",
-        "store" => false
-    ],
-    "server_ip"=>[
+    "sentry_file"=>[
         "type" => "keyword",
         "store" => false
     ],
-    "level"=>[
-        "type" => "integer",
-        "store" => false
-    ],
-    "hostname"=>[
+    "client_ip"=>[
         "type" => "keyword",
         "store" => false
     ],

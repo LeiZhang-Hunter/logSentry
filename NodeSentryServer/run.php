@@ -22,6 +22,9 @@ foreach ($server_list as $server)
 $sys_socket->regBeforeHook(function () use ($config_instance){
     //注入配置文件
     $this->config = $config_instance;
+    //注入日志
+    $logger = new Library\Logger\Logger();
+    $this->setLogger($logger);
     //加入常用的命令，在运行程序前加入start stop 和 reload 将进程服务化
     global $argv;
 

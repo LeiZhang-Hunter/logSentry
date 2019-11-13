@@ -17,5 +17,6 @@ class ConfigStruct{
     const S_TASK_WORKER_NUM = "task_worker_num";
     const S_DAEMON = "daemonize";
     const S_LOG_FILE = "log_file";
+    const SEN_LOG_FILE = "sentry_log_file";
     const S_FILE_PRO_OBJECT = "file_protocol_object";
 }

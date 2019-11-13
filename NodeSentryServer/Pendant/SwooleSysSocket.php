@@ -8,6 +8,7 @@
  */
 namespace Pendant;
 
+use Library\Logger\Logger;
 use Structural\System\ConfigStruct;
 use Structural\System\EventStruct;
 use Structural\System\SwooleProtocol;
@@ -45,9 +46,30 @@ class SwooleSysSocket{
 
     private $monitor_list = [];
 
+    /**
+     * @var Logger
+     */
+    public $logger;
+
 
     public function __construct()
     {
+    }
+
+    /**
+     * @param Logger $instance
+     */
+    public function setLogger(Logger $instance)
+    {
+        $this->logger = $instance;
+    }
+
+    /**
+     * @return Logger
+     */
+    public function getLogger()
+    {
+        return $this->logger;
     }
 
     /**
@@ -77,6 +99,7 @@ class SwooleSysSocket{
 
     /**
      * Description:获取系统实例
+     * @return SwooleSysSocket
      */
     public static function getInstance()
     {

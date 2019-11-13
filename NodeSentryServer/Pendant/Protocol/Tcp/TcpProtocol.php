@@ -7,11 +7,13 @@
  * Time: 16:18
  */
 namespace Pendant\Protocol\Tcp;
+use Library\Logger\Logger;
 use Pendant\ProtoInterface\ProtoServer;
 use Pendant\SwooleSysSocket;
 use Pendant\SysFactory;
 use Structural\System\ConfigStruct;
 use Structural\System\EventStruct;
+use Structural\System\OnEventTcpStruct;
 use Structural\System\SwooleProtocol;
 
 class TcpProtocol implements ProtoServer{
@@ -43,11 +45,19 @@ class TcpProtocol implements ProtoServer{
     //控制器
     private $controller;
 
+    /**
+     * @var Logger
+     */
+    private $logger;
+
+
+
 
     public function __construct()
     {
 
         $this->controller = SysFactory::getInstance()->getServerController(self::protocol_type);
+        $this->logger = SwooleSysSocket::getInstance()->getLogger();
     }
 
 
@@ -57,11 +67,13 @@ class TcpProtocol implements ProtoServer{
         $server = $args[0];
         $worker_id = $args[1];
         if($worker_id >= $server->setting[ConfigStruct::S_WORKER_NUM]) {
-            $callfunc = [$this->controller,"OnWorkerStart"];
+            $callfunc = [$this->controller,EventStruct::OnWorkerStart];
             if(is_callable($callfunc)) {
 
                 //从配置文件中获取实例的静态
                 call_user_func_array($callfunc, [$server]);
+            }else{
+                $this->logger->trace(Logger::LOG_ERROR,self::class,OnEventTcpStruct::ON_bindWorkerStart,"[controller[".self::protocol_type."]->".EventStruct::OnWorkerStart."] is not callable");
             }
         }
 
@@ -79,14 +91,18 @@ class TcpProtocol implements ProtoServer{
 
             //从配置文件中获取实例的静态
             call_user_func_array($callfunc, [$data]);
+        }else{
+            $this->logger->trace(Logger::LOG_ERROR,self::class,OnEventTcpStruct::ON_bindTask,"[controller[".self::protocol_type."]->".EventStruct::OnReceive."] is not callable");
         }
 
     }
 
     private function closeClient($fd)
     {
+        $fdinfo = SwooleSysSocket::$swoole_server->getClientInfo($fd);
         SwooleSysSocket::$swoole_server->close($fd);
         $this->buffer[$fd] = "";
+        $this->logger->trace(Logger::LOG_WARING,self::class,"closeClient","[".self::class."->"."closeClient"."] is closed;remote ip:".$fdinfo["remote_ip"].";remote port:".$fdinfo["remote_port"]);
         return true;
     }
 
@@ -120,7 +136,7 @@ class TcpProtocol implements ProtoServer{
             if($leftLen < 8)
             {
                 $this->buffer[$fd] = $packData;
-                echo "$leftLen is much small\n";
+                $this->logger->trace(Logger::LOG_WARING,self::class,"bindReceive","[".self::class."->"."bindReceive"."] recv bytes is small;len:$dataLen");
                 return true;
             }
 
@@ -195,6 +211,9 @@ class TcpProtocol implements ProtoServer{
 
                 //将buffer下方到task
                 $task_worker_id = SysFactory::getInstance()->getTaskWorkerNumber();
+                //获取客户端的ip并且放入结果集
+                $fdInfo = SwooleSysSocket::$swoole_server->getClientInfo($fd);
+                $buffer["client_ip"] = $fdInfo["remote_ip"];
                 SwooleSysSocket::$swoole_server->task($buffer,$fd%$task_worker_id);
             }
 

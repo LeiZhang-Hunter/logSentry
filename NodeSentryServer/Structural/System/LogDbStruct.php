@@ -8,9 +8,12 @@
 namespace Structural\System;
 
 class LogDbStruct{
+    const Client_ip = "client_ip";
+    const Sentry_type = "sentry_type";
+    const Sentry_file = "sentry_file";
     const Body = "body";
     const Created_time="created_time";
-    const File_name = "file_name";
+    const File = "file";
     const Happen_time = "happen_time";
     const C_time = "ctime";
     const Project_id = "project_id";
