@@ -6,6 +6,7 @@
  * Date: 2018/12/18
  * Time: 16:53
  */
+define("ENV","develop");
 include_once "../autoload.php";
 
 $es = new \Vendor\ES(\Pendant\SysConfig::getInstance()->getSysConfig("es"));
