@@ -115,7 +115,7 @@ void DirMonitor::run()
         //创建工作线程用来处理变化
         worker_object = new DirMonitorWorker(mContent["server"],MonitorDirNode.monitor_node.pipe_collect[workerNum][0]);
 //        worker_object->SetDaemonize();
-        worker_object->dirMonitorName = getNotifyPath();
+        worker_object->dirMonitorName = getFileName();
         worker_object->Start();
         temp_pool[workerNum] = worker_object;
     }

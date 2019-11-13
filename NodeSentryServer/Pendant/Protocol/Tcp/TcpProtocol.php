@@ -209,12 +209,14 @@ class TcpProtocol implements ProtoServer{
                 //解析buffer数据
                 $buffer = json_decode($body,1);
 
-                //将buffer下方到task
-                $task_worker_id = SysFactory::getInstance()->getTaskWorkerNumber();
-                //获取客户端的ip并且放入结果集
-                $fdInfo = SwooleSysSocket::$swoole_server->getClientInfo($fd);
-                $buffer["client_ip"] = $fdInfo["remote_ip"];
-                SwooleSysSocket::$swoole_server->task($buffer,$fd%$task_worker_id);
+                if($buffer) {
+                    //将buffer下方到task
+                    $task_worker_id = SysFactory::getInstance()->getTaskWorkerNumber();
+                    //获取客户端的ip并且放入结果集
+                    $fdInfo = SwooleSysSocket::$swoole_server->getClientInfo($fd);
+                    $buffer["client_ip"] = $fdInfo["remote_ip"];
+                    SwooleSysSocket::$swoole_server->task($buffer, $fd % $task_worker_id);
+                }
             }
 
 

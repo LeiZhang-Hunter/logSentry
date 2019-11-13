@@ -162,7 +162,7 @@ void FileMonitorWorker::onPipe(int fd, char *buf,ssize_t len) {
             //进行协议封装
             Json::Value proto_builder;
             proto_builder["type"] = "sentry-log";
-            proto_builder["file_name"] = filePath.c_str();
+            proto_builder["file_name"] = fileName.c_str();
             proto_builder["buf_body"] = read_buf;
             proto_builder["monitor_type"] = "file";
             proto_builder["time"] = os->getUnixTime();
