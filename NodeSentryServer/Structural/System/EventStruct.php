@@ -17,7 +17,7 @@ class EventStruct{
 
     const OnReceive = "onReceive";
 
-    const OnWorkerStart = "onWorkStart";
+    const OnWorkerStart = "onWorkerStart";
 
     public static $collect = [
         SwooleProtocol::TCP_PROTOCOL=>[

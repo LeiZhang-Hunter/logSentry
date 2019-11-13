@@ -123,7 +123,7 @@ class LogSentryController{
                         $logUnit[LogDbStruct::Sentry_type] = $sentry_type;
                         $logUnit[LogDbStruct::Sentry_file] = md5($save_file);//md5编码方便查询
                         $logUnit[LogDbStruct::Client_ip] = $content[LogDbStruct::Client_ip];
-                        $logUnit[LogDbStruct::Happen_time] = date("Y-m-d H:i",$tick_time);
+                        $logUnit[LogDbStruct::Happen_time] = $tick_time;
                         $logUnit[LogDbStruct::Body] = htmlspecialchars(addslashes($dataUnit));//内容
                         $logUnit[LogDbStruct::Php_error_level] = $error_key;//php报错级别
                         $logUnit[LogDbStruct::Created_time] = time();
@@ -138,6 +138,11 @@ class LogSentryController{
                             if(($res = $this->es->client->index($logUnit,$insertId)))
                             {
                                 //如果说es写入失败记录下日志
+                                if(isset($res["error"]))
+                                {
+                                    $msg = isset($res["error"]["reason"]) ? $res["error"]["reason"] : "";
+                                    $this->logger->trace(Logger::LOG_ERROR,"LogSentryController","onReceive","elasticSearch error:".$msg.";data:".json_encode($logUnit));
+                                }
                             }
 
                         }else{
