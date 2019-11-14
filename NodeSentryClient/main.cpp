@@ -7,9 +7,6 @@ using namespace app;
 
 int main(int argc,char** argv)
 {
-
-
-
     int opt;
     while ((opt = getopt(argc, argv, "c"))!= -1)
     {

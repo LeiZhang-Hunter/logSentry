@@ -83,7 +83,11 @@ int CProcess::createProcess()
     if(pid == 0)
     {
         this->run();
-        exit(0);
+        //_exit(0);
+        //我们在这里使用的是_exit(0),而没有使用exit（0）,第一版使用的是exit(0)
+        //因为exit会触发atexit函数，会导致返回值被掉包
+        //子进程的io缓冲被刷出也容易出现问题所以exit换成了_exit(0)
+        _exit(0);
     }
 
     return 0;

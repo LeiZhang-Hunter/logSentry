@@ -27,17 +27,16 @@ bool service::CIniFileConfig::readConfig(string &filename) {
     struct unit un;
     while ((readLine(fileFd, buf, 1024 * 8))) {
         len = strlen(buf);
-
         if(len>0)
         {
             config_buffer = buf;
+
             //#号开头代表注释
             if(config_buffer[0] != '#' && config_buffer[0] != ';') {
                 if (config_buffer.find('[') == 0 && config_buffer.find(']') == len - 1) {
                     //解析出他的值
                     section = config_buffer.substr(1, len - 2);
                 } else if (config_buffer.find('=') != string::npos) {
-
                     un.key = config_buffer.substr(0, config_buffer.find('='));
                     un.value = config_buffer.substr(config_buffer.find('=') + 1);
                     mContent[section].insert(map<string,  string>::value_type(un.key,un.value));
@@ -84,5 +83,5 @@ ssize_t service::CIniFileConfig::readLine(int fd, char *buf, size_t maxLine) {
         }
     }
 
-    return 0;
+    return n;
 }
