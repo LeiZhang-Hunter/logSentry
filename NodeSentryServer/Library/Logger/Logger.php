@@ -29,6 +29,8 @@ class Logger{
     {
         $date = date("Y-m-d H:i:s",time());
 
+        $log = ";file:$file;line:$line";
+
         $msg = "[$date] $level $class->$method --$log--\n";
 
         $dateExt = date("Ymd",time());

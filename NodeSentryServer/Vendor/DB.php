@@ -1,6 +1,9 @@
 <?php
 namespace Vendor;
 
+use Library\Logger\Logger;
+use Pendant\SwooleSysSocket;
+
 /**
  * Created by PhpStorm.
  * User: YD-YF-20150908004-1
@@ -55,16 +58,37 @@ class DB
      */
     public function query($sql, array $params = [])
     {
+        $queryCount = 0;
+        goQuery:
         $this->pdoStatement = $this->pdoObject->prepare($sql);
+
+        if(false === $this->pdoStatement)
+        {
+            if($queryCount < 5) {
+                unset($this->pdoObject);
+                $this->pdoObject = null;
+                $this->connect();
+                SwooleSysSocket::getInstance()->logger->trace(Logger::LOG_ERROR, "Pdo", "query", "mysql errorno:" . $this->pdoStatement->errorCode() . ";errormsg:" . $this->getLastError());
+                sleep(5);
+                $queryCount++;
+                goto goQuery;
+            }
+        }
         $this->paramWhere = [];
+        goExecute:
+        $executeCount = 0;
         $result = $this->pdoStatement->execute($params);
         //如果mysql线程长期不活跃，可能处于自动关闭状态，我们要对错误码进行判断
-        $errcode = $this->pdoStatement->errorCode();
-        if(!$result &&  ($errcode == 2006 || $errcode == 2013))
+        if($result === false)
         {
-            if(!$this->connect())
-            {
-                throw new \Exception("mysql connect error\n");
+            if($executeCount < 5) {
+                unset($this->pdoObject);
+                $this->pdoObject = null;
+                if (!$this->connect()) {
+                    sleep(5);
+                    SwooleSysSocket::getInstance()->logger->trace(Logger::LOG_ERROR, "Pdo", "query", "mysql errorno:" . $this->pdoStatement->errorCode() . ";errormsg:" . $this->getLastError());
+                    goto goExecute;
+                }
             }
             $this->query($sql,$params);
         }
@@ -112,6 +136,11 @@ class DB
     public function getLastError()
     {
         return $this->pdoStatement ? $this->pdoStatement->errorInfo()[2] : false;
+    }
+
+    public function getLastErrorCode()
+    {
+        return $this->pdoStatement ? $this->pdoStatement->errorCode() : false;
     }
 
     protected function getAffectRows()
