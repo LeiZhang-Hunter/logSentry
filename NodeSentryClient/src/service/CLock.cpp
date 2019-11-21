@@ -26,12 +26,33 @@ CMutexLock::CMutexLock(uint8_t shared_flag)
 
 //加锁
 int CMutexLock::lock() {
-    return pthread_mutex_lock(&c_mutex);
+    while (1) {
+        //防止死锁
+        int res = pthread_mutex_lock(&c_mutex);
+        if(res == 0)
+        {
+            break;
+        }
+        sleep(1);
+        LOG_TRACE(LOG_WARING,FALSE,"CMutexLock::lock","lock failed");
+    }
+    return 0;
 }
 
 //解锁
 int CMutexLock::unLock() {
-    return pthread_mutex_unlock(&c_mutex);
+    int res;
+    while(1) {
+        //防止死锁
+        res = pthread_mutex_unlock(&c_mutex);
+        if(res == 0)
+        {
+            break;
+        }
+        LOG_TRACE(LOG_WARING,FALSE,"CMutexLock::unLock","unlock failed");
+        sleep(1);
+    }
+    return res;
 }
 
 //析构函数
