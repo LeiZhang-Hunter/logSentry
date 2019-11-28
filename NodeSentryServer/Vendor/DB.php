@@ -175,7 +175,7 @@ class DB
         return $this->query($sql);
     }
 
-    protected function update($tableName, array $datas)
+    public function update($tableName, array $datas)
     {
         $sqlDatas = [];
         foreach ($datas as $dataKey => $dataVal) {

@@ -8,6 +8,7 @@
 namespace Structural\System;
 
 class LogDbStruct{
+    const Id = "id";
     const Client_ip = "client_ip";
     const Sentry_type = "sentry_type";
     const Sentry_file = "sentry_file";
@@ -22,4 +23,5 @@ class LogDbStruct{
     const Php_error_level = "php_error_level";
     const Level = "level";
     const Body_token = "body_token";
+    const Deal_state = "deal_state";
 }
