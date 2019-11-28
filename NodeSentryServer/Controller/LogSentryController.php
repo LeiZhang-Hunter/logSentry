@@ -56,25 +56,22 @@ class LogSentryController{
         $this->db = new DB(SysConfig::getInstance()->getSysConfig("db"));
         $this->es = new ES(SysConfig::getInstance()->getSysConfig("es"));
         $this->logger = SwooleSysSocket::getInstance()->getLogger();
+
+        //循环触发钩子
+        foreach ($this->protocolHandle as $protocolParseList)
+        {
+            foreach ($protocolParseList as $protocol)
+            {
+                call_user_func_array([$protocol,"ModuleInit"],[$this->logger,$this->db,$this->es]);
+            }
+        }
     }
 
+    //收到数据的时候触发
     public function onReceive($content)
     {
         //监控发送数据类型
         $monitor_type = $content[LogSentryStruct::Monitor_type];
-
-
-        $buffer = $content[LogSentryStruct::Buf_body];
-
-        //上报事件
-        $tick_time = $content[LogSentryStruct::Time];
-
-        $data = [];
-
-        $save_file = "";
-
-        //日志哨兵类型
-        $sentry_type = 0;
 
         switch ($monitor_type)
         {
@@ -83,78 +80,24 @@ class LogSentryController{
                 $monitor_file = $content[LogSentryStruct::File_name];
                 $sentry_type = 0;
                 $data[LogSentryStruct::Monitor_type] = LogSentryStruct::Monitor_file;
-                $data = call_user_func_array([$this->protocolHandle[$monitor_type][$monitor_file],LogProtocol::Parse],[$buffer]);
-                $save_file = $monitor_file;
+                if(!isset($this->protocolHandle[$monitor_type][$monitor_file]))
+                {
+                    $this->logger->trace(Logger::LOG_WARING,"LogSentryController","onReceive","this->protocolHandle[$monitor_type][$monitor_file] not set");
+                    break;
+                }
+                call_user_func_array([$this->protocolHandle[$monitor_type][$monitor_file],LogProtocol::Parse],[$content,$sentry_type]);
                 break;
             case LogSentryStruct::Monitor_dir:
                 $monitor_dir = $content[LogSentryStruct::Dir_name];
                 $sentry_type = 1;
                 $data[LogSentryStruct::Monitor_type] = LogSentryStruct::Monitor_dir;
-                $data = call_user_func_array([$this->protocolHandle[$monitor_type][$monitor_dir],LogProtocol::Parse],[$buffer]);
-                $save_file = $monitor_dir;
-                break;
-        }
-
-        if(!$data)
-        {
-            $this->logger->trace(Logger::LOG_WARING,self::class,"onReceive","buffer type [$monitor_type] error");
-            return false;
-        }
-
-        if(!$save_file)
-        {
-            $this->logger->trace(Logger::LOG_WARING,self::class,"onReceive","log file [$save_file] error");
-            return false;
-        }
-
-
-        //循环内容
-        foreach ($data as $dataUnit)
-        {
-            if($dataUnit) {
-                /**
-                 * 过滤php错误级别
-                 */
-                foreach (PHPErrorLog::$php_error as $error_key=>$error_value)
+                if(!isset($this->protocolHandle[$monitor_type][$monitor_dir]))
                 {
-                    if(strpos($dataUnit,($error_value)) !== false)
-                    {
-                        $logUnit = [];
-                        $logUnit[LogDbStruct::Sentry_type] = $sentry_type;
-                        $logUnit[LogDbStruct::Sentry_file] = md5($save_file);//md5编码方便查询
-                        $logUnit[LogDbStruct::Client_ip] = $content[LogDbStruct::Client_ip];
-                        $logUnit[LogDbStruct::Happen_time] = $tick_time;
-                        $logUnit[LogDbStruct::Body] = htmlspecialchars(addslashes($dataUnit));//内容
-                        $logUnit[LogDbStruct::Php_error_level] = $error_key;//php报错级别
-                        $logUnit[LogDbStruct::Created_time] = time();
-                        $logUnit[LogDbStruct::State] = 1;//正常状态
-                        $logUnit[LogDbStruct::Type] = 1;//级别为php日志
-                        if(($res = $this->db->insert("sys_syslog",$logUnit)) !== false){
-
-                            //获取最后插入的id 然后放入es 中这里是原子操作不需要担心安全问题
-                            $insertId = $this->db->getLastInsertId();
-                            $logUnit["sys_id"] = (int)$insertId;
-                            //存入es
-                            if(($res = $this->es->client->index($logUnit,$insertId)))
-                            {
-                                //如果说es写入失败记录下日志
-                                if(isset($res["error"]))
-                                {
-                                    $msg = isset($res["error"]["reason"]) ? $res["error"]["reason"] : "";
-                                    $this->logger->trace(Logger::LOG_ERROR,"LogSentryController","onReceive","elasticSearch error:".$msg.";data:".json_encode($logUnit));
-                                }
-                            }
-
-                        }else{
-                            $this->logger->trace(Logger::LOG_WARING,"LogSentryController","onReceive","mysql error:".$this->db->getLastError().";data:".json_encode($logUnit));
-                        }
-
-
-                        break;
-                    }
-
+                    $this->logger->trace(Logger::LOG_WARING,"LogSentryController","onReceive","this->protocolHandle[$monitor_type][$monitor_dir] not set");
+                    break;
                 }
-            }
+                call_user_func_array([$this->protocolHandle[$monitor_type][$monitor_dir],LogProtocol::Parse],[$content,$sentry_type]);
+                break;
         }
         return;
     }

@@ -29,7 +29,7 @@ return [
                 "php-fom.log"=>\Library\LogProtocol\PHPErrorLog::class
             ],
             "dir"=>[
-                "/home/zhanglei/data/test2"=>\Library\LogProtocol\PHPErrorLog::class
+                "dir1"=>\Library\LogProtocol\NginxLog::class
             ],
         ]
     ]

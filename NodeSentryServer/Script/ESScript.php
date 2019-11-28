@@ -24,6 +24,10 @@ $result = $es->createIndex("syslog","syslog",[
         "type" => "keyword",
         "store" => false
     ],
+    "body_token"=>[
+        "type" => "keyword",
+        "store" => false,
+    ],
     "client_ip"=>[
         "type" => "keyword",
         "store" => false

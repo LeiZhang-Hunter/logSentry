@@ -81,16 +81,21 @@ class DB
         //如果mysql线程长期不活跃，可能处于自动关闭状态，我们要对错误码进行判断
         if($result === false)
         {
-            if($executeCount < 5) {
-                unset($this->pdoObject);
-                $this->pdoObject = null;
-                if (!$this->connect()) {
-                    sleep(5);
-                    SwooleSysSocket::getInstance()->logger->trace(Logger::LOG_ERROR, "Pdo", "query", "mysql errorno:" . $this->pdoStatement->errorCode() . ";errormsg:" . $this->getLastError());
-                    goto goExecute;
+            $errCode = $this->pdoStatement->errorCode();
+            if($errCode == "HY000") {
+                if ($executeCount < 5) {
+                    unset($this->pdoObject);
+                    $this->pdoObject = null;
+                    if (!$this->connect()) {
+                        sleep(5);
+                        SwooleSysSocket::getInstance()->logger->trace(Logger::LOG_ERROR, "Pdo", "query", "mysql errorno:" . $this->pdoStatement->errorCode() . ";errormsg:" . $this->getLastError());
+                        goto goExecute;
+                    }
+                    $this->query($sql, $params);
+                }else{
+                    return $result;
                 }
             }
-            $this->query($sql,$params);
         }
         return $result;
     }

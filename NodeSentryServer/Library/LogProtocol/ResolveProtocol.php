@@ -8,6 +8,6 @@
 namespace Library\LogProtocol;
 interface ResolveProtocol{
 
-    public static function parse($protocolText);
+    public static function parse($protocolText,$sentry_type);
 
 }

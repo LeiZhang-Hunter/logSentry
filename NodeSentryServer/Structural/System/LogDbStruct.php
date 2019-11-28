@@ -21,4 +21,5 @@ class LogDbStruct{
     const Type = "type";
     const Php_error_level = "php_error_level";
     const Level = "level";
+    const Body_token = "body_token";
 }
