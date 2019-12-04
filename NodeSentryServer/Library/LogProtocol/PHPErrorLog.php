@@ -70,6 +70,8 @@ class PHPErrorLog implements ResolveProtocol {
             return false;
         }
 
+        $sentry_token = md5($monitor_file);
+
 
         //循环内容
         foreach ($data as $dataUnit)
@@ -126,12 +128,12 @@ class PHPErrorLog implements ResolveProtocol {
                         {
                             $logUnit = [];
                             $logUnit[LogDbStruct::Sentry_type] = $sentry_type;
-                            $logUnit[LogDbStruct::Sentry_file] = md5($monitor_file);//md5编码方便查询
+                            $logUnit[LogDbStruct::Sentry_file] = $sentry_token;//md5编码方便查询
                             $logUnit[LogDbStruct::Client_ip] = $bufferInfo[LogDbStruct::Client_ip];
                             $logUnit[LogDbStruct::Happen_time] = $bufferInfo[LogSentryStruct::Time];
                             $logUnit[LogDbStruct::Body] = htmlspecialchars(addslashes($dataUnit));//内容
                             $logUnit[LogDbStruct::Php_error_level] = $error_key;//php报错级别
-                            $logUnit[LogDbStruct::Body_token] = md5($main_body);
+                            $logUnit[LogDbStruct::Body_token] = $main_token;
                             $logUnit[LogDbStruct::Created_time] = time();
                             $logUnit[LogDbStruct::State] = 1;//正常状态
                             $logUnit[LogDbStruct::Type] = 1;//级别为php日志
@@ -170,6 +172,8 @@ class PHPErrorLog implements ResolveProtocol {
                     }
 
                     //更新es库
+                    $info[LogDbStruct::Sentry_file] = $sentry_token;
+                    $info["sys_id"] = $info["id"];
                     $info[LogDbStruct::Happen_time] = time();
                     $info[LogDbStruct::Deal_state] = 1;
                     self::$es->client->index($info,$info[LogDbStruct::Id]);
