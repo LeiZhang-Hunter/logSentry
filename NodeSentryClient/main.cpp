@@ -24,7 +24,6 @@ int main(int argc,char** argv)
     }else{
         path = (DEFAULT_CONFIG_DIR);
     }
-
     //运行入口函数创建进程
     MainCenter* main_instance = CSingleInstance<MainCenter>::getInstance();
     main_instance->init(path);

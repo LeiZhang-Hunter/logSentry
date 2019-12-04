@@ -26,6 +26,7 @@ namespace app {
         int pipe;
         int client_fd;
         string dirMonitorName;
+        string monitorDir;
     private:
         map<string,string>netConfig;
 

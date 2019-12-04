@@ -10,7 +10,6 @@
 #include "MainService.h"
 #include <sys/inotify.h>
 #include <sys/stat.h>
-#include <limits.h>
 #include <sys/prctl.h>
 #include <malloc.h>
 #include <dirent.h>

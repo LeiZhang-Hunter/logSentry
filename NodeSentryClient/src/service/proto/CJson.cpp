@@ -6,13 +6,10 @@
 
 using namespace service;
 
-CJson::CJson()
-{
-
-}
-
-const char* CJson::jsonDecode() {
-
+Value CJson::jsonDecode(string strJsonMess) {
+//    Json::Reader jsonReader;
+//    Json::Value parseValue;
+//    jsonReader.parse(strJsonMess,parseValue);
 }
 
 //压缩数据
@@ -26,9 +23,3 @@ String CJson::jsonEncode(Value proto_value){
     return json_string;
 }
 
-void CJson::release() {
-
-}
-
-CJson::~CJson() {
-}

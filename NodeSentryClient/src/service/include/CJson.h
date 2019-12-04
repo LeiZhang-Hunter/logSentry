@@ -10,12 +10,8 @@ using namespace Json;
 namespace service {
     class CJson {
     public:
-        CJson();
-        ~CJson();
-        static const char* jsonDecode();
+        Value jsonDecode(string strJsonMess);
         String jsonEncode(Value proto_value);
-        void release();
-        char* jsonBuffer;
     };
 }
 

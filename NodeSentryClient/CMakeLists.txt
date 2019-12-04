@@ -28,5 +28,5 @@ set(SOURCE_FILES main.cpp)
 add_executable(logSentry ${SOURCE_FILES})
 #CFLAGS='-g -O0'
 #进行动态库连接
-TARGET_LINK_LIBRARIES(logSentry app vendor service pthread)
+TARGET_LINK_LIBRARIES(logSentry app vendor service pthread curl)
 

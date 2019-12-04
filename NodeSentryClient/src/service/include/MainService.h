@@ -24,15 +24,19 @@
 #else
 #include <sys/poll.h>
 #endif
-#include <sys/time.h>
+#include <ctime>
 #include <sys/resource.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <limits.h>
+#include <climits>
 #include <sys/stat.h>
 
 #ifndef LOGSENTRY_CSTRINGBUFFER_H
 #include "CStringBuffer.h"
+#endif
+
+#ifndef LOGSENTRY_CCURL_H
+#include "CCurl.h"
 #endif
 
 //自己的组件库
