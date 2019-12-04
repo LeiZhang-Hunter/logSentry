@@ -26,10 +26,16 @@ return [
     ConfigStruct::S_FILE_PRO_OBJECT=>[
         \Structural\System\SwooleProtocol::TCP_PROTOCOL=>[
             "file"=>[
-                "php-fom.log"=>\Library\LogProtocol\PHPErrorLog::class
+                "php-fom.log"=>[
+                    "handle"=>\Library\LogProtocol\PHPErrorLog::class,
+                    "split"=>PHP_EOL
+                ]
             ],
             "dir"=>[
-                "dir1"=>\Library\LogProtocol\NginxLog::class
+                "dir1"=>[
+                    "handle"=>\Library\LogProtocol\NginxLog::class,
+                    "split"=>PHP_EOL
+                ]
             ],
         ]
     ]

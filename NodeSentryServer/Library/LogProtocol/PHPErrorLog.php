@@ -50,11 +50,11 @@ class PHPErrorLog implements ResolveProtocol {
     }
 
     //参数解析
-    public static function parse($bufferInfo,$sentry_type)
+    public static function parse($bufferInfo,$sentry_type,$split="")
     {
 
         $buffer = $bufferInfo[LogSentryStruct::Buf_body];
-        $data = array_filter(explode("\n",$buffer));
+        $data = array_filter(explode($split,$buffer));
 
         if(!$data)
         {

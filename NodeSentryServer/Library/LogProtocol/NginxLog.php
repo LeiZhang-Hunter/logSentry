@@ -35,7 +35,7 @@ class NginxLog implements ResolveProtocol {
         self::$es = $es;
     }
 
-    public static function parse($log,$sentry_type)
+    public static function parse($log,$sentry_type,$split="")
     {
         var_dump($log);
         var_dump($sentry_type);

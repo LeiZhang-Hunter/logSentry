@@ -109,9 +109,15 @@ class DB
 
     public function fetchRow($sql, array $params = [])
     {
-        $ret = $this->query($sql, $params);
+        $res = $this->query($sql, $params);
+        if(!$res)
+        {
+            return false;
+        }
         $this->paramWhere = [];
-        return $ret ? $this->pdoStatement->fetch(\PDO::FETCH_ASSOC) : false;
+        //判断是否出错了
+        $ret = $this->pdoStatement->fetch(\PDO::FETCH_ASSOC);
+        return $ret ? $ret  : [];
     }
 
     public function fetchColumn($sql, array $params = [], $colIndex = 0)
@@ -185,7 +191,7 @@ class DB
         $where = $this->strWhere ? " WHERE $this->strWhere" : '';
         $this->strWhere = '';
         $sql = "UPDATE `$tableName` SET $sqlData $where";
-        return $this->query($sql);
+        return $this->query($sql,$this->paramWhere);
     }
 
     protected function delete($tableName)

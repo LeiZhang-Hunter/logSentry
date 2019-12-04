@@ -9,7 +9,7 @@ namespace Library\LogProtocol;
 class SysLogProResolve implements ResolveProtocol {
 
     //拆析协议
-    public static function parse($text)
+    public static function parse($text,$type,$split = "")
     {
         $BSDtext = trim($text);
 

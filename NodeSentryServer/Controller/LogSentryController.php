@@ -80,23 +80,26 @@ class LogSentryController{
                 $monitor_file = $content[LogSentryStruct::File_name];
                 $sentry_type = 0;
                 $data[LogSentryStruct::Monitor_type] = LogSentryStruct::Monitor_file;
-                if(!isset($this->protocolHandle[$monitor_type][$monitor_file]))
+                if(!isset($this->protocolHandle[$monitor_type][$monitor_file]["handle"]))
                 {
                     $this->logger->trace(Logger::LOG_WARING,"LogSentryController","onReceive","this->protocolHandle[$monitor_type][$monitor_file] not set");
                     break;
                 }
-                call_user_func_array([$this->protocolHandle[$monitor_type][$monitor_file],LogProtocol::Parse],[$content,$sentry_type]);
+
+                $split = isset($this->protocolHandle[$monitor_type][$monitor_file]["handle"]) ? $this->protocolHandle[$monitor_type][$monitor_file]["handle"] : PHP_EOL;
+                call_user_func_array([$this->protocolHandle[$monitor_type][$monitor_file]["handle"], LogProtocol::Parse], [$content, $sentry_type,$split]);
                 break;
             case LogSentryStruct::Monitor_dir:
                 $monitor_dir = $content[LogSentryStruct::Dir_name];
                 $sentry_type = 1;
                 $data[LogSentryStruct::Monitor_type] = LogSentryStruct::Monitor_dir;
-                if(!isset($this->protocolHandle[$monitor_type][$monitor_dir]))
+                if(!isset($this->protocolHandle[$monitor_type][$monitor_dir]["handle"]))
                 {
                     $this->logger->trace(Logger::LOG_WARING,"LogSentryController","onReceive","this->protocolHandle[$monitor_type][$monitor_dir] not set");
                     break;
                 }
-                call_user_func_array([$this->protocolHandle[$monitor_type][$monitor_dir],LogProtocol::Parse],[$content,$sentry_type]);
+                $split = isset($this->protocolHandle[$monitor_type][$monitor_dir]["handle"]) ? $this->protocolHandle[$monitor_type][$monitor_dir]["handle"] : PHP_EOL;
+                call_user_func_array([$this->protocolHandle[$monitor_type][$monitor_dir]["handle"], LogProtocol::Parse], [$content, $sentry_type,$split]);
                 break;
         }
         return;

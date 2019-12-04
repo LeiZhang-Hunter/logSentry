@@ -147,7 +147,7 @@ void DirMonitorWorker::onPipe(int fd, file_dir_data *node,size_t len) {
             proto_builder["monitor_type"] = "dir";
             proto_builder["dir_name"] = dirMonitorName;
             proto_builder["file_name"] = node->name;
-            proto_builder["file_dir"] = ;
+            proto_builder["file_dir"] = monitorDir.c_str();
             proto_builder["buf_body"] = read_buf;
             proto_builder["time"] = os->getUnixTime();
             json_string = jsonTool.jsonEncode(proto_builder);
