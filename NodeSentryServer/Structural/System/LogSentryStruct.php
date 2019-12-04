@@ -16,4 +16,5 @@ class LogSentryStruct{
     const Type = "type";
     const Monitor_file = "file";
     const Monitor_dir = "dir";
+    const Monitor_log_dir = "file_dir";
 }

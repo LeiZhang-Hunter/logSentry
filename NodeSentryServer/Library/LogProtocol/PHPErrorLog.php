@@ -62,12 +62,7 @@ class PHPErrorLog implements ResolveProtocol {
             return false;
         }
 
-        if(!$sentry_type)
-        {
-            $monitor_file = $bufferInfo[LogSentryStruct::File_name];
-        }else{
-            $monitor_file = $bufferInfo[LogSentryStruct::Dir_name];
-        }
+        $monitor_file = $bufferInfo[LogSentryStruct::Monitor_log_dir];
 
         if(!$monitor_file)
         {
@@ -108,6 +103,7 @@ class PHPErrorLog implements ResolveProtocol {
                     $info = self::$db->where("body_token", $main_token)->find("sys_syslog");
                     if($info === false)
                     {
+                        var_dump(self::$db->getLastError());
                         self::$logger->trace(Logger::LOG_WARING,
                             "PHPErrorLog","parse","get body info error;".self::$db->getLastError());
                         continue;
@@ -163,10 +159,15 @@ class PHPErrorLog implements ResolveProtocol {
                     }
                 }else if($info){
                     //查到了数据进行更新
-                    self::$db->where("body_token", $main_token)->update("sys_syslog",[
-                        LogDbStruct::Happen_time=>time(),
-                        LogDbStruct::Deal_state=>1
-                    ]);
+                    try {
+                        self::$db->where("body_token", $main_token)->update("sys_syslog", [
+                            LogDbStruct::Happen_time => time(),
+                            LogDbStruct::Deal_state => 1
+                        ]);
+                    }catch (\Exception $exception)
+                    {
+
+                    }
 
                     //更新es库
                     $info[LogDbStruct::Happen_time] = time();
