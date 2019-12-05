@@ -129,10 +129,10 @@ bool DirNode::addFileToPool(const char* name)
     bzero(&file_path,sizeof(file_path));
     snprintf(file_path,sizeof(file_path),"%s/%s",monitor_node.path,name);
 
-    monitor_file_fd = open(file_path,O_CREAT|O_RDWR,S_IRWXU);
+    monitor_file_fd = open(file_path,O_CREAT|O_RDWR,S_IRUSR);
     if(monitor_file_fd <= 0)
     {
-        LOG_TRACE(LOG_ERROR,false,"FileNode::addFileToPool","open file error");
+        LOG_TRACE(LOG_ERROR,false,"FileNode::addFileToPool","open file error:"<<file_path);
         return  false;
     }
 

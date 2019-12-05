@@ -10,7 +10,7 @@ using namespace Json;
 namespace service {
     class CJson {
     public:
-        Value jsonDecode(string strJsonMess);
+        bool jsonDecode(string strJsonMess,Json::Value* root);
         String jsonEncode(Value proto_value);
     };
 }

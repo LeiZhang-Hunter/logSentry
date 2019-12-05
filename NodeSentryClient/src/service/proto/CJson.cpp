@@ -6,10 +6,19 @@
 
 using namespace service;
 
-Value CJson::jsonDecode(string strJsonMess) {
-//    Json::Reader jsonReader;
-//    Json::Value parseValue;
-//    jsonReader.parse(strJsonMess,parseValue);
+bool CJson::jsonDecode(string strJsonMess,Json::Value* root) {
+    Json::CharReaderBuilder readerBuilder;
+    std::unique_ptr<Json::CharReader>  jsonReader(readerBuilder.newCharReader());
+    JSONCPP_STRING errs;
+    Json::Value parseValue;
+    bool res = jsonReader->parse(strJsonMess.c_str(),strJsonMess.c_str()+strJsonMess.length(),root,&errs);
+    if (!res || !errs.empty()) {
+        LOG_TRACE(LOG_ERROR,false,"CJson::jsonDecode","jsonDecode error,error msg:"<<errs);
+        return false;
+    }else{
+        //转化为map
+        return true;
+    }
 }
 
 //压缩数据

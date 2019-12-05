@@ -12,7 +12,7 @@ namespace service{
     class CCurl {
 
     public:
-        static int httpGet(const char* url,string returnStr);
-
+        static int httpGet(const char* url,string* returnStr);
+        static size_t process_data(void *data, size_t size, size_t nmemb, string &content);
     };
 }

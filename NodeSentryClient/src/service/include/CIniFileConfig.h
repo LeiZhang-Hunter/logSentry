@@ -34,7 +34,7 @@ namespace service {
 
         virtual int onGetConfig(map<string,map <string,string>>Config);
 
-
+        bool parseNetworkConfig();
     private:
         int fileFd;
     };

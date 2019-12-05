@@ -26,6 +26,7 @@ int main(int argc,char** argv)
     }
     //运行入口函数创建进程
     MainCenter* main_instance = CSingleInstance<MainCenter>::getInstance();
+    string return_val;
     main_instance->init(path);
     main_instance->start();
     main_instance->destroy();
