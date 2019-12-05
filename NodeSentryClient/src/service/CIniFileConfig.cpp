@@ -112,7 +112,7 @@ bool service::CIniFileConfig::readConfig(string &filename) {
                     mContent["server"]["ip"] = server_ip;
                 }
 
-                string server_port = netConfig["server"]["server_port"].asString();
+                string server_port = netConfig["server"]["port"].asString();
                 if(server_port == "null")
                 {
                     printf("[CIniFileConfig::readConfig],get net config[server][port] error(%s)\n",config_url.c_str());
