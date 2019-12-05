@@ -58,7 +58,8 @@ bool service::CIniFileConfig::readConfig(string &filename) {
             bool netRet = jsonTool.jsonDecode(return_val,&netConfig);
             if(!netRet)
             {
-                LOG_TRACE(LOG_ERROR,false,"CIniFileConfig::readConfig","get ner config error("<<config_url.c_str()<<")");
+                printf("[CIniFileConfig::readConfig],get net config error(%s)\n",config_url.c_str());
+                exit(-1);
             }else{
                 //清空整个map然后重新插入网络请求下来的数据
                 mContent.clear();

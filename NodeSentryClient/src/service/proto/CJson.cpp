@@ -13,7 +13,6 @@ bool CJson::jsonDecode(string strJsonMess,Json::Value* root) {
     Json::Value parseValue;
     bool res = jsonReader->parse(strJsonMess.c_str(),strJsonMess.c_str()+strJsonMess.length(),root,&errs);
     if (!res || !errs.empty()) {
-        LOG_TRACE(LOG_ERROR,false,"CJson::jsonDecode","jsonDecode error,error msg:"<<errs);
         return false;
     }else{
         //转化为map
