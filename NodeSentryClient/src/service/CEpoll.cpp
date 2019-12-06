@@ -27,7 +27,7 @@ bool CEpoll::createEvent(int size) {
     }
 
     eventSize = size;
-    bzero(eventCollect,sizeof(struct epoll_event));
+    bzero(eventCollect,sizeof(struct epoll_event)*1024);
     return true;
 }
 
