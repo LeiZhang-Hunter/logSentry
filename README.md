@@ -8,6 +8,8 @@
 
 qq邮箱:357733652@qq.com
 
+环境：ubuntu 或者 centos
+
 ####cmake 安装 NodeSentryClient
 
     mkdir build
