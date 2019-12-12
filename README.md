@@ -1,5 +1,13 @@
 #如何安装logSentry
 
+联系人:张磊
+
+联系微信：zl357733652
+
+联系qq:357733652
+
+qq邮箱:357733652@qq.com
+
 ####cmake 安装 NodeSentryClient
 
     mkdir build
