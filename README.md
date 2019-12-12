@@ -12,6 +12,8 @@ qq邮箱:357733652@qq.com
 
 ####cmake 安装 NodeSentryClient
 
+    进入NodeSentryClient所在的目录
+
     mkdir build
 
     cd build
