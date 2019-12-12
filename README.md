@@ -12,6 +12,7 @@ qq邮箱:357733652@qq.com
 
 ####cmake 安装 NodeSentryClient
 
+```
     进入NodeSentryClient所在的目录
 
     mkdir build
@@ -21,7 +22,7 @@ qq邮箱:357733652@qq.com
     cmake ..
 
     make -j4
-
+```
 
 这样我们就可以顺利生成logSentry的二进制文件
 
