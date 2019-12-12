@@ -32,10 +32,42 @@ return [
                 ]
             ],
             "dir"=>[
-                "dir1"=>[
-                    "handle"=>\Library\LogProtocol\NginxLog::class,
+                "nginx/community-test.chelun.com"=>[
+                    "handle"=>\Library\LogProtocol\SplitLog::class,
                     "split"=>PHP_EOL
-                ]
+                ],
+                "topic-service"=>[
+                    "handle"=>\Library\LogProtocol\SplitLog::class,
+                    "split"=>PHP_EOL
+                ],
+                "bypass-service"=>[
+                    "handle"=>\Library\LogProtocol\SplitLog::class,
+                    "split"=>PHP_EOL
+                ],
+                "chelun-service"=>[
+                    "handle"=>\Library\LogProtocol\SplitLog::class,
+                    "split"=>PHP_EOL
+                ],
+                "forum-service"=>[
+                    "handle"=>\Library\LogProtocol\SplitLog::class,
+                    "split"=>PHP_EOL
+                ],
+                "mall-service"=>[
+                    "handle"=>\Library\LogProtocol\SplitLog::class,
+                    "split"=>PHP_EOL
+                ],
+                "bypass-node"=>[
+                    "handle"=>\Library\LogProtocol\SplitLog::class,
+                    "split"=>PHP_EOL
+                ],
+                "user-service"=>[
+                    "handle"=>\Library\LogProtocol\SplitLog::class,
+                    "split"=>PHP_EOL
+                ],
+                "message-service"=>[
+                    "handle"=>\Library\LogProtocol\SplitLog::class,
+                    "split"=>PHP_EOL
+                ],
             ],
         ]
     ]
