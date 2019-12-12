@@ -76,7 +76,7 @@ class SplitLog implements ResolveProtocol {
                 $logUnit[LogDbStruct::Body_token] = md5($dataUnit);
                 $logUnit[LogDbStruct::Created_time] = time();
                 $logUnit[LogDbStruct::State] = 1;//正常状态
-                $logUnit[LogDbStruct::Type] = 1;//级别为php日志
+                $logUnit[LogDbStruct::Type] = 0;//级别为php日志
 
                 //确确实实没有这个日志记录
                 if(($res = self::$db->insert("sys_syslog",$logUnit)) !== false){

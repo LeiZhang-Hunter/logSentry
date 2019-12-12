@@ -62,7 +62,7 @@ class LogSentryController{
         {
             foreach ($protocolParseList as $protocol)
             {
-                call_user_func_array([$protocol,"ModuleInit"],[$this->logger,$this->db,$this->es]);
+                call_user_func_array([$protocol["handle"],"ModuleInit"],[$this->logger,$this->db,$this->es]);
             }
         }
     }
@@ -86,7 +86,7 @@ class LogSentryController{
                     break;
                 }
 
-                $split = isset($this->protocolHandle[$monitor_type][$monitor_file]["handle"]) ? $this->protocolHandle[$monitor_type][$monitor_file]["handle"] : PHP_EOL;
+                $split = isset($this->protocolHandle[$monitor_type][$monitor_file]["split"]) ? $this->protocolHandle[$monitor_type][$monitor_file]["split"] : PHP_EOL;
                 call_user_func_array([$this->protocolHandle[$monitor_type][$monitor_file]["handle"], LogProtocol::Parse], [$content, $sentry_type,$split]);
                 break;
             case LogSentryStruct::Monitor_dir:
@@ -98,7 +98,7 @@ class LogSentryController{
                     $this->logger->trace(Logger::LOG_WARING,"LogSentryController","onReceive","this->protocolHandle[$monitor_type][$monitor_dir] not set");
                     break;
                 }
-                $split = isset($this->protocolHandle[$monitor_type][$monitor_dir]["handle"]) ? $this->protocolHandle[$monitor_type][$monitor_dir]["handle"] : PHP_EOL;
+                $split = isset($this->protocolHandle[$monitor_type][$monitor_dir]["split"]) ? $this->protocolHandle[$monitor_type][$monitor_dir]["split"] : PHP_EOL;
                 call_user_func_array([$this->protocolHandle[$monitor_type][$monitor_dir]["handle"], LogProtocol::Parse], [$content, $sentry_type,$split]);
                 break;
         }
