@@ -8,9 +8,9 @@
  */
 return [
     "database_name"=>"syslog",
-    "ip"=>"10.10.1.23",
+    "ip"=>"127.0.0.1",
     "port"=>"3306",
     "charset"=>"utf8",
-    "username"=>"chelun",
-    "password"=>"chelun"
+    "username"=>"root",
+    "password"=>"root"
 ];

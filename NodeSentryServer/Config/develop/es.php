@@ -7,7 +7,7 @@
  * Time: 12:36
  */
 return [
-    "ip"=>"10.10.28.127",
+    "ip"=>"127.0.0.1",
     "port"=>"9200",
     "index"=>"syslog",
     "type"=>"syslog",
