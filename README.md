@@ -30,6 +30,10 @@ qq邮箱:357733652@qq.com
 
 ./logSentry -c  配置文件路径  就可以使用了
 
+如何做到平滑停止？
+
+对着sentry.pid 文件中的进程pid发送SIGTERM 这个信号就可以实现平滑停止了
+
 logSentry 采用异步多线程的模型
 
 配置文件详解:
